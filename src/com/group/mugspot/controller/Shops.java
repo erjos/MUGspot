@@ -1,4 +1,4 @@
-package com.mugspot;
+package com.group.mugspot.controller;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

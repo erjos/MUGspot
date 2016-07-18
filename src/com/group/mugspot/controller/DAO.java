@@ -1,4 +1,4 @@
-package com.mugspot;
+package com.group.mugspot.controller;
 
 import java.util.List;
 
