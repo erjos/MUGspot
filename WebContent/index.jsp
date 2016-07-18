@@ -6,7 +6,7 @@
 	<center>
 		<h2>Hello World</h2>
 		<h3>
-			<a href="welcome">Welcome</a>
+			<a href="shops">Shops</a>
 			<br><br>
 			<a href="database">Display data using spring</a>
 		</h3>
