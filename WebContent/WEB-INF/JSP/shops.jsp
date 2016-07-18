@@ -8,13 +8,13 @@
 </head>
 <body>
 	<center>
-		<h2>Here's Your Shop Info</h2>
-			<br>
+		<h1>Here's Your Shop Info</h1>
+	</center>	
+		<h2>Shop 1:</h2>
 			${name}
 			<br>
 			${phone}
 			<br>
 			${address}
-	</center>
 </body>
 </html>

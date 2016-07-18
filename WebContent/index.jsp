@@ -11,7 +11,7 @@
 	<center>
 		<h2>MUGspot</h2>
 		<h3>
-			<a href="shops">Shops</a>
+			<a href="shops">Detroit Coffee Shops</a>
 			<br><br>
 			<a href="database">Display data using spring</a>
 		</h3>
