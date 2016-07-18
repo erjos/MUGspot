@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-<<<<<<< HEAD
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
@@ -20,21 +19,4 @@
 
 	</session-factory>
 
-=======
- "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
- "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
-	<session-factory>
-		<!-- Database connection settings -->
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost:3306/mugspot?useSSL=true</property>
-			<property name="hibernate.connection.username">root</property>
-			<property name="hibernate.connection.password">@39Brookview4191</property>
-			<!-- SQL dialect -->
-			<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-			<!-- Specify session context -->
-			<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
-	</session-factory>
->>>>>>> 7535e9cb7ff41cbc7b09a783070edadc7e9effbe
 </hibernate-configuration>
