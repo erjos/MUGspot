@@ -22,11 +22,13 @@ public class MugController{
 	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException{
 		
 		
+		
 		ArrayList<String> info = GooglePlaces.getInfo("ChIJtzwfLTItO4gRxwpKgcgFomE");
 		String name = info.get(0);
 		String phone = info.get(1);
 		String address = info.get(2);
 		
+		//is there a way to iterate through an arraylist in spring - to reflect dynamic amounts of information being passed from the controller
 		ModelAndView mv = new ModelAndView("shops");
 		mv.addObject("name", name);
 		mv.addObject("phone", phone);
