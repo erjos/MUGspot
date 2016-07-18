@@ -13,7 +13,7 @@
 		<h3>
 			<a href="welcome">Welcome</a>
 			<br><br>
-			<a href="receipt">View Receipt</a>
+			<a href="database">Display data using spring</a>
 		</h3>
 	</center>
 </body>
