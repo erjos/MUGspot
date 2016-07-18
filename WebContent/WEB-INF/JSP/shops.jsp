@@ -8,8 +8,13 @@
 </head>
 <body>
 	<center>
-		<h2>Welcome!</h2>
-			${message}
+		<h2>Here's Your Shop Info</h2>
+			<br>
+			${name}
+			<br>
+			${phone}
+			<br>
+			${address}
 	</center>
 </body>
 </html>

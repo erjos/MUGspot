@@ -1,6 +1,7 @@
 package com.group.mugspot.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.simple.parser.ParseException;
@@ -20,11 +21,16 @@ public class MugController{
 	@RequestMapping("/shops")
 	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException{
 		
-
-
-		String phone = GooglePlaces.getInfo("ChIJtzwfLTItO4gRxwpKgcgFomE");
+		
+		ArrayList<String> info = GooglePlaces.getInfo("ChIJtzwfLTItO4gRxwpKgcgFomE");
+		String name = info.get(0);
+		String phone = info.get(1);
+		String address = info.get(2);
+		
 		ModelAndView mv = new ModelAndView("shops");
-		mv.addObject("message", phone);
+		mv.addObject("name", name);
+		mv.addObject("phone", phone);
+		mv.addObject("address", address);
 		
 		return mv;
 	}
