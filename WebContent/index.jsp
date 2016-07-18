@@ -9,7 +9,7 @@
 <body>
  
 	<center>
-		<h2>Hello World</h2>
+		<h2>MUGspot</h2>
 		<h3>
 			<a href="shops">Shops</a>
 			<br><br>
