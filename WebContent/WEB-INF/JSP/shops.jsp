@@ -4,12 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Spring 4 MVC -HelloWorld</title>
+<title>Shops</title>
 </head>
 <body>
 	<center>
-		<h2>Welcome!</h2>
-			${message}
-	</center>
+		<h1>Here's Your Shop Info</h1>
+	</center>	
+		<h2>Shop 1:</h2>
+			${name}
+			<br>
+			${phone}
+			<br>
+			${address}
 </body>
 </html>
