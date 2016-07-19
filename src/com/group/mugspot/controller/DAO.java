@@ -51,7 +51,8 @@ public class DAO {
 			// DAO = shops1.getShop_name();
 			DAO += "<tr><td>" + shops1.getShop_name() + "</td><td>" + shops1.getDescription() + "</td><td>" 
 		     + shops1.getMenu() + "</td><td>" + shops1.getOutlets() + "</td><td>"  + shops1.getCapacity() 
-		     + "</td><td>" + shops1.getTables();
+		     + "</td><td>" + shops1.getPlaceid()
+			+ "</td><td>" + shops1.getBudget();
 		}
 		DAO += "</table>";
 		return DAO;

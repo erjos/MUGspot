@@ -49,19 +49,30 @@ public class GooglePlaces {
 			JsonElement name = jobject.get("name");
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement phoneNumber = jobject.get("formatted_phone_number");
+			JsonElement icon = jobject.get("icon");
+
 			
 			
 			String shop_name = name.toString().replaceAll("\"", "");
 			String phone = phoneNumber.toString().replaceAll("\"", "");
 			String shop_address = address.toString().replaceAll("\"", "");
+			String iconurl = ("<img src=\"" + icon.toString().replaceAll("\"", "") + "\">");
+
 			
 			ArrayList<String> info = new ArrayList<String>();
 			
 			info.add(shop_name);
 			info.add(phone);
 			info.add(shop_address);
+			info.add(iconurl);
 
 		return info;	
 		}
+	
+	
+	public static void main(String[] args) throws ClientProtocolException, IOException, ParseException {
+		 
+		System.out.println(getInfo("ChIJtzwfLTItO4gRxwpKgcgFomE"));
+	}
 
 }

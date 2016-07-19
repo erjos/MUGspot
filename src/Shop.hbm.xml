@@ -15,4 +15,22 @@
 		<property name="capacity" column="capacity" type="int"></property>
 		<property name="tables" column="tables" type="int"></property>
 	</class>
-</hibernate-mapping>  
+</hibernate-mapping> 
+
+
+
+
+
+
+CREATE TABLE ShopInfoshopinfo(
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Shop_Name` varchar(45) NOT NULL,
+  `Description` varchar(255) NOT NULL,
+  `Menu` varchar(255) DEFAULT NULL,
+  `Outlets` int(11) DEFAULT NULL,
+  `Capacity` int(11) DEFAULT NULL,
+  `Place_ID` varchar(45) NOT NULL,
+  `Budget` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+ 

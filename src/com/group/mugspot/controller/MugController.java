@@ -25,12 +25,16 @@ public class MugController{
 		String name = info.get(0);
 		String phone = info.get(1);
 		String address = info.get(2);
+		String icon = info.get(3);
+
 		
 		//is there a way to iterate through an arraylist in spring - to reflect dynamic amounts of information being passed from the controller
 		ModelAndView mv = new ModelAndView("shops");
 		mv.addObject("name", name);
 		mv.addObject("phone", phone);
 		mv.addObject("address", address);
+		mv.addObject("icon", icon);
+
 		
 		return mv;
 	}
