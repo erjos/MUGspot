@@ -11,12 +11,20 @@
 		<h1>Here's Your Shop Info</h1>
 	</center>	
 		<h2>Shop 1:</h2>
-			${name}
+			<b> Name:</b> ${name}
 			<br>
-			${phone}
+			<b>Description:</b> ${description}
 			<br>
-			${address}
+			<b>Menu:</b>${menu}
 			<br>
-			${messag}
+			<b># of Outlets:</b> ${outlets}
+			<br>
+			<b>Capacity: </b>${capacity}
+			<br>
+			<b># of tables:</b>${tables}
+			<br>
+			<b>Phone #:</b> ${phone}
+			<br>
+			<b>Address:</b> ${address}
 </body>
 </html>
