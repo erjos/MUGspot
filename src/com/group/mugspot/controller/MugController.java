@@ -2,6 +2,7 @@ package com.group.mugspot.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.simple.parser.ParseException;
@@ -13,33 +14,33 @@ import org.springframework.web.servlet.ModelAndView;
 //cannot name this "controller"
 public class MugController{
 	
-	
 	 
 	@RequestMapping("/shops")
 	//need to add try catch for these exceptions - 
 	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException{
 		
-		ArrayList<String> info = DAO.getInfo();
-		String name = info.get(0);
+		//This array is populated with any data in the coffee shop DB, not specific to each coffee shop
+		ArrayList<Map> info = DAO.getInfo();
+		
+		/*String name = info.get(0);
 		String description = info.get(1);
 		String menu = info.get(2);
 		String outlets = info.get(3);
 		String capacity = info.get(4);
 		String tables = info.get(5);
 		String phone = info.get(6);
-		String address = info.get(7);
+		String address = info.get(7);*/
 		
-		//is there a way to iterate through an arraylist in spring - to reflect dynamic amounts of information being passed from the controller
 		ModelAndView mv = new ModelAndView("shops");
-		mv.addObject("name", name);
-		mv.addObject("description", description);
+		mv.addObject("shop", info);
+		
+		/*mv.addObject("description", description);
 		mv.addObject("menu", menu);
 		mv.addObject("outlets", outlets);
 		mv.addObject("capacity", capacity);
 		mv.addObject("tables", tables);
 		mv.addObject("phone", phone);
-		mv.addObject("address", address);
-		
+		mv.addObject("address", address);*/
 		
 		return mv;
 	}
