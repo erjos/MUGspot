@@ -21,8 +21,6 @@ public class MugController{
 	@RequestMapping("/shops")
 	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException{
 		
-		
-		
 		ArrayList<String> info = GooglePlaces.getInfo("ChIJtzwfLTItO4gRxwpKgcgFomE");
 		String name = info.get(0);
 		String phone = info.get(1);
