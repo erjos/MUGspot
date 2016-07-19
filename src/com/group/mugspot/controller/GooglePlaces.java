@@ -17,8 +17,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class GooglePlaces {
-	
-	public static ArrayList<String> getInfo(String placeID) throws ClientProtocolException, IOException, ParseException {
+	//change to a try catch exception eventually that redirects users to an error page
+	public static ArrayList<String> getAPI(String placeID) throws ClientProtocolException, IOException, ParseException {
 
 			String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID
 					+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";

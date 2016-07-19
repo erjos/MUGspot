@@ -10,8 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "coffee_shops")
 public class Shops {
-	
-		
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +34,9 @@ public class Shops {
 		@Column(name = "tables")
 		private int tables;
 		
+		@Column(name = "place_id")
+		private String place_id;
+
 		public Shops (){}
 
 		public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, int tables) {
@@ -80,6 +81,15 @@ public class Shops {
 		public void setId(int id) {
 			this.id = id;
 		}
+		
+		public String getPlace_id() {
+			return place_id;
+		}
+
+		public void setPlace_id(String place_id) {
+			this.place_id = place_id;
+		}
+
 
 		public void setShop_name(String shop_name) {
 			this.shop_name = shop_name;
@@ -104,6 +114,7 @@ public class Shops {
 		public void setTables(int tables) {
 			this.tables = tables;
 		}
+		
 		
 		@Override
 		public String toString() {

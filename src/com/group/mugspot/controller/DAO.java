@@ -1,26 +1,25 @@
 package com.group.mugspot.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.json.simple.parser.ParseException;
 
 public class DAO {
 
 	// public static void main(String[] args) {
-	public List<Shops> getShops() {
+	public static List<Shops> getShops() {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
 				.buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
 
-		// try {
-
-		// adding objects to the database
-		//System.out.println("Create new friend object");
-		Shops friend = new Shops();
 		session.beginTransaction();
 
 		@SuppressWarnings("deprecation")
@@ -33,17 +32,37 @@ public class DAO {
 
 		//System.out.println("started query");
 
-		for (Shops array : shops) {
-			System.out.println(array);
-		}
-
 		session.getTransaction().commit();
 		session.close();
+		
 		return shops;
-
+	}
+	
+	
+	public static ArrayList<String> getInfo() throws ClientProtocolException, IOException, ParseException {
+		List<Shops> shops = getShops();
+		ArrayList<String> shopInfo = new ArrayList<String>();
+		for (Shops shops1 : shops) {
+		    
+		    ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
+			String name = api.get(0);
+		    String phone = api.get(1);
+			String address = api.get(2);
+			
+			shopInfo.add(name);
+			shopInfo.add(shops1.getDescription());
+		    shopInfo.add(shops1.getMenu());
+		    shopInfo.add(shops1.getOutlets()+"");
+		    shopInfo.add(shops1.getCapacity()+"");
+		    shopInfo.add(shops1.getTables()+"");
+			
+			shopInfo.add(phone);
+			shopInfo.add(address);
+		}
+		return shopInfo;
 	}
 
-	public String getInfo() {
+	/*public static String getInfo() {
 		String DAO = "<table border=\"1\">";
 				//+ "<tr><th>Username</th><th>Email</th><th>Full Name</th><th>Delete User</th></tr>";//include start table tag
 		List<Shops> shops = getShops();
@@ -55,5 +74,5 @@ public class DAO {
 		}
 		DAO += "</table>";
 		return DAO;
-	}
+	}*/
 }
