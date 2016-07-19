@@ -37,9 +37,6 @@ public class Shops {
 	@Column(name = "Budget")
 	private int budget;
 
-	public Shops() {
-	}
-
 	public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, String place_id,
 			int budget) {
 		super();
@@ -125,3 +122,4 @@ public class Shops {
 	}
 
 }
+
