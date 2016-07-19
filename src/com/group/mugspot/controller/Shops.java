@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "coffee_shops")
+@Table(name = "shopinfo")
 public class Shops {
 
 		@Id
@@ -16,30 +16,30 @@ public class Shops {
 		@Column(name = "ID")
 		private int id;
 		
-		@Column(name = "shop_name")
+		@Column(name = "Shop_Name")
 		private String shop_name;
 		
-		@Column(name = "description")
+		@Column(name = "Description")
 		private String description;
 		
-		@Column(name = "menu")
+		@Column(name = "Menu")
 		private String menu;
 		
-		@Column(name = "outlets")
+		@Column(name = "Outlets")
 		private int outlets;
 		
-		@Column(name = "capacity")
+		@Column(name = "Capacity")
 		private int capacity;
 		
-		@Column(name = "tables")
-		private int tables;
-		
-		@Column(name = "place_id")
+		@Column(name = "Place_ID")
 		private String place_id;
+		
+		@Column(name = "Budget")
+		private int budget;
 
 		public Shops (){}
 
-		public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, int tables) {
+		public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, int budget) {
 			super();
 			this.id = id;
 			this.shop_name = shop_name;
@@ -47,7 +47,7 @@ public class Shops {
 			this.menu = menu;
 			this.outlets = outlets;
 			this.capacity = capacity;
-			this.tables = tables;
+			this.budget = budget;
 		}
 
 		public int getId() {
@@ -74,8 +74,8 @@ public class Shops {
 			return capacity;
 		}
 
-		public int getTables() {
-			return tables;
+		public int getBudget() {
+			return budget;
 		}
 
 		public void setId(int id) {
@@ -111,14 +111,14 @@ public class Shops {
 			this.capacity = capacity;
 		}
 
-		public void setTables(int tables) {
-			this.tables = tables;
+		public void setBudget(int budget) {
+			this.budget = budget;
 		}
 		
 		
 		@Override
 		public String toString() {
 			return "Shops [id=" + id + ", shop_name=" + shop_name + ", description=" + description + ", menu=" + menu
-					+ ", outlets=" + outlets + ", capacity=" + capacity + ", tables=" + tables + "]";
+					+ ", outlets=" + outlets + ", capacity=" + capacity + ", budget=" + budget + "]";
 		}
 }

@@ -28,7 +28,7 @@ public class GooglePlaces {
 			HttpGet request = new HttpGet(url);
 			
 			HttpResponse response = client.execute(request);
-
+   
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
