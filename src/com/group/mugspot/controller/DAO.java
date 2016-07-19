@@ -20,7 +20,7 @@ public class DAO {
 
 		// adding objects to the database
 		//System.out.println("Create new friend object");
-		Shops friend = new Shops();
+		//Shops friend = new Shops();
 		session.beginTransaction();
 
 		@SuppressWarnings("deprecation")
@@ -33,9 +33,9 @@ public class DAO {
 
 		//System.out.println("started query");
 
-		for (Shops array : shops) {
+		/*for (Shops array : shops) {
 			System.out.println(array);
-		}
+		}*/
 
 		session.getTransaction().commit();
 		session.close();
@@ -49,7 +49,7 @@ public class DAO {
 		List<Shops> shops = getShops();
 		for (Shops shops1 : shops) {
 			// DAO = shops1.getShop_name();
-			DAO += "<tr><td>" + shops1.getShop_name() + "</td><td>" + shops1.getDescription() + "</td><td>" 
+			DAO += "<tr><td>" + "<tr><td>" +  shops1.getShop_name() + "</td><td>" + shops1.getDescription() + "</td><td>" 
 		     + shops1.getMenu() + "</td><td>" + shops1.getOutlets() + "</td><td>"  + shops1.getCapacity() 
 		     + "</td><td>" + shops1.getTables();
 		}

@@ -16,5 +16,7 @@
 			${phone}
 			<br>
 			${address}
+			<br>
+			${messag}
 </body>
 </html>
