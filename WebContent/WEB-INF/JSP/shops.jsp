@@ -19,7 +19,6 @@
 		<tr>
 		
 			<td><h2> <c:out value="${current.name}" /></h2><td>
-			<td><img src="<c:out value="${current.icon}"/>"/><td><br>
           	<td><b>Description:</b> <c:out value="${current.description}" /><td><br>
           	<td><b>Menu:</b> <c:out value="${current.menu}" /><td><br>
           	<td><b>Outlets:</b> <c:out value="${current.outlets}" /><td><br>
