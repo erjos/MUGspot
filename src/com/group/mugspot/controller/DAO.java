@@ -52,6 +52,7 @@ public class DAO {
 		    String phone = api.get(1);
 			String address = api.get(2);
 			String icon = api.get(3);
+			String photo = api.get(4);
 			
 			shop.put("id", shops1.getId());
 			shop.put("icon", icon);
@@ -63,6 +64,7 @@ public class DAO {
 			shop.put("budget", shops1.getBudget()+"");
 			shop.put("phone", phone);
 			shop.put("address", address);
+			shop.put("pic", photo);
 			
 			shopInfo.add(shop);
 			

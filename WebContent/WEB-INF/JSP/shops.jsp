@@ -27,6 +27,7 @@
           	<td><b>Budget:</b> <c:out value="${current.budget}" /><td><br>
           	<td><b>Phone:</b> <c:out value="${current.phone}" /><td><br>
           	<td><b>Address:</b> <c:out value="${current.address}" /><td><br><br><br>
+          	<td> <img src="<c:out value="${current.p	
         </tr>
       </c:forEach>
 </body>

@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.simple.parser.ParseException;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -45,18 +46,26 @@ public class GooglePlaces {
 			JsonObject jobject = jelement.getAsJsonObject();
 			
 			jobject = jobject.getAsJsonObject("result");
-
+			
+			
 			JsonElement name = jobject.get("name");
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement phoneNumber = jobject.get("formatted_phone_number");
 			JsonElement icon = jobject.get("icon");
-
+			//JsonArray photos = photos.getAsJsonArray();
+			JsonArray photos =  (JsonArray) jobject.get("photos");
+			//JsonElement widtth = photos.get(0);
+			//JsonElement height = photos.get(1);
+		//	JsonElement height = photos.get;
+			
 			
 			String shop_name = name.toString().replaceAll("\"", "");
 			String phone = phoneNumber.toString().replaceAll("\"", "");
 			String shop_address = address.toString().replaceAll("\"", "");
 			String iconurl = (icon.toString().replaceAll("\"", ""));
-
+			String photo = photos.toString();
+			
+			//String purl = "https://maps.googleapis.com/maps/api/place/photo?parameters";	
 			
 			ArrayList<String> info = new ArrayList<String>();
 			
@@ -64,8 +73,14 @@ public class GooglePlaces {
 			info.add(phone);
 			info.add(shop_address);
 			info.add(iconurl);
-
+			//info.add(p);
+			
 		return info;	
 		}
+	
+	
+	public static void main(String[] args) throws ClientProtocolException, IOException, ParseException {
+		System.out.println(getAPI("ChIJUwca7i8tO4gRC6azALL0VXY"));
+	}
 
 }
