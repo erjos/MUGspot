@@ -29,7 +29,7 @@ public class GooglePlaces {
 			HttpGet request = new HttpGet(url);
 			
 			HttpResponse response = client.execute(request);
-
+   
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
 			StringBuffer result = new StringBuffer();
@@ -58,6 +58,7 @@ public class GooglePlaces {
 			//JsonElement height = photos.get(1);
 		//	JsonElement height = photos.get;
 			
+
 			
 			String shop_name = name.toString().replaceAll("\"", "");
 			String phone = phoneNumber.toString().replaceAll("\"", "");
@@ -66,7 +67,7 @@ public class GooglePlaces {
 			String photo = photos.toString();
 			
 			//String purl = "https://maps.googleapis.com/maps/api/place/photo?parameters";	
-			
+
 			ArrayList<String> info = new ArrayList<String>();
 			
 			info.add(shop_name);
@@ -75,6 +76,7 @@ public class GooglePlaces {
 			info.add(iconurl);
 			//info.add(p);
 			
+
 		return info;	
 		}
 	
@@ -83,4 +85,4 @@ public class GooglePlaces {
 		System.out.println(getAPI("ChIJUwca7i8tO4gRC6azALL0VXY"));
 	}
 
-}
+}   
