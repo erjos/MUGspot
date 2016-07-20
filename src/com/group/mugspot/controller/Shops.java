@@ -8,117 +8,123 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "coffee_shops")
+@Table(name = "ShopInfo")
 public class Shops {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name = "ID")
-		private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private int id;
+
+
+	@Column(name = "Shop_Name")
+	private String shop_name;
+
+	@Column(name = "Description")
+	private String description;
+
+	@Column(name = "Menu")
+	private String menu;
+
+	@Column(name = "Outlets")
+	private int outlets;
+
+	@Column(name = "Capacity")
+	private int capacity;
+
+	@Column(name = "Place_ID")
+	private String place_id;
+
+	@Column(name = "Budget")
+	private int budget;
+
+	public Shops (){
 		
-		@Column(name = "Shop_Name")
-		private String shop_name;
-		
-		@Column(name = "Description")
-		private String description;
-		
-		@Column(name = "Menu")
-		private String menu;
-		
-		@Column(name = "Outlets")
-		private int outlets;
-		
-		@Column(name = "Capacity")
-		private int capacity;
-		
-		@Column(name = "Place_ID")
-		private String place_id;
-		
-		@Column(name = "Budget")
-		private int budget;
+	}
+	public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, String place_id,
+			int budget) {
+		super();
+		this.id = id;
+		this.shop_name = shop_name;
+		this.description = description;
+		this.menu = menu;
+		this.outlets = outlets;
+		this.capacity = capacity;
+		this.place_id = place_id;
+		this.budget = budget;
+	}
 
-		public Shops (){}
+	public int getId() {
+		return id;
+	}
 
-		public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, int budget) {
-			super();
-			this.id = id;
-			this.shop_name = shop_name;
-			this.description = description;
-			this.menu = menu;
-			this.outlets = outlets;
-			this.capacity = capacity;
-			this.budget = budget;
-		}
+	public String getShop_name() {
+		return shop_name;
+	}
 
-		public int getId() {
-			return id;
-		}
+	public String getDescription() {
+		return description;
+	}
 
-		public String getShop_name() {
-			return shop_name;
-		}
+	public String getMenu() {
+		return menu;
+	}
 
-		public String getDescription() {
-			return description;
-		}
+	public int getOutlets() {
+		return outlets;
+	}
 
-		public String getMenu() {
-			return menu;
-		}
+	public int getCapacity() {
+		return capacity;
+	}
 
-		public int getOutlets() {
-			return outlets;
-		}
+	public String getPlace_id() {
+		return place_id;
+	}
 
-		public int getCapacity() {
-			return capacity;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public int getBudget() {
-			return budget;
-		}
+	public void setShop_name(String shop_name) {
+		this.shop_name = shop_name;
+	}
 
-		public void setId(int id) {
-			this.id = id;
-		}
-		
-		public String getPlace_id() {
-			return place_id;
-		}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-		public void setPlace_id(String place_id) {
-			this.place_id = place_id;
-		}
+	public void setMenu(String menu) {
+		this.menu = menu;
+	}
 
+	public void setOutlets(int outlets) {
+		this.outlets = outlets;
+	}
 
-		public void setShop_name(String shop_name) {
-			this.shop_name = shop_name;
-		}
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
+	public void setPlace_id(String place_id) {
+		this.place_id = place_id;
+	}
 
-		public void setMenu(String menu) {
-			this.menu = menu;
-		}
+	public int getBudget() {
+		return budget;
+	}
 
-		public void setOutlets(int outlets) {
-			this.outlets = outlets;
-		}
+	public void setBudget(int budget) {
+		this.budget = budget;
+	}
 
-		public void setCapacity(int capacity) {
-			this.capacity = capacity;
-		}
+	@Override
+	public String toString() {
+		return "Shops [id=" + id + ", Shop_Name=" + shop_name + ", Description=" + description + ", Menu=" + menu
+				+ ", Outlets=" + outlets + ", Capacity=" + capacity + ", Place_ID=" + place_id + ", Budget=" + budget
+				+ "]";
+	}
 
-		public void setBudget(int budget) {
-			this.budget = budget;
-		}
-		
-		
-		@Override
-		public String toString() {
-			return "Shops [id=" + id + ", shop_name=" + shop_name + ", description=" + description + ", menu=" + menu
-					+ ", outlets=" + outlets + ", capacity=" + capacity + ", budget=" + budget + "]";
-		}
 }
+
+

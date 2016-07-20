@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*,java.util.*"%>
@@ -31,6 +32,7 @@ button {
 	</center>
 
 	<c:forEach items="${shop}" var="current" varStatus="status">
+
 		<tr>
 		<div class="container">
 			<td><h2>
@@ -58,5 +60,6 @@ button {
 		</div>
 		</div>
 	</c:forEach>
+
 </body>
 </html>
