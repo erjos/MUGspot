@@ -8,21 +8,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "ShopInfo")
+=======
+@Table(name = "shopinfo")
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 public class Shops {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "ID")
 		private int id;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 		@Column(name = "Shop_Name")
 		private String shop_name;
 		
 		@Column(name = "Description")
 		private String description;
 		
+<<<<<<< HEAD
 		@Column(name = "Menu")		
+=======
+		@Column(name = "Menu")
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 		private String menu;
 		
 		@Column(name = "Outlets")
@@ -31,15 +43,26 @@ public class Shops {
 		@Column(name = "Capacity")
 		private int capacity;
 		
+<<<<<<< HEAD
 		@Column(name = "Budget")
 		private int budget;
 		
 		@Column(name = "place_id")
+=======
+		@Column(name = "Place_ID")
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 		private String place_id;
+		
+		@Column(name = "Budget")
+		private int budget;
 
 		public Shops (){}
 
+<<<<<<< HEAD
 		public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, String place_id, int budget) {
+=======
+		public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, int budget) {
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 			super();
 			this.id = id;
 			this.shop_name = shop_name;
@@ -47,7 +70,10 @@ public class Shops {
 			this.menu = menu;
 			this.outlets = outlets;
 			this.capacity = capacity;
+<<<<<<< HEAD
 			this.place_id = place_id;
+=======
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 			this.budget = budget;
 		}
 
@@ -75,8 +101,13 @@ public class Shops {
 			return capacity;
 		}
 
+<<<<<<< HEAD
 		public String getPlaceid() {
 			return place_id;
+=======
+		public int getBudget() {
+			return budget;
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 		}
 		
 		
@@ -114,6 +145,7 @@ public class Shops {
 			this.capacity = capacity;
 		}
 
+<<<<<<< HEAD
 		public void setplaceid(String place_id) {
 			this.place_id = place_id;
 		}
@@ -122,6 +154,8 @@ public class Shops {
 			return budget;
 		}
 
+=======
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 		public void setBudget(int budget) {
 			this.budget = budget;
 		}
@@ -130,6 +164,10 @@ public class Shops {
 		@Override
 		public String toString() {
 			return "Shops [id=" + id + ", shop_name=" + shop_name + ", description=" + description + ", menu=" + menu
+<<<<<<< HEAD
 					+ ", outlets=" + outlets + ", capacity=" + capacity + ", place_id=" + place_id + "]";
+=======
+					+ ", outlets=" + outlets + ", capacity=" + capacity + ", budget=" + budget + "]";
+>>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 		}
 }
