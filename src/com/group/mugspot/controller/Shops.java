@@ -16,6 +16,7 @@ public class Shops {
 	@Column(name = "ID")
 	private int id;
 
+
 	@Column(name = "Shop_Name")
 	private String shop_name;
 
@@ -125,4 +126,5 @@ public class Shops {
 	}
 
 }
+
 

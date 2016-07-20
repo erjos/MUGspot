@@ -2,7 +2,9 @@ package com.group.mugspot.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Criteria;
@@ -17,6 +19,7 @@ public class DAO {
 	private static SessionFactory factory;
 
 	// public static void main(String[] args) {
+	
 	public static List<Shops> getShops() {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
 				.buildSessionFactory();
@@ -27,13 +30,9 @@ public class DAO {
 
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Shops.class);
-		
-		//criteria.setMaxResults(3);
 
 		@SuppressWarnings("unchecked")
 		List<Shops> shops = criteria.list();
-
-		//System.out.println("started query");
 
 		session.getTransaction().commit();
 		session.close();
@@ -41,26 +40,30 @@ public class DAO {
 		return shops;
 	}
 	
-	
-	public static ArrayList<String> getInfo() throws ClientProtocolException, IOException, ParseException {
+	public static ArrayList<Map> getInfo() throws ClientProtocolException, IOException, ParseException {
 		List<Shops> shops = getShops();
-		ArrayList<String> shopInfo = new ArrayList<String>();
+		ArrayList<Map> shopInfo = new ArrayList<Map>();
 		for (Shops shops1 : shops) {
 		    
-		    ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
-			String name = api.get(0);
+			Map shop = new HashMap();
+		    
+			ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
+		    String name = api.get(0);
 		    String phone = api.get(1);
 			String address = api.get(2);
+
+			shop.put("id", shops1.getId());
+			shop.put("name", name);
+			shop.put("description", shops1.getDescription());
+			shop.put("menu", shops1.getMenu());
+			shop.put("outlets", shops1.getOutlets()+"");
+			shop.put("capacity", shops1.getCapacity()+"");
+			shop.put("budget", shops1.getBudget()+"");
+			shop.put("phone", phone);
+			shop.put("address", address);
 			
-			shopInfo.add(name);
-			shopInfo.add(shops1.getDescription());
-		    shopInfo.add(shops1.getMenu());
-		    shopInfo.add(shops1.getOutlets()+"");
-		    shopInfo.add(shops1.getCapacity()+"");
-		    shopInfo.add(shops1.getPlace_id()+"");
-		    shopInfo.add(shops1.getBudget()+"");
-			shopInfo.add(phone);
-			shopInfo.add(address);
+			shopInfo.add(shop);
+			
 		}
 		return shopInfo;
 	}

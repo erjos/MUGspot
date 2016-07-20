@@ -49,11 +49,12 @@ public class GooglePlaces {
 			JsonElement name = jobject.get("name");
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement phoneNumber = jobject.get("formatted_phone_number");
-			
+
 			
 			String shop_name = name.toString().replaceAll("\"", "");
 			String phone = phoneNumber.toString().replaceAll("\"", "");
 			String shop_address = address.toString().replaceAll("\"", "");
+
 			
 			ArrayList<String> info = new ArrayList<String>();
 			
