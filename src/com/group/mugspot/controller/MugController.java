@@ -17,7 +17,12 @@ public class MugController {
 	@RequestMapping("/shops")
 	// need to add try catch for these exceptions -
 	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException {
-/*
+		ArrayList<Map> info = DAO.getInfo();
+		ModelAndView mv = new ModelAndView("shops");
+		mv.addObject("shop", info);
+		return mv;
+	}
+		/*
 		ArrayList<String> info = DAO.getInfo();
 			String name = info.get(0);
 			String description = info.get(1);
@@ -64,7 +69,7 @@ public class MugController {
 		mv.addObject("address", address);*/
 		
 		//This array is populated with any data in the coffee shop DB, not specific to each coffee shop
-		ArrayList<Map> info = DAO.getInfo();
+		
 		
 		/*String name = info.get(0);
 		String description = info.get(1);
@@ -75,8 +80,6 @@ public class MugController {
 		String phone = info.get(6);
 		String address = info.get(7);*/
 		
-		ModelAndView mv = new ModelAndView("shops");
-		mv.addObject("shop", info);
 		
 		/*mv.addObject("description", description);
 		mv.addObject("menu", menu);
@@ -86,7 +89,5 @@ public class MugController {
 		mv.addObject("phone", phone);
 		mv.addObject("address", address);*/
 		
-		return mv;
+		
 	}
-
-}

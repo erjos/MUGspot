@@ -39,7 +39,7 @@ public class DAO {
 		
 		return shops;
 	}  
-	
+
 	public static ArrayList<Map> getInfo() throws ClientProtocolException, IOException, ParseException {
 		List<Shops> shops = getShops();
 		ArrayList<Map> shopInfo = new ArrayList<Map>();
@@ -77,7 +77,7 @@ public class DAO {
 		return shopInfo;
 	}
 	
-	/*public static ArrayList<String> getInfo() throws ClientProtocolException, IOException, ParseException {
+/*	public static ArrayList<String> getInfo() throws ClientProtocolException, IOException, ParseException {
 		List<Shops> shops = getShops();
 		ArrayList<String> shopInfo = new ArrayList<String>();
 		for (Shops shops1 : shops) {
@@ -91,7 +91,7 @@ public class DAO {
 		    shopInfo.add(shops1.getMenu());
 		    shopInfo.add(shops1.getOutlets()+"");
 		    shopInfo.add(shops1.getCapacity()+"");
-		    shopInfo.add(shops1.getTables()+"");
+		    //shopInfo.add(shops1.getTables()+"");
 			
 			shopInfo.add(name);
 			shopInfo.add(phone);
@@ -100,10 +100,8 @@ public class DAO {
 		return shopInfo;
 	}   
 
-	}
-
 	}*/
-
+	
 
 	/*public static String getInfo() {
 		String DAO = "<table border=\"1\">";
