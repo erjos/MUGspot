@@ -37,6 +37,9 @@ public class Shops {
 	@Column(name = "Budget")
 	private int budget;
 
+	public Shops (){
+		
+	}
 	public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, String place_id,
 			int budget) {
 		super();
@@ -74,7 +77,7 @@ public class Shops {
 		return capacity;
 	}
 
-	public String getPlaceId() {
+	public String getPlace_id() {
 		return place_id;
 	}
 
@@ -102,7 +105,7 @@ public class Shops {
 		this.capacity = capacity;
 	}
 
-	public void setPlaceId(String place_id) {
+	public void setPlace_id(String place_id) {
 		this.place_id = place_id;
 	}
 

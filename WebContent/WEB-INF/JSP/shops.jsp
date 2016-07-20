@@ -21,7 +21,7 @@
 			<br>
 			<b>Capacity: </b>${capacity}
 			<br>
-			<b># of tables:</b>${tables}
+			<b>budget:</b>${budget}
 			<br>
 			<b>Phone #:</b> ${phone}
 			<br>

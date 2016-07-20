@@ -11,5 +11,19 @@
 			<a href="database">Display data using spring</a>
 		</h3>
 	</center>
+	<h1>Add a User</h1>
+<form name="form1" action="addShop.jsp" method="get">
+	Shop Name: <input name="shop_name" type="text"><br>
+	Description: <input name="description" type="text"><br>
+	Menu: <input name="menu" type="text"><br>
+	Outlets: <input name="outlets" type="text"><br>
+	Capacity: <input name="capacity" type="text"><br>
+	Budget: <input name="budget" type="text"><br>
+	Place ID: <input name="place_id" type="text"><br>
+	<button type="submit">Submit!</button>
+</form>
+<form name="form2" action="listUsers.jsp" method="get">
+	<button type="submit">List user</button>
+</form>
 </body>
 </html>

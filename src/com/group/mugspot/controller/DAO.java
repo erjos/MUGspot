@@ -11,7 +11,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.json.simple.parser.ParseException;
 
+import com.group.mugspot.controller.*;;
+
 public class DAO {
+	private static SessionFactory factory;
 
 	// public static void main(String[] args) {
 	public static List<Shops> getShops() {
@@ -44,7 +47,7 @@ public class DAO {
 		ArrayList<String> shopInfo = new ArrayList<String>();
 		for (Shops shops1 : shops) {
 		    
-		    ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_Id());
+		    ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
 			String name = api.get(0);
 		    String phone = api.get(1);
 			String address = api.get(2);
@@ -54,14 +57,29 @@ public class DAO {
 		    shopInfo.add(shops1.getMenu());
 		    shopInfo.add(shops1.getOutlets()+"");
 		    shopInfo.add(shops1.getCapacity()+"");
-		    shopInfo.add(shops1.getPlace_Id()+"");
-			
+		    shopInfo.add(shops1.getPlace_id()+"");
+		    shopInfo.add(shops1.getBudget()+"");
 			shopInfo.add(phone);
 			shopInfo.add(address);
 		}
 		return shopInfo;
 	}
 
+	public static void addShop(Shops p) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(p);
+
+
+
+		session.getTransaction().commit();
+		session.close();  
+	}
 	/*public static String getInfo() {
 		String DAO = "<table border=\"1\">";
 				//+ "<tr><th>Username</th><th>Email</th><th>Full Name</th><th>Delete User</th></tr>";//include start table tag
