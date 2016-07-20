@@ -22,8 +22,9 @@
 	Place ID: <input name="place_id" type="text"><br>
 	<button type="submit">Submit!</button>
 </form>
-<form name="form2" action="listUsers.jsp" method="get">
-	<button type="submit">List user</button>
-</form>
+<form name="deleteShop" action="deleteShop.jsp" method="post">
+		<button type="hidden" name="hiddenbutton">Delete!</button>
+		</form>
+
 </body>
 </html>

@@ -13,7 +13,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.json.simple.parser.ParseException;
 
-import com.group.mugspot.controller.*;;
+import com.group.mugspot.controller.*;
+
 
 public class DAO {
 	private static SessionFactory factory;
@@ -82,6 +83,18 @@ public class DAO {
 
 		session.getTransaction().commit();
 		session.close();  
+	}
+	public static void deleteShop(int id){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+		Shops shop = new Shops();
+		shop.setId(id);
+		session.delete(shop);
+		session.getTransaction().commit();
 	}
 	/*public static String getInfo() {
 		String DAO = "<table border=\"1\">";
