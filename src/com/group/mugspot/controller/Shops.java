@@ -15,8 +15,6 @@ public class Shops {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name = "ID")
 		private int id;
-		
-		
 
 		@Column(name = "Shop_Name")
 		private String shop_name;
@@ -33,13 +31,8 @@ public class Shops {
 		@Column(name = "Capacity")
 		private int capacity;
 		
-		@Column(name = "Place_ID")
-		private String place_id;
-		
 		@Column(name = "Budget")
 		private int budget;
-		
-		
 		
 		@Column(name = "place_id")
 		private String place_id;

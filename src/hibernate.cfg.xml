@@ -8,17 +8,6 @@
 	<session-factory>
 		<!-- Database connection settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-<<<<<<< HEAD
-		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/mugspot</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">Bahemoth2</property>
-
-		<!-- SQL dialect -->
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<!-- Specify session context -->
-		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
-
-=======
 		<property name="hibernate.connection.url">
 			jdbc:mysql://localhost:3306/mugspot?useSSL=true</property>
 			<property name="hibernate.connection.username">mugspot</property>
@@ -27,7 +16,6 @@
 			<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 			<!-- Specify session context -->
 			<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
->>>>>>> b407e220561cc4034ec791837cef22deae1c7413
 	</session-factory>
 
 </hibernate-configuration>

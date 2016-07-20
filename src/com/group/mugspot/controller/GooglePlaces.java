@@ -50,7 +50,7 @@ public class GooglePlaces {
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement phoneNumber = jobject.get("formatted_phone_number");
 			JsonElement icon = jobject.get("icon");
-
+			
 			
 			
 			String shop_name = name.toString().replaceAll("\"", "");
@@ -72,7 +72,7 @@ public class GooglePlaces {
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException, ParseException {
 		 
-		System.out.println(getInfo("ChIJtzwfLTItO4gRxwpKgcgFomE"));
+		System.out.println(getAPI("ChIJUwca7i8tO4gRC6azALL0VXY"));
 	}
 
 }

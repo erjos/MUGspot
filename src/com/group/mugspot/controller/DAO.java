@@ -48,16 +48,19 @@ public class DAO {
 			String name = api.get(0);
 		    String phone = api.get(1);
 			String address = api.get(2);
+			String icon = api.get(3);
 			
+			shopInfo.add(icon);
 			shopInfo.add(name);
 			shopInfo.add(shops1.getDescription());
 		    shopInfo.add(shops1.getMenu());
 		    shopInfo.add(shops1.getOutlets()+"");
 		    shopInfo.add(shops1.getCapacity()+"");
-		    shopInfo.add(shops1.getTables()+"");
-			
+		    
 			shopInfo.add(phone);
 			shopInfo.add(address);
+			
+			shopInfo.add(shops1.getBudget()+"");
 		}
 		return shopInfo;
 	}
