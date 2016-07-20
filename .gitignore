@@ -28,3 +28,7 @@ hs_err_pid*
 log/
 target/
 /build/
+
+# security
+hibernate.cfg.xml
+
