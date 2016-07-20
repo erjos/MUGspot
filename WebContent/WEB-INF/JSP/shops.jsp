@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*,java.util.*" %>
@@ -13,30 +14,12 @@
 	<center>
 		<h1>Here's Your Shop Info</h1>
 	</center>	
-<<<<<<< HEAD
-		<h2>Shop 1:</h2>
-			${icon}
-			<br>
-			<b> Name:</b> ${name}
-			<br>
-			<b>Description:</b> ${description}
-			<br>
-			<b>Menu:</b>${menu}
-			<br>
-			<b># of Outlets:</b> ${outlets}
-			<br>
-			<b>Capacity: </b>${capacity}
-			<br>
-			<b>Phone #:</b> ${phone}
-			<br>
-			<b>Address:</b> ${address}
-			<br>
-			<b>Budget: </b> ${budget}
-=======
 	
 	<c:forEach items="${shop}" var="current">
 		<tr>
+		
 			<td><h2> <c:out value="${current.name}" /></h2><td>
+			<td><img src="<c:out value="${current.icon}"/>"/><td><br>
           	<td><b>Description:</b> <c:out value="${current.description}" /><td><br>
           	<td><b>Menu:</b> <c:out value="${current.menu}" /><td><br>
           	<td><b>Outlets:</b> <c:out value="${current.outlets}" /><td><br>
@@ -46,6 +29,5 @@
           	<td><b>Address:</b> <c:out value="${current.address}" /><td><br><br><br>
         </tr>
       </c:forEach>
->>>>>>> 8c9fd2e98ef1d5a4d1b41f28cf9fae78b777c0ac
 </body>
 </html>

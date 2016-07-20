@@ -50,13 +50,12 @@ public class GooglePlaces {
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement phoneNumber = jobject.get("formatted_phone_number");
 			JsonElement icon = jobject.get("icon");
-			
-			
+
 			
 			String shop_name = name.toString().replaceAll("\"", "");
 			String phone = phoneNumber.toString().replaceAll("\"", "");
 			String shop_address = address.toString().replaceAll("\"", "");
-			String iconurl = ("<img src=\"" + icon.toString().replaceAll("\"", "") + "\">");
+			String iconurl = (icon.toString().replaceAll("\"", ""));
 
 			
 			ArrayList<String> info = new ArrayList<String>();
@@ -68,11 +67,5 @@ public class GooglePlaces {
 
 		return info;	
 		}
-	
-	
-//	public static void main(String[] args) throws ClientProtocolException, IOException, ParseException {
-//		 
-//		System.out.println(getAPI("ChIJUwca7i8tO4gRC6azALL0VXY"));
-//	}
 
 }
