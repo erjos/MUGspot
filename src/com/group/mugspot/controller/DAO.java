@@ -23,8 +23,7 @@ public class DAO {
 	// public static void main(String[] args) {
 	
 	public static List<Shops> getShops() {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class).buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();

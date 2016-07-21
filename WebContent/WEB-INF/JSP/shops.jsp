@@ -25,7 +25,6 @@ button {
 
 </style>
 <title>Shops</title>
-<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<center>
@@ -34,7 +33,7 @@ button {
 
 	<c:forEach items="${shop}" var="current" varStatus="status">
 
-		<tr>
+		
 
 		<div class="container">
 			<td><h2>
@@ -43,25 +42,25 @@ button {
 					<button type="button" class="btn btn-info" data-toggle="collapse"
 						data-target="#${status.index}">See More</button>
 					<div id="${status.index}" class="collapse">
-					</td>
-						<td><b>Description:</b> <c:out value="${current.description}" />
-						<td><br>
-						<td><b>Menu:</b> <c:out value="${current.menu}" />
-						<td><br>
-						<td><b>Outlets:</b> <c:out value="${current.outlets}" />
-						<td><br>
-						<td><b>Capacity:</b> <c:out value="${current.capacity}" />
-						<td><br>
-						<td><b>Budget:</b> <c:out value="${current.budget}" />
-						<td><br>
-						<td><b>Phone:</b> <c:out value="${current.phone}" />
-						<td><br>
-						<td><b>Address:</b> <c:out value="${current.address}" />
-						<td><br> <br> <br>
-						</td>
-						
-						<div class="slideshow">
-						 <td> <img class="slide" src="<c:out value="${current.picture1}"/>"/></td>
+					</td></div>
+						<td><b>Description:</b> <c:out value="${current.description}" /></td>
+						<br>
+						<td><b>Menu:</b> <c:out value="${current.menu}" /></td>
+						<br>
+						<td><b>Outlets:</b> <c:out value="${current.outlets}" /></td>
+						<br>
+						<td><b>Capacity:</b> <c:out value="${current.capacity}" /></td>
+						<br>
+						<td><b>Budget:</b> <c:out value="${current.budget}" /></td>
+						<br>
+						<td><b>Phone:</b> <c:out value="${current.phone}" /></td>
+						<br>
+						<td><b>Address:</b> <c:out value="${current.address}" /></td>
+						<br> <br> <br>
+						</tr>
+					
+ 						<div class="slideshow">
+ 						 <td> <img class="slide" src="<c:out value="${current.picture1}"/>"/></td>
 						 <td> <img class="slide" src="<c:out value="${current.picture2}"/>"/></td>
 						 <td> <img class="slide" src="<c:out value="${current.picture3}"/>"/></td>
 						 <td> <img class="slide" src="<c:out value="${current.picture4}"/>"/></td>
@@ -75,7 +74,7 @@ button {
 						<a class="w3-btn-floating" style="position:absolute;top:35%;left:100px" onclick="plusDivs(-1)">&#10094;</a>
 						<a class="w3-btn-floating"  style="position:absolute;top:35%;right:840px" onclick="plusDivs(+1)">&#10095;</a>
 						</div>
-						</div>
+		
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
@@ -95,8 +94,11 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";
 }
 </script>
-		</tr>
 		
+		
+		</div>
+		</div>
+		</div>
 		
 	</c:forEach>
 
