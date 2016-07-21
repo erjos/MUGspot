@@ -48,10 +48,29 @@ public class DAO {
 		    
 			Map shop = new HashMap();
 		    
+			System.out.println("Shop ID: " + shops1.getPlace_id());
+			
 			ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
 		    String name = api.get(0);
 		    String phone = api.get(1);
 			String address = api.get(2);
+//			String picture1;
+//			String picture2;
+//			String picture3;
+//			
+//			
+//			 picture1 = api.get(3);
+//			 picture2 = api.get(4);
+//			 picture3 = api.get(5);
+			 
+			 
+			 
+			 String[] pictures = {"picture1", "picture2", "picture3", "picture4", "picture5", "picture6", "picture7", "picture8", "picture9", "picture10"};
+			for (int i = 3; i <= api.size()-1; i++){
+			if (!api.isEmpty())
+				pictures[i-3] = api.get(i);
+				 }
+			
 
 			shop.put("id", shops1.getId());
 			shop.put("name", name);
@@ -62,7 +81,16 @@ public class DAO {
 			shop.put("budget", shops1.getBudget()+"");
 			shop.put("phone", phone);
 			shop.put("address", address);
-			
+			shop.put("picture1", pictures[0]);
+			shop.put("picture2", pictures[1]);
+			shop.put("picture3", pictures[2]);
+			shop.put("pictue4", pictures[3]);
+			shop.put("picture5", pictures[4]);
+			shop.put("picture6", pictures[5]);
+			shop.put("picture7", pictures[6]);
+			shop.put("picture8", pictures[7]);
+			shop.put("picture9", pictures[8]);
+			shop.put("picture10", pictures[9]);
 			shopInfo.add(shop);
 			
 		}
