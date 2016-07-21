@@ -109,4 +109,49 @@ public class DAO {
 		DAO += "</table>";
 		return DAO;
 	}*/
+
+	public static Map getInfoById(String id) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		Shops shop = session.get(Shops.class, Integer.parseInt(id));
+		
+		Map shopMap = new HashMap();
+	    
+		ArrayList<String> api = null;
+		try {
+			api = GooglePlaces.getAPI(shop.getPlace_id());
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    String name = api.get(0);
+	    String phone = api.get(1);
+		String address = api.get(2);
+
+		shopMap.put("id", shop.getId());
+		shopMap.put("name", name);
+		shopMap.put("description", shop.getDescription());
+		shopMap.put("menu", shop.getMenu());
+		shopMap.put("outlets", shop.getOutlets()+"");
+		shopMap.put("capacity", shop.getCapacity()+"");
+		shopMap.put("budget", shop.getBudget()+"");
+		shopMap.put("phone", phone);
+		shopMap.put("address", address);
+		
+
+		session.getTransaction().commit();
+		session.close();
+		
+		return shopMap;
+	}
 }
