@@ -25,6 +25,7 @@ button {
 
 </style>
 <title>Shops</title>
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 	<center>
@@ -57,11 +58,47 @@ button {
 						<td><br>
 						<td><b>Address:</b> <c:out value="${current.address}" />
 						<td><br> <br> <br>
+						</td>
+						
+						<div class="slideshow">
+						 <td> <img class="slide" src="<c:out value="${current.picture1}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture2}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture3}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture4}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture5}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture6}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture7}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture8}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture9}"/>"/></td>
+						 <td> <img class="slide" src="<c:out value="${current.picture10}"/>"/></td>
+						
+						<a class="w3-btn-floating" style="position:absolute;top:35%;left:100px" onclick="plusDivs(-1)">&#10094;</a>
+						<a class="w3-btn-floating"  style="position:absolute;top:35%;right:840px" onclick="plusDivs(+1)">&#10095;</a>
+						</div>
+						</div>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("slide");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+</script>
 		</tr>
-		</div>
-		</div>
+		
+		
 	</c:forEach>
 
->>>>>>> 2eb4997027e1a1b7c0b2d7228a40c35586ec9a7a
 </body>
 </html>
