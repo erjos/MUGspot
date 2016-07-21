@@ -8,7 +8,6 @@
 		<h3>
 			<a href="shops">Detroit Coffee Shops</a>
 			<br><br>
-			<a href="database">Display data using spring</a>
 		</h3>
 	</center>
 	<h1>Add a User</h1>
