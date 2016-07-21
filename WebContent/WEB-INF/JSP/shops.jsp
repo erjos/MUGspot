@@ -36,7 +36,7 @@ button {
 		<tr>
 		<div class="container">
 			<td><h2>
-					<c:out value="${current.name}" />
+					<c:out value="<a href='./shopProfile?id=${current.id}'>${current.name}</a>" escapeXml="false"/>
 				</h2>
 					<button type="button" class="btn btn-info" data-toggle="collapse"
 						data-target="#${status.index}">See More</button>
