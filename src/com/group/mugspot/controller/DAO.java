@@ -23,7 +23,8 @@ public class DAO {
 	// public static void main(String[] args) {
 	
 	public static List<Shops> getShops() {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class).buildSessionFactory();
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
+				.buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -47,6 +48,8 @@ public class DAO {
 		    
 			Map shop = new HashMap();
 		    
+			System.out.println("Shop ID: " + shops1.getPlace_id());
+			
 			ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
 		    String name = api.get(0);
 		    String phone = api.get(1);
