@@ -8,6 +8,7 @@
 		<h3>
 			<a href="shops">Detroit Coffee Shops</a>
 			<br><br>
+			<a href="location">Create New Location</a>
 		</h3>
 	</center>
 	<h1>Add a User</h1>
