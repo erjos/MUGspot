@@ -15,7 +15,7 @@
 <body>
 <%
 String id = request.getParameter("hiddenbutton");
-DAO.deleteShop(4);
+DAO.deleteShop(1);
 out.println("<h1>Shop was deleted!</h1>");
 %>
 </body>
