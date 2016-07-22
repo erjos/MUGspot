@@ -186,10 +186,11 @@ img {
 						<td><b>Budget:</b> <c:out value="${current.budget}" /></td>
 						<td><b>Phone:</b> <c:out value="${current.phone}" /></td>
 						<td><b>Address:</b> <c:out value="${current.address}" /></td>
+						<td><img class="slide" src="${current.picture1}"/>
+						
 					</tr>
 				</table>
 			
-					 <img class="slide" src="${current.picture1}"/>
 	
 			</div>
 		
