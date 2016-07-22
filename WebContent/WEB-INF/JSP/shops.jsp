@@ -183,12 +183,12 @@ img {
 										class="slide" src="<c:out value="${current.picture10}"/>" />
 									<a class="w3-btn-floating"
 										style="position: absolute; top: 35%; left: 100px"
-										onclick="plusDivs(-1)">&#10094;</a> <a class="w3-btn-floating"
+										onclick="plusDivs(-1)">&#10094;</a>
+									<a class="w3-btn-floating"
 										style="position: absolute; top: 35%; right: 840px"
 										onclick="plusDivs(+1)">&#10095;</a>
 
 
-<<<<<<< HEAD
 		<div class="container">
 			<h2>
 				<c:out value="<a href='./shopProfile?id=${current.id}'>${current.name}</a>" escapeXml="false"/>
@@ -208,66 +208,8 @@ img {
 					</tr>
 				</table>
 			
-				<div class="slideshow">
 					 <img class="slide" src="${current.picture1}"/>
-					 <%--  <img class="slide" src="<c:out value="${current.picture2}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture3}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture4}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture5}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture6}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture7}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture8}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture9}"/>"/>
-					  <img class="slide" src="<c:out value="${current.picture10}"/>"/>
-					 --%>
-					<!-- <a class="w3-btn-floating" style="position:absolute;top:35%;left:100px" onclick="plusDivs(-1)">&#10094;</a>
-					<a class="w3-btn-floating"  style="position:absolute;top:35%;right:840px" onclick="plusDivs(+1)">&#10095;</a>
-		 -->
-				<!-- <script>
-=======
-								</div>
-							</div>
-						</div>
-					</li>
-				</c:forEach>
-			</ul>
-		</div>
-		<script src="http://listjs.com/no-cdn/list.js"></script>
-		<script>
-		var options = { valueNames : [ 'outlets', 'capacity', 'budget' ] };
-		
-		var userList = new List('users', options);
-
-		$("select").change(function() { var str = ""; $("select
-		option:selected").each(function() { str += $(this).val() + " "; });
-		this.data - sort(str); console.log(str); /* $( "div" ).text( str ); */
-		}).trigger("change");
-		</script>
-		<div id="map">
-			<script
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
-				async defer></script>
-			<script>
->>>>>>> ae29899d6f87aa115ed2f71edeaf338f688a0fe7
-				var slideIndex = 1;
-				showDivs(slideIndex);
-				
-				function plusDivs(n) {
-				  showDivs(slideIndex += n);
-				}
-				
-				function showDivs(n) {
-				  var i;
-				  var x = document.getElementsByClassName("slide");
-				  if (n > x.length) {slideIndex = 1}
-				  if (n < 1) {slideIndex = x.length}
-				  for (i = 0; i < x.length; i++) {
-				     x[i].style.display = "block";
-				  }
-				  x[slideIndex-1].style.display = "block";
-				}
-<<<<<<< HEAD
-				</script> -->
+	
 			</div>
 		
 		
@@ -276,10 +218,8 @@ img {
 		
 	</c:forEach>
 
-=======
-				</script>
+				
 		</div>
->>>>>>> ae29899d6f87aa115ed2f71edeaf338f688a0fe7
 </body>
 </html>
 

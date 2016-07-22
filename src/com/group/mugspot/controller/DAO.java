@@ -81,7 +81,6 @@ public class DAO {
 			shop.put("budget", shops1.getBudget()+"");
 			shop.put("phone", phone);
 			shop.put("address", address);
-<<<<<<< HEAD
 			shop.put("picture1", picture1);
 //			shop.put("picture2", pictures[1]);
 //			shop.put("picture3", pictures[2]);
@@ -92,19 +91,17 @@ public class DAO {
 //			shop.put("picture8", pictures[7]);
 //			shop.put("picture9", pictures[8]);
 //			shop.put("picture10", pictures[9]);
-=======
-			shop.put("picture1", pictures[0]);
-			shop.put("picture2", pictures[1]);
-			shop.put("picture3", pictures[2]);
-			shop.put("pictue4", pictures[3]);
-			shop.put("picture5", pictures[4]);
-			shop.put("picture6", pictures[5]);
-			shop.put("picture7", pictures[6]);
-			shop.put("picture8", pictures[7]);
-			shop.put("picture9", pictures[8]);
-			shop.put("picture10", pictures[9]);
+//			shop.put("picture1", pictures[0]);
+//			shop.put("picture2", pictures[1]);
+//			shop.put("picture3", pictures[2]);
+//			shop.put("pictue4", pictures[3]);
+//			shop.put("picture5", pictures[4]);
+//			shop.put("picture6", pictures[5]);
+//			shop.put("picture7", pictures[6]);
+//			shop.put("picture8", pictures[7]);
+//			shop.put("picture9", pictures[8]);
+//			shop.put("picture10", pictures[9]);
 			
->>>>>>> ae29899d6f87aa115ed2f71edeaf338f688a0fe7
 			shopInfo.add(shop);
 			
 		}
