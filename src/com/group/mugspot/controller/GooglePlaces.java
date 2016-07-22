@@ -22,8 +22,8 @@ public class GooglePlaces {
 	public static ArrayList<String> getAPI(String placeID) throws ClientProtocolException, IOException, ParseException {
 
 			String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID
-					+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
-					//+ "&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y";
+					//+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+					+ "&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y";
 
 			HttpClient client = HttpClientBuilder.create().build();
 			
@@ -79,8 +79,8 @@ public class GooglePlaces {
 			String maxwidth = ("maxwidth=400" );
 			String maxheight = ("maxheight=" + height);
 			String ref = ("&photoreference=" + photoRef);
-			//String key = ("&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y");
-			String key = ("&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs");
+			String key = ("&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y");
+			//String key = ("&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs");
 				
 			String purl = "https://maps.googleapis.com/maps/api/place/photo?" + maxwidth + ref + key;	
 			info.add(purl);
