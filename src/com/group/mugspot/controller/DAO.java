@@ -92,6 +92,7 @@ public class DAO {
 			shop.put("picture8", pictures[7]);
 			shop.put("picture9", pictures[8]);
 			shop.put("picture10", pictures[9]);
+			
 			shopInfo.add(shop);
 			
 		}
@@ -125,19 +126,6 @@ public class DAO {
 		session.delete(shop);
 		session.getTransaction().commit();
 	}
-	/*public static String getInfo() {
-		String DAO = "<table border=\"1\">";
-				//+ "<tr><th>Username</th><th>Email</th><th>Full Name</th><th>Delete User</th></tr>";//include start table tag
-		List<Shops> shops = getShops();
-		for (Shops shops1 : shops) {
-			// DAO = shops1.getShop_name();
-			DAO += "<tr><td>" + "<tr><td>" +  shops1.getShop_name() + "</td><td>" + shops1.getDescription() + "</td><td>" 
-		     + shops1.getMenu() + "</td><td>" + shops1.getOutlets() + "</td><td>"  + shops1.getCapacity() 
-		     + "</td><td>" + shops1.getPlaceId()+ shops1.getBudget();
-		}
-		DAO += "</table>";
-		return DAO;
-	}*/
 
 	public static Map getInfoById(String id) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
