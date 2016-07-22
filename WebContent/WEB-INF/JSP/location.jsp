@@ -12,6 +12,5 @@
 Enter your city: <input name ="city" type ="text">
 <button type="submit"> submit </button>
 </form>
-${message}
 </body>
 </html>

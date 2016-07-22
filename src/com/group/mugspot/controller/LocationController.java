@@ -11,10 +11,7 @@ public class LocationController {
 	@RequestMapping("/location")
 	public ModelAndView showMessage(){
 		
-		String message = "this is a test! ABORT ABORT ABORT";
-		
 		ModelAndView mv = new ModelAndView("location");
-		mv.addObject("message", message);
 		return mv;
 	}
 	
@@ -23,4 +20,5 @@ public class LocationController {
 		ModelAndView mv = new ModelAndView("createLocation", "city", city);
 		return mv;
 	}
+	
 }
