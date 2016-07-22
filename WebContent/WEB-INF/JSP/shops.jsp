@@ -27,13 +27,13 @@
 
 		map = new google.maps.Map(document.getElementById('map'), {
 			center : pyrmont,
-			zoom : 14 
+			zoom : 14
 		});
 
 		var request = {
-			bounds: map.getBounds(),
+			bounds : map.getBounds(),
 			location : pyrmont,
-			radius : '2000', 
+			radius : '2000',
 			name : '${current.name}',
 		};
 
@@ -110,124 +110,137 @@ img {
 <title>Shops</title>
 </head>
 <body>
-	<center>
 
-		
-		<div id="users">
-			<!-- <input class="search" placeholder="Search" /> --> Sort Button<select
-				id="sortbox" class="sort" data-sort="capacity">
-				<option value="outlets">Outlets</option>
-				<option value="capacity">Capacity</option>
-				<option value="budget">Budget</option>
-			</select><br>
-			<ul class="list">
-				<c:forEach items="${shop}" var="current" varStatus="status">
 
-					<li>
+
+	<div id="users">
+		<!-- <input class="search" placeholder="Search" /> -->
+		Sort Button<select id="sortbox" class="sort" data-sort="capacity">
+			<option value="outlets">Outlets</option>
+			<option value="capacity">Capacity</option>
+			<option value="budget">Budget</option>
+		</select><br>
+	</div>
+	<ul class="list">
+		<c:forEach items="${shop}" var="current" varStatus="status">
+
+			<li>
+				<div class="container">
+					<h2 class="Tile">
+						<%-- <c:out value="${current.name}" /> --%>
+						<c:out
+							value="<a href='./shopProfile?id=${current.id}'>${current.name}</a>"
+							escapeXml="false" />
+					</h2>
+
+					<p class="Description">
+						Description:</b>
+						<c:out value="${current.description}" />
+
+					</p>
+					<button type="button" class="btn btn-info" data-toggle="collapse"
+						data-target="#${status.index}">Expand</button>
+					<div id="${status.index}" class="collapse">
+						<p class="Description">
+							Menu:
+							<c:out value="${current.menu}" />
+						</p>
+						<p class="outlets">
+							Outlets:
+							<c:out value="${current.outlets}" />
+						</p>
+						<p class="capacity">
+							Capacity:
+							<c:out value="${current.capacity}" />
+						</p>
+						<p class="budget">
+							Budget:
+							<c:out value="${current.budget}" />
+						</p>
+						<p class="Description">
+							Phone:
+							<c:out value="${current.phone}" />
+						</p>
+						<p class="Description">
+							Address:
+							<c:out value="${current.address}" />
+						</p>
+						<button type="button" class="btn btn-primary" data-toggle="button"
+							aria-pressed="false" autocomplete="off">See More</button>
+						<br> <br>
+						<div class="slideshow">
+							<img class="slide" src="${current.picture1}" /> <a
+								class="w3-btn-floating"
+								style="position: absolute; top: 35%; left: 100px"
+								onclick="plusDivs(-1)">&#10094;</a> <a class="w3-btn-floating"
+								style="position: absolute; top: 35%; right: 840px"
+								onclick="plusDivs(+1)">&#10095;</a>
+						</div>
+
 						<div class="container">
-							<h2 class="Tile">
-								<%-- <c:out value="${current.name}" /> --%>
+							<h2>
 								<c:out
 									value="<a href='./shopProfile?id=${current.id}'>${current.name}</a>"
 									escapeXml="false" />
 							</h2>
-
-							<p class="Description">
-								Description:</b>
-								<c:out value="${current.description}" />
-
-							</p>
 							<button type="button" class="btn btn-info" data-toggle="collapse"
-								data-target="#${status.index}">Expand</button>
+								data-target="#${status.index}">See More</button>
 							<div id="${status.index}" class="collapse">
-								<p class="Description">
-									Menu:</b>
-									<c:out value="${current.menu}" />
-								</p>
-								<p class="outlets">
-									Outlets:</b>
-									<c:out value="${current.outlets}" />
-								</p>
-								<p class="capacity">
-									Capacity:</b>
-									<c:out value="${current.capacity}" />
-								</p>
-								<p class="budget">
-									Budget:</b>
-									<c:out value="${current.budget}" />
-								</p>
-								<p class="Description">
-									Phone:</b>
-									<c:out value="${current.phone}" />
-								</p>
-								<p class="Description">
-									Address:</b>
-									<c:out value="${current.address}" />
-								</p>
-								<button type="button" class="btn btn-primary"
-									data-toggle="button" aria-pressed="false" autocomplete="off">
-									See More</button>
-								<br> <br>
-								<div class="slideshow">
-									<img class="slide" src="${current.picture1}" /> <img
-										class="slide" src="<c:out value="${current.picture2}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture3}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture4}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture5}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture6}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture7}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture8}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture9}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture10}"/>" />
-									<a class="w3-btn-floating"
-										style="position: absolute; top: 35%; left: 100px"
-										onclick="plusDivs(-1)">&#10094;</a> <a class="w3-btn-floating"
-										style="position: absolute; top: 35%; right: 840px"
-										onclick="plusDivs(+1)">&#10095;</a>
+								<table>
+									<tr>
+										<td><b>Description:</b> <c:out
+												value="${current.description}" /></td>
+										<td><b>Menu:</b> <c:out value="${current.menu}" /></td>
+										<td><b>Outlets:</b> <c:out value="${current.outlets}" /></td>
+										<td><b>Capacity:</b> <c:out value="${current.capacity}" /></td>
+										<td><b>Budget:</b> <c:out value="${current.budget}" /></td>
+										<td><b>Phone:</b> <c:out value="${current.phone}" /></td>
+										<td><b>Address:</b> <c:out value="${current.address}" /></td>
+									</tr>
+								</table>
 
+								<img class="slide" src="${current.picture1}" />
 
-								</div>
 							</div>
+
+
 						</div>
-					</li>
-				</c:forEach>
-			</ul>
-		</div>
-		<script src="http://listjs.com/no-cdn/list.js"></script>
-		 <script>
-		var options = { valueNames : [ 'outlets', 'capacity', 'budget' ] };
-		
+					</div>
+				</div>
+
+
+				</div>
+				</div>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
+	</div>
+	<script src="http://listjs.com/no-cdn/list.js"></script>
+	<script>
+		var options = {
+			valueNames : [ 'outlets', 'capacity', 'budget' ]
+		};
+
 		var userList = new List('users', options);
 
-		$("select").change(function() { var str = ""; $("selectoption:selected").each(function() 
-	    { str += $(this).val() + " "; });
-		this.data - sort(str); console.log(str); $( "div" ).text( str ); 
+		$("select").change(function() {
+			var str = "";
+			$("selectoption:selected").each(function() {
+				str += $(this).val() + " ";
+			});
+			this.data - sort(str);
+			console.log(str);
+			$("div").text(str);
 		}).trigger("change");
-		</script> 
-		<div id="map">
-			<script
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
-				async defer></script>
-			<script>
-				var slideIndex = 1;
-				showDivs(slideIndex);
-				
-				function plusDivs(n) {
-				  showDivs(slideIndex += n);
-				}
-				
-				function showDivs(n) {
-				  var i;
-				  var x = document.getElementsByClassName("slide");
-				  if (n > x.length) {slideIndex = 1}
-				  if (n < 1) {slideIndex = x.length}
-				  for (i = 0; i < x.length; i++) {
-				     x[i].style.display = "block";
-				  }
-				  x[slideIndex-1].style.display = "block";
-				}
-				</script>
-		</div>
+	</script>
+	<div id="map">
+
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
+			async defer></script>
+	</div>
+
 </body>
 </html>
 

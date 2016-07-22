@@ -10,12 +10,56 @@
 <title>shop details</title>
 </head>
 <body>
-<c:out value="${shopProfile.name}" /><br>
-<c:out value="${shopProfile.description}" /><br>
-<c:out value="${shopProfile.menu}" /><br>
-<c:out value="${shopProfile.outlets}" /><br>
-<c:out value="${shopProfile.capacity}" /><br>
+
+<c:out value="${shopProfile.phone}" /><br>
+<c:out value="${shopProfile.address}" /><br>
+<c:out value="${shopProfile.id}" /><br>
+<c:out value="${shopProfile.budget}" /><br>
+
+<h1><center><c:out value="${shopProfile.name}" /></center></h1><br>
+<center><c:out value="${shopProfile.description2}" /></center><br>
+menu: <c:out value="${shopProfile.menu}" /><br>
+number of outlets: <c:out value="${shopProfile.outlets}" /><br>
+Amount of seating available: <c:out value="${shopProfile.capacity}" /><br>
 
 
+<div class="slideshow">
+<img class="slide" src="<c:out value="${shopProfile.picture1}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture2}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture3}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture4}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture5}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture6}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture7}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture8}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture9}"/>"/>
+<img class="slide" src="<c:out value="${shopProfile.picture10}"/>"/>
+
+
+
+ <a class="btn" style="position:absolute;top:35%;left:100px" onclick="plusDivs(-1)">&#10094;</a>
+<a class="btn"  style="position:absolute;top:35%;right:840px" onclick="plusDivs(+1)">&#10095;</a>
+		 
+				 <script>
+				var slideIndex = 1;
+				showDivs(slideIndex);
+				
+				function plusDivs(n) {
+				  showDivs(slideIndex += n);
+				}
+				
+				function showDivs(n) {
+				  var i;
+				  var x = document.getElementsByClassName("slide");
+				  if (n > x.length) {slideIndex = 1}
+				  if (n < 1) {slideIndex = x.length}
+				  for (i = 0; i < x.length; i++) {
+				     x[i].style.display = "none";
+				  }
+				  x[slideIndex-1].style.display = "block";
+				}
+				</script> 
+				</div>
+				
 </body>
 </html>

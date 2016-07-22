@@ -22,6 +22,9 @@ public class Shops {
 
 	@Column(name = "Description")
 	private String description;
+	
+	@Column(name = "Description2")
+	private String description2;
 
 	@Column(name = "Menu")
 	private String menu;
@@ -41,12 +44,13 @@ public class Shops {
 	public Shops (){
 		
 	}
-	public Shops(int id, String shop_name, String description, String menu, int outlets, int capacity, String place_id,
+	public Shops(int id, String shop_name, String description, String description2, String menu, int outlets, int capacity, String place_id,
 			int budget) {
 		super();
 		this.id = id;
 		this.shop_name = shop_name;
 		this.description = description;
+		this.description2 = description2;
 		this.menu = menu;
 		this.outlets = outlets;
 		this.capacity = capacity;
@@ -66,6 +70,9 @@ public class Shops {
 		return description;
 	}
 
+	public String getDescription2() {
+		return description2;
+	}
 	public String getMenu() {
 		return menu;
 	}
@@ -92,6 +99,10 @@ public class Shops {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void setDescription2(String description2) {
+		this.description2 = description2;
 	}
 
 	public void setMenu(String menu) {
@@ -120,7 +131,7 @@ public class Shops {
 
 	@Override
 	public String toString() {
-		return "Shops [id=" + id + ", Shop_Name=" + shop_name + ", Description=" + description + ", Menu=" + menu
+		return "Shops [id=" + id + ", Shop_Name=" + shop_name + ", Description=" + description +", Description2=" + description2 + ", Menu=" + menu
 				+ ", Outlets=" + outlets + ", Capacity=" + capacity + ", Place_ID=" + place_id + ", Budget=" + budget
 				+ "]";
 	}
