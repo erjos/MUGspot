@@ -56,7 +56,7 @@ button {
 			
 				<div class="slideshow">
 					 <img class="slide" src="${current.picture1}"/>
-					  <img class="slide" src="<c:out value="${current.picture2}"/>"/>
+					 <%--  <img class="slide" src="<c:out value="${current.picture2}"/>"/>
 					  <img class="slide" src="<c:out value="${current.picture3}"/>"/>
 					  <img class="slide" src="<c:out value="${current.picture4}"/>"/>
 					  <img class="slide" src="<c:out value="${current.picture5}"/>"/>
@@ -65,11 +65,11 @@ button {
 					  <img class="slide" src="<c:out value="${current.picture8}"/>"/>
 					  <img class="slide" src="<c:out value="${current.picture9}"/>"/>
 					  <img class="slide" src="<c:out value="${current.picture10}"/>"/>
-					
-					<a class="w3-btn-floating" style="position:absolute;top:35%;left:100px" onclick="plusDivs(-1)">&#10094;</a>
+					 --%>
+					<!-- <a class="w3-btn-floating" style="position:absolute;top:35%;left:100px" onclick="plusDivs(-1)">&#10094;</a>
 					<a class="w3-btn-floating"  style="position:absolute;top:35%;right:840px" onclick="plusDivs(+1)">&#10095;</a>
-		
-				<script>
+		 -->
+				<!-- <script>
 				var slideIndex = 1;
 				showDivs(slideIndex);
 				
@@ -87,7 +87,7 @@ button {
 				  }
 				  x[slideIndex-1].style.display = "block";
 				}
-				</script>
+				</script> -->
 			</div>
 		
 		
