@@ -1,0 +1,78 @@
+<!-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%> -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+h2 {
+  font-family:sans-serif;
+}
+.list {
+  font-family:sans-serif;
+  margin:0;
+  padding:20px 0 0;
+}
+.list > li {
+  display:block;
+  background-color: #eee;
+  padding:10px;
+  box-shadow: inset 0 1px 0 #fff;
+}
+.avatar {
+  max-width: 150px;
+}
+img {
+  max-width: 100%;
+</style>
+</head>
+<body>
+<div id="users">
+  <input class="search" placeholder="Search" />
+  <button class="sort" data-sort="capacity">
+    Sort by name
+  </button>
+  <ul class="list">
+    <li>
+      <h3 class="Tile">ASHE Supply Co</h3>
+      <p class="Description"><b>Description:</b> Coffee Store
+      </p>
+      <p class="outlets"><b>Outlets: 5 </b>
+      </p>
+      <p class="capacity"><b>Capacity: 45</b>
+      </p>
+      <p class="budget">Budget:</b> 0 </p>
+    </li>
+    <li>
+      <h3 class="Tile">Roast Plant</h3>
+      <p class="Description"><b>Description:</b> Coffee Store
+      </p>
+      <p class="outlets"><b>Outlets: 10 </b>
+      </p>
+      <p class="capacity"><b>Capacity: 100</b>
+      </p>
+      <p class="budget">Budget:</b> 3 </p>
+    </li>
+        <li>
+      <h3 class="Tile">Starbucks</h3>
+      <p class="Description"><b>Description:</b> Coffee Store
+      </p>
+      <p class="outlets"><b>Outlets: 24 </b>
+      </p>
+      <p class="capacity"><b>Capacity: 17</b>
+      </p>
+      <p class="budget">Budget:</b> 9 </p>
+    </li>
+  </ul>
+</div>
+<script src="http://listjs.com/no-cdn/list.js"></script>
+<script>
+var options = {
+		  valueNames: [ 'outlets', 'capacity', 'budget' ]
+		};
+
+		var userList = new List('users', options);
+</script>
+</body>
+</html>

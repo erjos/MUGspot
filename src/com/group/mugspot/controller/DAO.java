@@ -62,7 +62,7 @@ public class DAO {
 			shop.put("budget", shops1.getBudget()+"");
 			shop.put("phone", phone);
 			shop.put("address", address);
-			
+			/*shop.put("placeId", shops1.getPlace_id());*/
 			shopInfo.add(shop);
 			
 		}
