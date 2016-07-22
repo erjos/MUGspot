@@ -168,15 +168,7 @@ img {
 									data-toggle="button" aria-pressed="false" autocomplete="off">
 									See More</button>
 								<br> <br>
-								<div class="slideshow">
-									<img class="slide" src="${current.picture1}"/> 
-									<a class="w3-btn-floating"
-										style="position: absolute; top: 35%; left: 100px"
-										onclick="plusDivs(-1)">&#10094;</a>
-									<a class="w3-btn-floating"
-										style="position: absolute; top: 35%; right: 840px"
-										onclick="plusDivs(+1)">&#10095;</a>
-									</div>
+								
 
 		<div class="container">
 			<h2>
