@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Enter your Location</title>
+<title>Create Location</title>
 </head>
-
 <body>
-<form name="form1" action="createLocation" method="post">
-Enter your city: <input name ="city" type ="text">
-<button type="submit"> submit </button>
-</form>
-${message}
+${city}
 </body>
 </html>

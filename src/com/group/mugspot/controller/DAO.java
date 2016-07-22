@@ -107,8 +107,6 @@ public class DAO {
 
 		session.save(p);
 
-
-
 		session.getTransaction().commit();
 		session.close();  
 	}
