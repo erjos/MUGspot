@@ -11,6 +11,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.json.simple.parser.ParseException;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -72,6 +73,7 @@ public class DAO {
 			
 			shopInfo.add(shop);
 			
+			
 		}
 		return shopInfo;
 	}
@@ -85,8 +87,6 @@ public class DAO {
 		session.beginTransaction();
 
 		session.save(p);
-
-
 
 		session.getTransaction().commit();
 		session.close();  
@@ -165,6 +165,28 @@ public class DAO {
 		
 		return shopMap;
 	}
-	
 
+	
+	
+	public static boolean doesCityExist(String placeID){
+		boolean exists = false;
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		Criteria crit = session.createCriteria(City.class);
+		crit.add( Restrictions.eq("place_id", placeID));
+		
+		List city = crit.list();
+		if (city.size() > 0){
+			exists = true;
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return exists;
+	}
 }
