@@ -81,6 +81,7 @@ public class DAO {
 			shop.put("budget", shops1.getBudget()+"");
 			shop.put("phone", phone);
 			shop.put("address", address);
+<<<<<<< HEAD
 			shop.put("picture1", picture1);
 //			shop.put("picture2", pictures[1]);
 //			shop.put("picture3", pictures[2]);
@@ -91,6 +92,19 @@ public class DAO {
 //			shop.put("picture8", pictures[7]);
 //			shop.put("picture9", pictures[8]);
 //			shop.put("picture10", pictures[9]);
+=======
+			shop.put("picture1", pictures[0]);
+			shop.put("picture2", pictures[1]);
+			shop.put("picture3", pictures[2]);
+			shop.put("pictue4", pictures[3]);
+			shop.put("picture5", pictures[4]);
+			shop.put("picture6", pictures[5]);
+			shop.put("picture7", pictures[6]);
+			shop.put("picture8", pictures[7]);
+			shop.put("picture9", pictures[8]);
+			shop.put("picture10", pictures[9]);
+			
+>>>>>>> ae29899d6f87aa115ed2f71edeaf338f688a0fe7
 			shopInfo.add(shop);
 			
 		}
@@ -125,19 +139,6 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	/*public static String getInfo() {
-		String DAO = "<table border=\"1\">";
-				//+ "<tr><th>Username</th><th>Email</th><th>Full Name</th><th>Delete User</th></tr>";//include start table tag
-		List<Shops> shops = getShops();
-		for (Shops shops1 : shops) {
-			// DAO = shops1.getShop_name();
-			DAO += "<tr><td>" + "<tr><td>" +  shops1.getShop_name() + "</td><td>" + shops1.getDescription() + "</td><td>" 
-		     + shops1.getMenu() + "</td><td>" + shops1.getOutlets() + "</td><td>"  + shops1.getCapacity() 
-		     + "</td><td>" + shops1.getPlaceId()+ shops1.getBudget();
-		}
-		DAO += "</table>";
-		return DAO;
-	}*/
 
 	public static Map getInfoById(String id) throws ClientProtocolException, IOException, ParseException {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
