@@ -8,12 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	var map;
 	var service;
@@ -109,7 +106,7 @@ img {
 <title>Shops</title>
 </head>
 <body>
-	<center>
+	
 
 		<option>Sort by Outlets</option>
 		<div id="users">
@@ -119,6 +116,7 @@ img {
 				<option value="capacity">Capacity</option>
 				<option value="budget">Budget</option>
 			</select><br>
+			</div>
 			<ul class="list">
 				<c:forEach items="${shop}" var="current" varStatus="status">
 					<script>
@@ -143,27 +141,27 @@ img {
 								data-target="#${status.index}">Expand</button>
 							<div id="${status.index}" class="collapse">
 								<p class="Description">
-									Menu:</b>
+									Menu:
 									<c:out value="${current.menu}" />
 								</p>
 								<p class="outlets">
-									Outlets:</b>
+									Outlets:
 									<c:out value="${current.outlets}" />
 								</p>
 								<p class="capacity">
-									Capacity:</b>
+									Capacity:
 									<c:out value="${current.capacity}" />
 								</p>
 								<p class="budget">
-									Budget:</b>
+									Budget:
 									<c:out value="${current.budget}" />
 								</p>
 								<p class="Description">
-									Phone:</b>
+									Phone:
 									<c:out value="${current.phone}" />
 								</p>
 								<p class="Description">
-									Address:</b>
+									Address:
 									<c:out value="${current.address}" />
 								</p>
 								<button type="button" class="btn btn-primary"
@@ -171,23 +169,14 @@ img {
 									See More</button>
 								<br> <br>
 								<div class="slideshow">
-									<img class="slide" src="${current.picture1}" /> <img
-										class="slide" src="<c:out value="${current.picture2}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture3}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture4}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture5}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture6}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture7}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture8}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture9}"/>" /> <img
-										class="slide" src="<c:out value="${current.picture10}"/>" />
+									<img class="slide" src="${current.picture1}"/> 
 									<a class="w3-btn-floating"
 										style="position: absolute; top: 35%; left: 100px"
 										onclick="plusDivs(-1)">&#10094;</a>
 									<a class="w3-btn-floating"
 										style="position: absolute; top: 35%; right: 840px"
 										onclick="plusDivs(+1)">&#10095;</a>
-
+									</div>
 
 		<div class="container">
 			<h2>
@@ -215,11 +204,19 @@ img {
 		
 	</div>
 </div>
+</div>
+
 		
 	</c:forEach>
-
+	<center>
+	<div id="map">
+			<script
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
+				async defer></script>
+				</div>
+</center>
 				
-		</div>
+		
 </body>
 </html>
 
