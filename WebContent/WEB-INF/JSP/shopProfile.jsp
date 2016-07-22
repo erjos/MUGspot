@@ -10,11 +10,11 @@
 <title>shop details</title>
 </head>
 <body>
-<c:out value="${shopProfile.name}" /><br>
-<c:out value="${shopProfile.description2}" /><br>
-<c:out value="${shopProfile.menu}" /><br>
-<c:out value="${shopProfile.outlets}" /><br>
-<c:out value="${shopProfile.capacity}" /><br>
+<h1><center><c:out value="${shopProfile.name}" /></center></h1><br>
+<center><c:out value="${shopProfile.description2}" /></center><br>
+menu: <c:out value="${shopProfile.menu}" /><br>
+number of outlets: <c:out value="${shopProfile.outlets}" /><br>
+Amount of seating available: <c:out value="${shopProfile.capacity}" /><br>
 
 
 </body>
