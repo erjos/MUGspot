@@ -22,6 +22,7 @@ public class GooglePlaces {
 	public static ArrayList<String> getAPI(String placeID) throws ClientProtocolException, IOException, ParseException {
 
 			String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID
+
 					//+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
 					+ "&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y";
 
