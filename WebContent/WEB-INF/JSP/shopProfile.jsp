@@ -11,7 +11,7 @@
 </head>
 <body>
 <c:out value="${shopProfile.name}" /><br>
-<c:out value="${shopProfile.description}" /><br>
+<c:out value="${shopProfile.description2}" /><br>
 <c:out value="${shopProfile.menu}" /><br>
 <c:out value="${shopProfile.outlets}" /><br>
 <c:out value="${shopProfile.capacity}" /><br>

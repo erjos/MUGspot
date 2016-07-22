@@ -75,6 +75,7 @@ public class DAO {
 			shop.put("id", shops1.getId());
 			shop.put("name", name);
 			shop.put("description", shops1.getDescription());
+			shop.put("description2", shops1.getDescription2());
 			shop.put("menu", shops1.getMenu());
 			shop.put("outlets", shops1.getOutlets()+"");
 			shop.put("capacity", shops1.getCapacity()+"");
@@ -169,6 +170,7 @@ public class DAO {
 		shopMap.put("id", shop.getId());
 		shopMap.put("name", name);
 		shopMap.put("description", shop.getDescription());
+		shopMap.put("description2", shop.getDescription2());
 		shopMap.put("menu", shop.getMenu());
 		shopMap.put("outlets", shop.getOutlets()+"");
 		shopMap.put("capacity", shop.getCapacity()+"");
