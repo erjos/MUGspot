@@ -27,13 +27,14 @@
 
 		map = new google.maps.Map(document.getElementById('map'), {
 			center : pyrmont,
-			zoom : 15
+			zoom : 14 
 		});
 
 		var request = {
+			bounds: map.getBounds(),
 			location : pyrmont,
-			radius : '1000',
-			name : '${current.name}'
+			radius : '2000', 
+			name : '${current.name}',
 		};
 
 		service = new google.maps.places.PlacesService(map);
@@ -111,9 +112,9 @@ img {
 <body>
 	<center>
 
-		<option>Sort by Outlets</option>
+		
 		<div id="users">
-			<input class="search" placeholder="Search" /> Sort Button<select
+			<!-- <input class="search" placeholder="Search" /> --> Sort Button<select
 				id="sortbox" class="sort" data-sort="capacity">
 				<option value="outlets">Outlets</option>
 				<option value="capacity">Capacity</option>
@@ -121,9 +122,6 @@ img {
 			</select><br>
 			<ul class="list">
 				<c:forEach items="${shop}" var="current" varStatus="status">
-					<script>
-						myData.push("${current.address}")
-					</script>
 
 					<li>
 						<div class="container">
@@ -196,16 +194,16 @@ img {
 			</ul>
 		</div>
 		<script src="http://listjs.com/no-cdn/list.js"></script>
-		<script>
+		 <script>
 		var options = { valueNames : [ 'outlets', 'capacity', 'budget' ] };
 		
 		var userList = new List('users', options);
 
-		$("select").change(function() { var str = ""; $("select
-		option:selected").each(function() { str += $(this).val() + " "; });
-		this.data - sort(str); console.log(str); /* $( "div" ).text( str ); */
+		$("select").change(function() { var str = ""; $("selectoption:selected").each(function() 
+	    { str += $(this).val() + " "; });
+		this.data - sort(str); console.log(str); $( "div" ).text( str ); 
 		}).trigger("change");
-		</script>
+		</script> 
 		<div id="map">
 			<script
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"

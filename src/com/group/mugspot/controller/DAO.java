@@ -124,6 +124,7 @@ public class DAO {
 		shop.setId(id);
 		session.delete(shop);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public static Map getInfoById(String id) {
