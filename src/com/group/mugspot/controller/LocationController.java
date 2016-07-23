@@ -32,11 +32,21 @@ public class LocationController {
 		
 		boolean cities = DAO.getCity(placeID);
 		
-		ModelAndView mv = new ModelAndView("createLocation", "city", city);
-		mv.addObject("state", state);
-		mv.addObject("placeID", placeID);
-		mv.addObject("exists", cities);
+		String message = null;
+		ModelAndView mv = null;
+		
+		if (cities == true){
+			message = "Sorry, this location already exists on MUGspot!";
+			mv = new ModelAndView("createLocation");
+			mv.addObject("exists", message);
+			return mv;
+		} else{
+			//Before all this - need to call a method that adds the new city into the database
+			//will need to include city name and place_ID
+			mv = new ModelAndView("shopLocationSearch");
+			String shops = "here are all the shops in your area";
+			mv.addObject("shops", shops);
+		}
 		return mv;
 	}
-	
 }
