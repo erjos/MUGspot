@@ -1,6 +1,8 @@
 package com.group.mugspot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +46,7 @@ public class LocationController {
 			//Before all this - need to call a method that adds the new city into the database
 			//will need to include city name and place_ID
 			mv = new ModelAndView("shopLocationSearch");
-			String shops = "here are all the shops in your area";
+			ArrayList<Map> shops = GooglePlaces.getShopsByCityID(city, state);
 			mv.addObject("shops", shops);
 		}
 		return mv;

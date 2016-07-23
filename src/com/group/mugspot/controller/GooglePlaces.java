@@ -154,7 +154,7 @@ public class GooglePlaces {
 	
 	//This is the method to display the shops for a specific city based on the available results
 	public static ArrayList<Map> getShopsByCityID(String city, String state){
-		ArrayList<Map> shops = null;
+		ArrayList<Map> shops = new ArrayList<Map>();
 		//changed the search to include the words "coffee in"
 		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+in" + city
 				+ "+" + state +"&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
@@ -201,7 +201,7 @@ public class GooglePlaces {
 		JsonArray jarray = jobject.getAsJsonArray("results");
 		
 		//iterate through the array of results to parse for name address and placeID
-		for (int i=0; i<=jarray.size(); i++){
+		for (int i=0; i<jarray.size(); i++){
 			
 			jelement = jarray.get(i);
 			
@@ -222,7 +222,6 @@ public class GooglePlaces {
 			shop.put("place_id", place_id);
 			
 			shops.add(shop);
-			
 		}
 		
 		return shops;
