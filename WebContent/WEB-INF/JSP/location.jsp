@@ -10,6 +10,7 @@
 <body>
 <form name="form1" action="createLocation" method="post">
 Enter your city: <input name ="city" type ="text">
+Enter the state: <input name ="state" type = "text">
 <button type="submit"> submit </button>
 </form>
 </body>

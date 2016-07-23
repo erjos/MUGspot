@@ -8,5 +8,8 @@
 </head>
 <body>
 ${city}
+${state}
+${placeID}
+${exists}
 </body>
 </html>

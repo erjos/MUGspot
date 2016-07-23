@@ -92,9 +92,61 @@ public class GooglePlaces {
 		return info;	
 		}
 	
-	
-//	public static void main(String[] args) throws ClientProtocolException, IOException, ParseException {
-//		System.out.println(getAPI("ChIJtzwfLTItO4gRxwpKgcgFomE"));
-//		}
+	//Method takes in a city name as a String and searches the API to return the placeID for the result
+	public static String getCityPlaceID(String city, String state){
+		
+		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + city
+				+ "+" + state +"&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+
+		HttpClient client = HttpClientBuilder.create().build();
+
+		HttpGet request = new HttpGet(url);
+		
+		HttpResponse response = null;
+		try {
+			response = client.execute(request);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		BufferedReader rd = null;
+		try {
+			rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+		} catch (UnsupportedOperationException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		try {
+			while ((line = rd.readLine()) != null) {
+				result.append(line.trim());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// still want to ask peter about this
+		
+		request.releaseConnection();
+		
+		JsonElement jelement = new JsonParser().parse(result.toString());
+
+		JsonObject jobject = jelement.getAsJsonObject();
+
+		JsonArray jarray = jobject.getAsJsonArray("results");
+		
+		jelement = jarray.get(0);
+
+		jobject = jelement.getAsJsonObject();
+		
+		JsonElement placeID = jobject.get("place_id");
+		
+		String place_id = placeID.toString().replaceAll("\"", "");
+		return place_id;
+	}
 
 }   

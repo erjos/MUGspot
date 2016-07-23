@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shopinfo")
+@Table(name = "Cities")
 public class City {
 	
 	@Id
@@ -17,33 +17,33 @@ public class City {
 	private int id;
 	
 	@Column(name = "city_name")
-	private String cityName;
+	private String city_name;
 	
 	@Column(name = "place_id")
-	private String placeId;
+	private String place_id;
 
 	public int getId() {
 		return id;
 	}
 
 	public String getCityName() {
-		return cityName;
+		return city_name;
 	}
 
 	public String getPlaceId() {
-		return placeId;
+		return place_id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setCityName(String city_name) {
+		this.city_name = city_name;
 	}
 
-	public void setPlaceId(String placeId) {
-		this.placeId = placeId;
+	public void setPlaceId(String place_id) {
+		this.place_id = place_id;
 	}
 
 }
