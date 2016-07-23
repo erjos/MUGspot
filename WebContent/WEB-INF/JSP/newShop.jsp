@@ -9,13 +9,13 @@
 <body>
 <h1>Add a Shop</h1>
 <form name="form1" action="addShop.jsp" method="get">
-	Shop Name: <input name="shop_name" type="text"><br>
+	Shop Name: <input name="shop_name" type="text" value ="${name}"><br>
 	Description: <input name="description" type="text"><br>
 	Menu: <input name="menu" type="text"><br>
 	Outlets: <input name="outlets" type="text"><br>
 	Capacity: <input name="capacity" type="text"><br>
 	Budget: <input name="budget" type="text"><br>
-	Place ID: <input name="place_id" type="text"><br>
+	Place ID: <input name="place_id" type="text" value ="${place_id}"><br>
 	<button type="submit">Submit!</button>
 </form>
 </body>

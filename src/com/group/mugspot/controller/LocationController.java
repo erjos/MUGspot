@@ -51,4 +51,12 @@ public class LocationController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping("/newShop")
+	public ModelAndView createNewShopProfile(@RequestParam("name")String name, @RequestParam("place_id")String placeID){
+		ModelAndView mv = new ModelAndView("newShop");
+		mv.addObject("name", name);
+		mv.addObject("place_id", placeID);
+		return mv;
+	}
 }
