@@ -40,7 +40,11 @@ public class Shops {
 
 	@Column(name = "Budget")
 	private int budget;
+	
+	@Column(name = "city_id")
+	private int city_id;
 
+	
 	public Shops (){
 		
 	}
@@ -87,6 +91,13 @@ public class Shops {
 
 	public String getPlace_id() {
 		return place_id;
+	}
+	
+	public int getCity_id() {
+		return city_id;
+	}
+	public void setCity_id(int city_id) {
+		this.city_id = city_id;
 	}
 
 	public void setId(int id) {

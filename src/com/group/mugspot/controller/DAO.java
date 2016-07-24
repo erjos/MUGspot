@@ -191,7 +191,8 @@ public class DAO {
 		return exists;
 	}
 	
-	public static boolean getCity(String placeID) {
+	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
+	public static ArrayList<String> getCityNames() {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
 				.buildSessionFactory();
 		
@@ -202,18 +203,21 @@ public class DAO {
 
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(City.class);
-		criteria.add( Restrictions.eq("place_id", placeID));
 
 		@SuppressWarnings("unchecked")
 		List<City> cities = criteria.list();
 		
-		if (cities.size() > 0){
-			exists = true;
+		ArrayList<String> cityNames = new ArrayList<String>();
+		
+		for (City city: cities){
+			String name = city.getCityName();
+	
+			cityNames.add(name);
 		}
-
+		
 		session.getTransaction().commit();
 		session.close();
 		
-		return exists;
+		return cityNames;
 	}
 }

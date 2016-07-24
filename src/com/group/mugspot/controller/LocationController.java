@@ -32,7 +32,7 @@ public class LocationController {
 		//checking if the cityID already exists in the database
 		//boolean cityExist = DAO.doesCityExist(placeID);
 		
-		boolean cities = DAO.getCity(placeID);
+		boolean cities = DAO.doesCityExist(placeID);
 		
 		String message = null;
 		ModelAndView mv = null;
