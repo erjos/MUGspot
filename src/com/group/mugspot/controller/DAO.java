@@ -191,6 +191,22 @@ public class DAO {
 		return exists;
 	}
 	
+	//method which creates a new City in the database
+	public static void addCity(City c){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(c);
+
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	
 	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
 	public static ArrayList<String> getCityNames() {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)

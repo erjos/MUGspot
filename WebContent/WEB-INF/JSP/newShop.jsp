@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Add a Shop</h1>
-<form name="form1" action="addShop.jsp" method="get">
+<form name="createNewShop" action="addShopProfile" method="get">
 	Shop Name: <input name="shop_name" type="text" value ="${name}"><br>
 	Description: <input name="description" type="text"><br>
 	Menu: <input name="menu" type="text"><br>
