@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -92,9 +94,137 @@ public class GooglePlaces {
 		return info;	
 		}
 	
+	//Method takes in a city name as a String and searches the API to return the placeID for the result
+	public static String getCityPlaceID(String city, String state){
+		
+		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + city
+				+ "+" + state +"&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+
+		HttpClient client = HttpClientBuilder.create().build();
+
+		HttpGet request = new HttpGet(url);
+		
+		HttpResponse response = null;
+		try {
+			response = client.execute(request);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		BufferedReader rd = null;
+		try {
+			rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+		} catch (UnsupportedOperationException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		try {
+			while ((line = rd.readLine()) != null) {
+				result.append(line.trim());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// still want to ask peter about this
+		
+		request.releaseConnection();
+		
+		JsonElement jelement = new JsonParser().parse(result.toString());
+
+		JsonObject jobject = jelement.getAsJsonObject();
+
+		JsonArray jarray = jobject.getAsJsonArray("results");
+		
+		jelement = jarray.get(0);
+
+		jobject = jelement.getAsJsonObject();
+		
+		JsonElement placeID = jobject.get("place_id");
+		
+		String place_id = placeID.toString().replaceAll("\"", "");
+		return place_id;
+	}
 	
-//	public static void main(String[] args) throws ClientProtocolException, IOException, ParseException {
-//		System.out.println(getAPI("ChIJtzwfLTItO4gRxwpKgcgFomE"));
-//		}
+	
+	//This is the method to display the shops for a specific city based on the available results
+	public static ArrayList<Map> getShopsByCityID(String city, String state){
+		ArrayList<Map> shops = new ArrayList<Map>();
+		//changed the search to include the words "coffee in"
+		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+in" + city
+				+ "+" + state +"&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+
+		HttpClient client = HttpClientBuilder.create().build();
+
+		HttpGet request = new HttpGet(url);
+		
+		HttpResponse response = null;
+		try {
+			response = client.execute(request);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		BufferedReader rd = null;
+		try {
+			rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+		} catch (UnsupportedOperationException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		try {
+			while ((line = rd.readLine()) != null) {
+				result.append(line.trim());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// still want to ask peter about this
+		
+		request.releaseConnection();
+		
+		JsonElement jelement = new JsonParser().parse(result.toString());
+
+		JsonObject jobject = jelement.getAsJsonObject();
+
+		JsonArray jarray = jobject.getAsJsonArray("results");
+		
+		//iterate through the array of results to parse for name address and placeID
+		for (int i=0; i<jarray.size(); i++){
+			
+			jelement = jarray.get(i);
+			
+			jobject = jelement.getAsJsonObject();
+			
+			JsonElement address = jobject.get("formatted_address");
+			JsonElement name = jobject.get("name");
+			JsonElement placeID = jobject.get("place_id");
+			
+			String place_id = placeID.toString().replaceAll("\"", "");
+			String nm = name.toString().replaceAll("\"", "");
+			String addrs = address.toString().replaceAll("\"", "");
+			
+			Map shop = new HashMap();
+			
+			shop.put("name", nm);
+			shop.put("address", addrs);
+			shop.put("place_id", place_id);
+			
+			shops.add(shop);
+		}
+		
+		return shops;
+	}
 
 }   

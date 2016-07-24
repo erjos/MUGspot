@@ -1,8 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Spring 4 MVC - HelloWorld Index Page</title>
 </head>
-<body>
- 
+<body> 
 	<center>
 		<h2>MUGspot</h2>
 		<h3>

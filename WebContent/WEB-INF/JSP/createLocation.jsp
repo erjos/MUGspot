@@ -7,6 +7,6 @@
 <title>Create Location</title>
 </head>
 <body>
-${city}
+${exists}
 </body>
 </html>

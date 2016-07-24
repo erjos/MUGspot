@@ -1,6 +1,7 @@
 package com.group.mugspot.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -167,7 +168,7 @@ public class DAO {
 	}
 
 	
-	
+	//method that checks if a searched City already exists in the database
 	public static boolean doesCityExist(String placeID){
 		boolean exists = false;
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
@@ -184,6 +185,32 @@ public class DAO {
 			exists = true;
 		}
 		
+		session.getTransaction().commit();
+		session.close();
+		
+		return exists;
+	}
+	
+	public static boolean getCity(String placeID) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+		
+		boolean exists = false;
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+		criteria.add( Restrictions.eq("place_id", placeID));
+
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		
+		if (cities.size() > 0){
+			exists = true;
+		}
+
 		session.getTransaction().commit();
 		session.close();
 		
