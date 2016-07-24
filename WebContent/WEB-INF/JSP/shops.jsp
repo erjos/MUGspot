@@ -115,7 +115,7 @@ img {
 
 	<div id="users">
 		<!-- <input class="search" placeholder="Search" /> -->
-		Sort Button<select id="sortbox" class="sort" data-sort="capacity">
+		Sort Button<select id="sortbox" class="sort" data-sort="capacity"> 
 			<option value="outlets">Outlets</option>
 			<option value="capacity">Capacity</option>
 			<option value="budget">Budget</option>
@@ -176,7 +176,7 @@ img {
 								style="position: absolute; top: 35%; right: 840px"
 								onclick="plusDivs(+1)">&#10095;</a>
 						</div>
-
+<%-- 
 						<div class="container">
 							<h2>
 								<c:out
@@ -210,7 +210,7 @@ img {
 
 
 				</div>
-				</div>
+				</div> --%>
 				</div>
 			</li>
 		</c:forEach>
