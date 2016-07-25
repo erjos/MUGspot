@@ -92,6 +92,7 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();  
 	}
+	
 	public static void deleteShop(int id){
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
 				.buildSessionFactory();
@@ -149,6 +150,7 @@ public class DAO {
 		shopMap.put("budget", shop.getBudget()+"");
 		shopMap.put("phone", phone);
 		shopMap.put("address", address);
+		
 		
 		shopMap.put("picture1", pictures[0]);
 		shopMap.put("picture2", pictures[1]);
@@ -215,5 +217,19 @@ public class DAO {
 		session.close();
 		
 		return exists;
+	}
+	
+	public static void addReview(Users user) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(user);
+
+		session.getTransaction().commit();
+		session.close();  
 	}
 }

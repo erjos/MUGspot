@@ -34,7 +34,7 @@
 			bounds : map.getBounds(),
 			location : pyrmont,
 			radius : '2000',
-			name : '${current.name}',
+			name : '${current.name}'
 		};
 
 		service = new google.maps.places.PlacesService(map);
