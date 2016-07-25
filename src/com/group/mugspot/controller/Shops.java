@@ -43,8 +43,10 @@ public class Shops {
 	
 	@Column(name = "city_id")
 	private int city_id;
-
 	
+	@Column(name = "active")
+	private int active;
+
 	public Shops (){
 		
 	}
@@ -95,6 +97,13 @@ public class Shops {
 	
 	public int getCity_id() {
 		return city_id;
+	}
+	
+	public int getActive() {
+		return active;
+	}
+	public void setActive(int active) {
+		this.active = active;
 	}
 	public void setCity_id(int city_id) {
 		this.city_id = city_id;

@@ -19,11 +19,6 @@
 </jsp:useBean>
 <% 
 DAO.addShop(Shop_Name);
-// int i= (DAO.addShop(Shop_Name)); 
-// if (i > 0)  
-// 	out.print("Person successfully added");  
-// else
-// 	out.println("Error; person not added");
 %>   
 </body>
 </html>

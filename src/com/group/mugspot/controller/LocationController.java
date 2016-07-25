@@ -65,6 +65,5 @@ public class LocationController {
 		return mv;
 	}
 	
-	/*@RequestMapping("/addShopPrfile")
-	public ModelAndView addShopProfile(@RequestParam(""))*/
+	
 }
