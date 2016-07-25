@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Add a User</h1>
+<h1>Add a Shop</h1>
 <form name="form1" action="addShop.jsp" method="get">
 	Shop Name: <input name="shop_name" type="text"><br>
 	Description: <input name="description" type="text"><br>
