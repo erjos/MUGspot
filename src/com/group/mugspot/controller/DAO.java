@@ -23,7 +23,8 @@ import com.group.mugspot.controller.*;
 public class DAO {
 	private static SessionFactory factory;
 
-	// public static void main(String[] args) {
+	
+//Shopinfo table methods -------------------
 	
 	public static List<Shops> getShops(Integer cityID) {
 		SessionFactory factory = DBFactory.setupFactory();
@@ -166,6 +167,7 @@ public class DAO {
 		return shopMap;
 	}
 
+//City table methods -----------------------	
 	
 	//method that checks if a searched City already exists in the database
 	public static boolean doesCityExist(String placeID){
@@ -188,61 +190,6 @@ public class DAO {
 		
 		return exists;
 	}
-	
-	public static List loginResult(String u, String p){
-		
-		SessionFactory factory = DBFactory.setupFactory();
-
-		Session session = factory.getCurrentSession();
-		session.beginTransaction();
-		
-		String hql = ("FROM owner WHERE ownername =" + u + "AND password =" + p);
-		Query query = session.createQuery(hql);
-		List result = query.list();
-		
-		session.getTransaction().commit();
-		session.close();
-		return result;
-		
-	}
-	public static void addUser(Users p) {
-		SessionFactory factory = DBFactory.setupFactory();
-
-		Session session = factory.getCurrentSession();
-
-		session.beginTransaction();
-		
-		session.save(p);
-
-		session.getTransaction().commit();
-		session.close();  
-	}
-	
-	
-//	public String connect(String work){
-//		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
-//				.buildSessionFactory();
-//
-//		Session session = factory.getCurrentSession();
-//
-//		session.beginTransaction();
-//
-//		out.work;
-//		
-//		
-//		session.getTransaction().commit();
-//		session.close();
-//		
-//		
-//		
-//		return connection;
-//		
-//		
-//	}
-	
-	
-	
-	
 	
 	//method which creates a new City in the database
 	public static void addCity(City c){
@@ -343,6 +290,21 @@ public class DAO {
 		session.close();
 		
 		return cityMap;
+	}
+	
+	//Users table Methods-------------------
+	
+	public static void addUser(Users p) {
+		SessionFactory factory = DBFactory.setupFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+		
+		session.save(p);
+
+		session.getTransaction().commit();
+		session.close();  
 	}
 	
 	public static boolean checkLogin(Users u){
