@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,17 +23,19 @@ import com.group.mugspot.controller.*;
 public class DAO {
 	private static SessionFactory factory;
 
-	// public static void main(String[] args) {
 	
-	public static List<Shops> getShops() {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+//Shopinfo table methods -------------------
+	
+	public static List<Shops> getShops(Integer cityID) {
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Shops.class);
+		//adding criteria so the list only returns if the cityID is the same as the parameter
+		criteria.add( Restrictions.eq("city_id", cityID));
 
 		@SuppressWarnings("unchecked")
 		List<Shops> shops = criteria.list();
@@ -43,8 +46,8 @@ public class DAO {
 		return shops;
 	}  
 
-	public static ArrayList<Map> getInfo() throws ClientProtocolException, IOException, ParseException {
-		List<Shops> shops = getShops();
+	public static ArrayList<Map> getInfo(Integer cityID) throws ClientProtocolException, IOException, ParseException {
+		List<Shops> shops = getShops(cityID);
 		ArrayList<Map> shopInfo = new ArrayList<Map>();
 		for (Shops shops1 : shops) {
 		    
@@ -80,8 +83,7 @@ public class DAO {
 	}
 
 	public static void addShop(Shops p) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -94,8 +96,7 @@ public class DAO {
 	}
 	
 	public static void deleteShop(int id){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -108,8 +109,7 @@ public class DAO {
 	}
 
 	public static Map getInfoById(String id) throws ClientProtocolException, IOException, ParseException {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -169,12 +169,12 @@ public class DAO {
 		return shopMap;
 	}
 
+//City table methods -----------------------	
 	
 	//method that checks if a searched City already exists in the database
 	public static boolean doesCityExist(String placeID){
 		boolean exists = false;
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -193,12 +193,57 @@ public class DAO {
 		return exists;
 	}
 	
-	public static boolean getCity(String placeID) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+	//method which creates a new City in the database
+	public static void addCity(City c){
+		SessionFactory factory = DBFactory.setupFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(c);
+
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	
+	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
+	public static ArrayList<Map> getCityNames() {
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		boolean exists = false;
 
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		
+		ArrayList<Map> cityNames = new ArrayList<Map>();
+		
+		for (City city: cities){
+			Map cityMap = new HashMap();
+			String name = city.getCityName();
+			int id = city.getId();
+			
+			cityMap.put("name", name);
+			cityMap.put("id", id);
+	
+			cityNames.add(cityMap);
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return cityNames;
+	}
+	public static int getCityID(String placeID){
+		SessionFactory factory = DBFactory.setupFactory();
+		
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 
@@ -208,28 +253,117 @@ public class DAO {
 
 		@SuppressWarnings("unchecked")
 		List<City> cities = criteria.list();
+		int id = 0;
 		
-		if (cities.size() > 0){
-			exists = true;
+		for(City city: cities){
+			id = city.getId();
 		}
+		return id;
+	}
+	
+	public static Map getCurrentCity(int cityID) {
+		SessionFactory factory = DBFactory.setupFactory();
+		
+		boolean exists = false;
 
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+		criteria.add( Restrictions.eq("id", cityID));
+		
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		
+		Map cityMap = new HashMap();
+		
+		for (City city: cities){
+			cityMap = new HashMap();
+			String name = city.getCityName();
+			int id = city.getId();
+			
+			cityMap.put("name", name);
+			cityMap.put("id", id);
+	
+		}
+		
 		session.getTransaction().commit();
 		session.close();
 		
-		return exists;
+		return cityMap;
 	}
 	
-	public static void addReview(Users user) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+	//Users table Methods-------------------
+	
+	public static void addUser(Users p) {
+		SessionFactory factory = DBFactory.setupFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+		
+		session.save(p);
+
+		session.getTransaction().commit();
+		session.close();  
+	}
+	
+	public static boolean checkLogin(Users u){
+		SessionFactory factory = DBFactory.setupFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		String username = "'"+u.getEmail()+"'";
+
+String hql = "FROM Users WHERE email = "+username;
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        session.getTransaction().commit();
+		session.close();
+		
+        if(results.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+	public static boolean containsUser(Users user) {
+
+		SessionFactory factory = DBFactory.setupFactory();
+
+        
+        Session hibernateSession = factory.openSession();
+        hibernateSession.getTransaction().begin();
+        
+        String username="'"+user.getEmail()+"'";
+        String hql = "FROM User WHERE username = "+username;
+        Query query = hibernateSession.createQuery(hql);
+        List results = query.list();
+        
+        if(results.isEmpty())
+            return false;
+        
+        return true;
+    }		
+
+		
+			
+	
+	public static void addReview(Reviews reviews) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Reviews.class)
 				.buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
 
 		session.beginTransaction();
 
-		session.save(user);
+		session.save(reviews);
 
 		session.getTransaction().commit();
 		session.close();  
 	}
 }
+

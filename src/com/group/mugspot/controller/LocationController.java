@@ -1,6 +1,7 @@
 package com.group.mugspot.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,16 +24,16 @@ public class LocationController {
 	//first creating the model and view method with 2 arguments using the requestParam arguments from the jsp
 	public ModelAndView createLocation(@RequestParam("city")String city, @RequestParam("state")String state){
 		//taking the strings for city and state and replacing spaces with a + so that when plugged into google the URL doesnt break
-		city = city.replaceAll(" ", "+");
-		state = state.replaceAll(" ", "+");
+		String searchCity = city.replaceAll(" ", "+");
+		String searchState = state.replaceAll(" ", "+");
 		
 		//retrieving the placeID of the search from Google
-		String placeID = GooglePlaces.getCityPlaceID(city, state);
+		String placeID = GooglePlaces.getCityPlaceID(searchCity, searchState);
 		
 		//checking if the cityID already exists in the database
 		//boolean cityExist = DAO.doesCityExist(placeID);
 		
-		boolean cities = DAO.getCity(placeID);
+		boolean cities = DAO.doesCityExist(placeID);
 		
 		String message = null;
 		ModelAndView mv = null;
@@ -43,20 +44,44 @@ public class LocationController {
 			mv.addObject("exists", message);
 			return mv;
 		} else{
-			//Before all this - need to call a method that adds the new city into the database
-			//will need to include city name and place_ID
+			//first creating a newCity object based on the name and placeID
+			City newCity = new City(city, placeID);
+			//Calling the DAO to try to add the new city into the database
+			DAO.addCity(newCity);
 			mv = new ModelAndView("shopLocationSearch");
-			ArrayList<Map> shops = GooglePlaces.getShopsByCityID(city, state);
+			ArrayList<Map> shops = GooglePlaces.getShopsByCityID(searchCity, searchState);
+			int city_id = DAO.getCityID(placeID);
 			mv.addObject("shops", shops);
+			mv.addObject("city_id", city_id);
 		}
 		return mv;
 	}
 	
 	@RequestMapping("/newShop")
-	public ModelAndView createNewShopProfile(@RequestParam("name")String name, @RequestParam("place_id")String placeID){
+	public ModelAndView shopProfileForm(@RequestParam("name")String name, @RequestParam("place_id")String placeID, @RequestParam("city_id")int city_id){
 		ModelAndView mv = new ModelAndView("newShop");
 		mv.addObject("name", name);
 		mv.addObject("place_id", placeID);
+		mv.addObject("city_id", city_id);
 		return mv;
 	}
+	
+	@RequestMapping("/shopLocationSearch")
+	public ModelAndView createNewShop(@RequestParam("cityID")Integer city_id){
+		Map cityInfo = new HashMap();
+		cityInfo = DAO.getCurrentCity(city_id);
+		String city = (String) cityInfo.get("name");
+		//String placeID = (String) cityInfo.get("placeID"); -- Dont need this unless we modify the search from text
+		//This search requires the state - hardcoding Michigan in for now
+		String state = "MI";
+		ModelAndView mv = new ModelAndView("shopLocationSearch");
+		String searchCity = city.replaceAll(" ", "+");
+		String searchState = state.replaceAll(" ", "+");
+		ArrayList<Map> shops = GooglePlaces.getShopsByCityID(searchCity, searchState);
+		
+		mv.addObject("shops", shops);
+		mv.addObject("city_id", city_id);
+		return mv;
+	}
+	
 }

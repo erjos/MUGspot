@@ -27,7 +27,7 @@
 			value="Submit">
 		</form> --%>
 		
-	<form:errors path="users.*"/>
+	<form:errors path="reviews.*"/>
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
 		User name:<br> <input type="text" name="user_id"><br>
 		Review:<br> <input type="text" name="review"><br>

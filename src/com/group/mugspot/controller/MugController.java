@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,10 +22,13 @@ public class MugController {
 
 	@RequestMapping("/shops")
 	// need to add try catch for these exceptions -
-	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException {
-		ArrayList<Map> info = DAO.getInfo();
+	public ModelAndView showMessage(@RequestParam("City") Integer City) throws ClientProtocolException, IOException, ParseException {
+		//takes the cityID from the form as a Parameter
+		ArrayList<Map> info = DAO.getInfo(City);
 		ModelAndView mv = new ModelAndView("shops");
 		mv.addObject("shop", info);
+		mv.addObject("cityID", City);
+		//could add an object the reps city ID then call getCityName and drop it into the 
 		return mv;
 	}
 
@@ -39,16 +43,32 @@ public class MugController {
 		return mv;
 	}
 
+
 	
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
-	public ModelAndView addReview(@ModelAttribute("users") Users user, BindingResult result) {
+	public ModelAndView addReview(@ModelAttribute("reviews") Reviews reviews, BindingResult result) {
 		if (result.hasErrors()) {
 			ModelAndView model = new ModelAndView("reviews");
 			return model;
 		} 
 		    
-		    DAO.addReview(user);
+		    DAO.addReview(reviews);
 			return new ModelAndView("success", "message", "Thank you! Your review is pending approval");
 
 		}
+	
+
+	@RequestMapping("/addUser")
+	public ModelAndView newUser(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("email")int email){
+		ModelAndView mv = new ModelAndView("addUser");
+		mv.addObject("username", username);
+		mv.addObject("password", password);
+		mv.addObject("email", email);
+		return mv;
+		
 	}
+	
+	
+	
+}
+

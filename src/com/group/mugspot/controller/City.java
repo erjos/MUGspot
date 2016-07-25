@@ -21,6 +21,14 @@ public class City {
 	
 	@Column(name = "place_id")
 	private String place_id;
+	
+	public City (){
+	}
+	
+	public City (String name, String place_id){
+		this.city_name = name;
+		this.place_id = place_id;
+	}
 
 	public int getId() {
 		return id;

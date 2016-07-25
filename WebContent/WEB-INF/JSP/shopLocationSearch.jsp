@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Shop Locations</title>
 </head>
 <body>
 <c:forEach items= "${shops}" var="current">
@@ -18,6 +18,7 @@
 <td><c:out value="${current.address}" /><td>
 <td><c:out value="${current.place_id}" /><td>
 <input type="hidden" name = "place_id" value="${current.place_id}">
+<input type="hidden" name = "city_id" value ="${city_id}">
 <button type="submit">Select</button> 
 </form>
 <br><br>
