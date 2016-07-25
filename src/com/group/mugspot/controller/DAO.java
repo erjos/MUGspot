@@ -208,7 +208,7 @@ public class DAO {
 	
 	
 	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
-	public static ArrayList<String> getCityNames() {
+	public static ArrayList<Map> getCityNames() {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
 				.buildSessionFactory();
 		
@@ -223,12 +223,17 @@ public class DAO {
 		@SuppressWarnings("unchecked")
 		List<City> cities = criteria.list();
 		
-		ArrayList<String> cityNames = new ArrayList<String>();
+		ArrayList<Map> cityNames = new ArrayList<Map>();
 		
 		for (City city: cities){
+			Map cityMap = new HashMap();
 			String name = city.getCityName();
+			int id = city.getId();
+			
+			cityMap.put("name", name);
+			cityMap.put("id", id);
 	
-			cityNames.add(name);
+			cityNames.add(cityMap);
 		}
 		
 		session.getTransaction().commit();
