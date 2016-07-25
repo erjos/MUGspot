@@ -1,6 +1,7 @@
 package com.group.mugspot.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,5 +66,22 @@ public class LocationController {
 		return mv;
 	}
 	
+	@RequestMapping("/shopLocationSearch")
+	public ModelAndView createNewShop(@RequestParam("cityID")Integer city_id){
+		Map cityInfo = new HashMap();
+		cityInfo = DAO.getCurrentCity(city_id);
+		String city = (String) cityInfo.get("name");
+		//String placeID = (String) cityInfo.get("placeID"); -- Dont need this unless we modify the search from text
+		//This search requires the state - hardcoding Michigan in for now
+		String state = "MI";
+		ModelAndView mv = new ModelAndView("shopLocationSearch");
+		String searchCity = city.replaceAll(" ", "+");
+		String searchState = state.replaceAll(" ", "+");
+		ArrayList<Map> shops = GooglePlaces.getShopsByCityID(searchCity, searchState);
+		
+		mv.addObject("shops", shops);
+		mv.addObject("city_id", city_id);
+		return mv;
+	}
 	
 }

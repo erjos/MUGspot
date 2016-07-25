@@ -263,4 +263,38 @@ public class DAO {
 		}
 		return id;
 	}
+	
+	public static Map getCurrentCity(int cityID) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+		
+		boolean exists = false;
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+		criteria.add( Restrictions.eq("id", cityID));
+		
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		
+		Map cityMap = new HashMap();
+		
+		for (City city: cities){
+			cityMap = new HashMap();
+			String name = city.getCityName();
+			int id = city.getId();
+			
+			cityMap.put("name", name);
+			cityMap.put("id", id);
+	
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return cityMap;
+	}
 }

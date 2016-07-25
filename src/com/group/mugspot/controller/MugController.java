@@ -23,6 +23,8 @@ public class MugController {
 		ArrayList<Map> info = DAO.getInfo(City);
 		ModelAndView mv = new ModelAndView("shops");
 		mv.addObject("shop", info);
+		mv.addObject("cityID", City);
+		//could add an object the reps city ID then call getCityName and drop it into the 
 		return mv;
 	}
 	@RequestMapping("/shopProfile")
