@@ -26,8 +26,7 @@ public class DAO {
 	// public static void main(String[] args) {
 	
 	public static List<Shops> getShops(Integer cityID) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -83,8 +82,7 @@ public class DAO {
 	}
 
 	public static void addShop(Shops p) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -96,8 +94,7 @@ public class DAO {
 		session.close();  
 	}
 	public static void deleteShop(int id){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -110,8 +107,7 @@ public class DAO {
 	}
 
 	public static Map getInfoById(String id) throws ClientProtocolException, IOException, ParseException {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -174,8 +170,7 @@ public class DAO {
 	//method that checks if a searched City already exists in the database
 	public static boolean doesCityExist(String placeID){
 		boolean exists = false;
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -196,8 +191,7 @@ public class DAO {
 	
 	public static List loginResult(String u, String p){
 		
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -212,8 +206,7 @@ public class DAO {
 		
 	}
 	public static void addUser(Users p) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -253,8 +246,7 @@ public class DAO {
 	
 	//method which creates a new City in the database
 	public static void addCity(City c){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -269,8 +261,7 @@ public class DAO {
 	
 	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
 	public static ArrayList<Map> getCityNames() {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		boolean exists = false;
 
@@ -302,8 +293,7 @@ public class DAO {
 		return cityNames;
 	}
 	public static int getCityID(String placeID){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -323,8 +313,7 @@ public class DAO {
 	}
 	
 	public static Map getCurrentCity(int cityID) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		boolean exists = false;
 
@@ -357,8 +346,7 @@ public class DAO {
 	}
 	
 	public static boolean checkLogin(Users u){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -380,8 +368,7 @@ String hql = "FROM Users WHERE email = "+username;
 
 	public static boolean containsUser(Users user) {
 
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
         
         Session hibernateSession = factory.openSession();
