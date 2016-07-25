@@ -16,6 +16,7 @@
 	Capacity: <input name="capacity" type="text"><br>
 	Budget: <input name="budget" type="text"><br>
 	Place ID: <input name="place_id" type="text" value ="${place_id}"><br>
+	City ID: <input name="city_id" type ="text" value = "${city_id}">
 	<button type="submit">Submit!</button>
 </form>
 </body>

@@ -243,4 +243,24 @@ public class DAO {
 		
 		return cityNames;
 	}
+	public static int getCityID(String placeID){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+		criteria.add( Restrictions.eq("place_id", placeID));
+
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		int id = 0;
+		
+		for(City city: cities){
+			id = city.getId();
+		}
+		return id;
+	}
 }

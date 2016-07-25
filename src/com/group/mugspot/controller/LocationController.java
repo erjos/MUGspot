@@ -49,17 +49,22 @@ public class LocationController {
 			DAO.addCity(newCity);
 			mv = new ModelAndView("shopLocationSearch");
 			ArrayList<Map> shops = GooglePlaces.getShopsByCityID(searchCity, searchState);
+			int city_id = DAO.getCityID(placeID);
 			mv.addObject("shops", shops);
+			mv.addObject("city_id", city_id);
 		}
 		return mv;
 	}
 	
 	@RequestMapping("/newShop")
-	public ModelAndView createNewShopProfile(@RequestParam("name")String name, @RequestParam("place_id")String placeID){
+	public ModelAndView shopProfileForm(@RequestParam("name")String name, @RequestParam("place_id")String placeID, @RequestParam("city_id")int city_id){
 		ModelAndView mv = new ModelAndView("newShop");
 		mv.addObject("name", name);
 		mv.addObject("place_id", placeID);
-		
+		mv.addObject("city_id", city_id);
 		return mv;
 	}
+	
+	/*@RequestMapping("/addShopPrfile")
+	public ModelAndView addShopProfile(@RequestParam(""))*/
 }
