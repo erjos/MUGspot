@@ -1,6 +1,7 @@
 package com.group.mugspot.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +25,7 @@ public class DAO {
 
 	// public static void main(String[] args) {
 	
-	public static List<Shops> getShops() {
+	public static List<Shops> getShops(Integer cityID) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
 				.buildSessionFactory();
 
@@ -33,6 +34,8 @@ public class DAO {
 
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Shops.class);
+		//adding criteria so the list only returns if the cityID is the same as the parameter
+		criteria.add( Restrictions.eq("city_id", cityID));
 
 		@SuppressWarnings("unchecked")
 		List<Shops> shops = criteria.list();
@@ -43,8 +46,8 @@ public class DAO {
 		return shops;
 	}  
 
-	public static ArrayList<Map> getInfo() throws ClientProtocolException, IOException, ParseException {
-		List<Shops> shops = getShops();
+	public static ArrayList<Map> getInfo(Integer cityID) throws ClientProtocolException, IOException, ParseException {
+		List<Shops> shops = getShops(cityID);
 		ArrayList<Map> shopInfo = new ArrayList<Map>();
 		for (Shops shops1 : shops) {
 		    
@@ -168,7 +171,7 @@ public class DAO {
 	}
 
 	
-	
+	//method that checks if a searched City already exists in the database
 	public static boolean doesCityExist(String placeID){
 		boolean exists = false;
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
@@ -247,4 +250,108 @@ public class DAO {
 	
 	
 	
+	//method which creates a new City in the database
+	public static void addCity(City c){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(c);
+
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	
+	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
+	public static ArrayList<Map> getCityNames() {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+		
+		boolean exists = false;
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		
+		ArrayList<Map> cityNames = new ArrayList<Map>();
+		
+		for (City city: cities){
+			Map cityMap = new HashMap();
+			String name = city.getCityName();
+			int id = city.getId();
+			
+			cityMap.put("name", name);
+			cityMap.put("id", id);
+	
+			cityNames.add(cityMap);
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return cityNames;
+	}
+	public static int getCityID(String placeID){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+		
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+		criteria.add( Restrictions.eq("place_id", placeID));
+
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		int id = 0;
+		
+		for(City city: cities){
+			id = city.getId();
+		}
+		return id;
+	}
+	
+	public static Map getCurrentCity(int cityID) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
+		
+		boolean exists = false;
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(City.class);
+		criteria.add( Restrictions.eq("id", cityID));
+		
+		@SuppressWarnings("unchecked")
+		List<City> cities = criteria.list();
+		
+		Map cityMap = new HashMap();
+		
+		for (City city: cities){
+			cityMap = new HashMap();
+			String name = city.getCityName();
+			int id = city.getId();
+			
+			cityMap.put("name", name);
+			cityMap.put("id", id);
+	
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return cityMap;
+	}
 }

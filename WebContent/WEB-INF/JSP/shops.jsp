@@ -214,8 +214,10 @@ function change() // no ';' here
 				async defer></script>
 				</div>
 </center>
-				
-		
+<form name = "addNewShop" action = "shopLocationSearch"	method = "get">
+<button name= "cityID" type="submit" value = "${cityID}">Add New Shop</button>
+</form>	
+	
 </body>
 </html>
 
