@@ -196,7 +196,7 @@ public class DAO {
 	
 	public static List loginResult(String u, String p){
 		
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
 				.buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
@@ -211,13 +211,14 @@ public class DAO {
 		return result;
 		
 	}
-	public static void addUser(Owner p) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
+	public static void addUser(Users p) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
 				.buildSessionFactory();
 
 		Session session = factory.getCurrentSession();
 
 		session.beginTransaction();
+		
 		session.save(p);
 
 		session.getTransaction().commit();
@@ -354,4 +355,55 @@ public class DAO {
 		
 		return cityMap;
 	}
-}
+	
+	public static boolean checkLogin(Users u){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		String username = "'"+u.getEmail()+"'";
+
+String hql = "FROM Users WHERE email = "+username;
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        session.getTransaction().commit();
+		session.close();
+		
+        if(results.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+	public static boolean containsUser(Users user) {
+
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+        
+        Session hibernateSession = factory.openSession();
+        hibernateSession.getTransaction().begin();
+        
+        String username="'"+user.getEmail()+"'";
+        String hql = "FROM User WHERE username = "+username;
+        Query query = hibernateSession.createQuery(hql);
+        List results = query.list();
+        
+        if(results.isEmpty())
+            return false;
+        
+        return true;
+    }		
+
+		
+			
+		 
+	}
+	
+	
+	
+	
+

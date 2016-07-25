@@ -8,13 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "owner")
-public class Owner {
+@Table(name = "users")
+public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "username")
-	private String username;
+	@Column(name = "ID")
+	private int ID;
+	
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	@Column(name = "fullname")
+	private String fullname;
 	
 	@Column(name = "password")
 	private String password;
@@ -22,17 +29,17 @@ public class Owner {
 	@Column(name = "email")
 	private String email;
 	
-		public Owner(){}
-		//public Owner(String username, String password, String email){
-		//}
-		public String getusername() {
-			return username;
+		public Users(){}
+		public Users(String fullname, String password, String email){
+		}
+		public String getfullname() {
+			return fullname;
 		}
 		public String getPassword() {
 			return password;
 		}
-		public void setusername(String username) {
-			this.username = username;
+		public void setfullname(String fullname) {
+			this.fullname = fullname;
 		}
 		public void setPassword(String password) {
 			this.password = password;
@@ -45,5 +52,7 @@ public class Owner {
 			this.email = email;
 		}
 	
-	
+		public int getID() {
+			return ID;
+		}
 }
