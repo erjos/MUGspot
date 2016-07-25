@@ -24,7 +24,7 @@
 			</select>
 			<input type="submit" value="select">
 			</form>
-			<br><br>
+			<br>
 			<a href="location">Create New Location</a>
 			<br><br>
 			<a href="newShopForm.jsp">New Shop Form</a>

@@ -24,7 +24,7 @@ public class DAO {
 
 	// public static void main(String[] args) {
 	
-	public static List<Shops> getShops() {
+	public static List<Shops> getShops(Integer cityID) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
 				.buildSessionFactory();
 
@@ -33,6 +33,8 @@ public class DAO {
 
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Shops.class);
+		//adding criteria so the list only returns if the cityID is the same as the parameter
+		criteria.add( Restrictions.eq("city_id", cityID));
 
 		@SuppressWarnings("unchecked")
 		List<Shops> shops = criteria.list();
@@ -43,8 +45,8 @@ public class DAO {
 		return shops;
 	}  
 
-	public static ArrayList<Map> getInfo() throws ClientProtocolException, IOException, ParseException {
-		List<Shops> shops = getShops();
+	public static ArrayList<Map> getInfo(Integer cityID) throws ClientProtocolException, IOException, ParseException {
+		List<Shops> shops = getShops(cityID);
 		ArrayList<Map> shopInfo = new ArrayList<Map>();
 		for (Shops shops1 : shops) {
 		    

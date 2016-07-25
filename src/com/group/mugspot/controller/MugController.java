@@ -18,8 +18,9 @@ public class MugController {
 	
 	@RequestMapping("/shops")
 	// need to add try catch for these exceptions -
-	public ModelAndView showMessage() throws ClientProtocolException, IOException, ParseException {
-		ArrayList<Map> info = DAO.getInfo();
+	public ModelAndView showMessage(@RequestParam("City") Integer City) throws ClientProtocolException, IOException, ParseException {
+		//takes the cityID from the form as a Parameter
+		ArrayList<Map> info = DAO.getInfo(City);
 		ModelAndView mv = new ModelAndView("shops");
 		mv.addObject("shop", info);
 		return mv;
