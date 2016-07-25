@@ -106,8 +106,14 @@ img {
 <title>Shops</title>
 </head>
 <body>
-	
-
+<!-- 	<script>
+function change() // no ';' here
+{
+    var elem = document.getElementById("btn");
+    if (elem.value=="Collapse") elem.value = "expand";
+    else elem.value = "Collapse";
+}
+</script> -->
 		<option>Sort by Outlets</option>
 		<div id="users">
 			<input class="search" placeholder="Search" /> Sort Button<select
@@ -137,8 +143,9 @@ img {
 								<c:out value="${current.description}" />
 
 							</p>
-							<button type="button" class="btn btn-info" data-toggle="collapse"
+							<button onclick="change()" type="button" class="btn" id="btn" data-toggle="collapse"
 								data-target="#${status.index}">Expand</button>
+								
 							<div id="${status.index}" class="collapse">
 								<p class="Description">
 									Menu:
@@ -156,26 +163,26 @@ img {
 									Budget:
 									<c:out value="${current.budget}" />
 								</p>
-								<p class="Description">
+								<p class="Phone">
 									Phone:
 									<c:out value="${current.phone}" />
 								</p>
-								<p class="Description">
+								<p class="Address">
 									Address:
 									<c:out value="${current.address}" />
 								</p>
-								<button type="button" class="btn btn-primary"
+								<!-- <button type="button" class="btn btn-primary"
 									data-toggle="button" aria-pressed="false" autocomplete="off">
-									See More</button>
-								<br> <br>
-								
+									See More</button> -->
+								<br> <br>	
+						<img src="${current.picture1}"/>
 
-		<div class="container">
+<%-- 		<div class="container">
 			<h2>
 				<c:out value="<a href='./shopProfile?id=${current.id}'>${current.name}</a>" escapeXml="false"/>
 			</h2>
 			<button type="button" class="btn btn-info" data-toggle="collapse"
-				data-target="#${status.index}">See More</button>
+				data-target="#${status.index}">See More</button> --%>
 			<div id="${status.index}" class="collapse">
 				<table>
 					<tr>
@@ -185,11 +192,10 @@ img {
 						<td><b>Capacity:</b> <c:out value="${current.capacity}" /></td>
 						<td><b>Budget:</b> <c:out value="${current.budget}" /></td>
 						<td><b>Phone:</b> <c:out value="${current.phone}" /></td>
-						<td><b>Address:</b> <c:out value="${current.address}" /></td>
-						<td><img class="slide" src="${current.picture1}"/>
-						
+						<td><b>Address:</b> <c:out value="${current.address}" /></td>						
 					</tr>
 				</table>
+				
 			
 	
 			</div>

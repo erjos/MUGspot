@@ -8,6 +8,8 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,4 +35,17 @@ public class MugController {
 		mv.addObject("shopProfile", info);
 		return mv;
 	}
+	
+	@RequestMapping("/newUser")
+	public ModelAndView newUser(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("email")int email){
+		ModelAndView mv = new ModelAndView("newUser");
+		mv.addObject("username", username);
+		mv.addObject("password", password);
+		mv.addObject("email", email);
+		return mv;
+		
+	}
+	
+	
+	
 }

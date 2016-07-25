@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -189,4 +190,61 @@ public class DAO {
 		
 		return exists;
 	}
+	
+	public static List loginResult(String u, String p){
+		
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		String hql = ("FROM owner WHERE ownername =" + u + "AND password =" + p);
+		Query query = session.createQuery(hql);
+		List result = query.list();
+		
+		session.getTransaction().commit();
+		session.close();
+		return result;
+		
+	}
+	public static void addUser(Owner p) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+		session.save(p);
+
+		session.getTransaction().commit();
+		session.close();  
+	}
+	
+	
+//	public String connect(String work){
+//		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
+//				.buildSessionFactory();
+//
+//		Session session = factory.getCurrentSession();
+//
+//		session.beginTransaction();
+//
+//		out.work;
+//		
+//		
+//		session.getTransaction().commit();
+//		session.close();
+//		
+//		
+//		
+//		return connection;
+//		
+//		
+//	}
+	
+	
+	
+	
+	
 }
