@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -193,6 +194,63 @@ public class DAO {
 		return exists;
 	}
 	
+	public static List loginResult(String u, String p){
+		
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		String hql = ("FROM owner WHERE ownername =" + u + "AND password =" + p);
+		Query query = session.createQuery(hql);
+		List result = query.list();
+		
+		session.getTransaction().commit();
+		session.close();
+		return result;
+		
+	}
+	public static void addUser(Users p) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+		
+		session.save(p);
+
+		session.getTransaction().commit();
+		session.close();  
+	}
+	
+	
+//	public String connect(String work){
+//		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Owner.class)
+//				.buildSessionFactory();
+//
+//		Session session = factory.getCurrentSession();
+//
+//		session.beginTransaction();
+//
+//		out.work;
+//		
+//		
+//		session.getTransaction().commit();
+//		session.close();
+//		
+//		
+//		
+//		return connection;
+//		
+//		
+//	}
+	
+	
+	
+	
+	
 	//method which creates a new City in the database
 	public static void addCity(City c){
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
@@ -297,4 +355,55 @@ public class DAO {
 		
 		return cityMap;
 	}
-}
+	
+	public static boolean checkLogin(Users u){
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		String username = "'"+u.getEmail()+"'";
+
+String hql = "FROM Users WHERE email = "+username;
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        session.getTransaction().commit();
+		session.close();
+		
+        if(results.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+	public static boolean containsUser(Users user) {
+
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Users.class)
+				.buildSessionFactory();
+
+        
+        Session hibernateSession = factory.openSession();
+        hibernateSession.getTransaction().begin();
+        
+        String username="'"+user.getEmail()+"'";
+        String hql = "FROM User WHERE username = "+username;
+        Query query = hibernateSession.createQuery(hql);
+        List results = query.list();
+        
+        if(results.isEmpty())
+            return false;
+        
+        return true;
+    }		
+
+		
+			
+		 
+	}
+	
+	
+	
+	
+

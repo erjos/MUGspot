@@ -27,6 +27,7 @@
 			<br>
 			<a href="location">Create New Location</a>
 			<br><br>
+			<a href="createLogin">Login / Signup</a>
 		</h3>
 	</center>
 </body>
