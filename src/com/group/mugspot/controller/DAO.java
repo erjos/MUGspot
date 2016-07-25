@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,11 +23,11 @@ import com.group.mugspot.controller.*;
 public class DAO {
 	private static SessionFactory factory;
 
-	// public static void main(String[] args) {
+	
+//Shopinfo table methods -------------------
 	
 	public static List<Shops> getShops(Integer cityID) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -82,8 +83,7 @@ public class DAO {
 	}
 
 	public static void addShop(Shops p) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -94,9 +94,9 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();  
 	}
+	
 	public static void deleteShop(int id){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -109,8 +109,7 @@ public class DAO {
 	}
 
 	public static Map getInfoById(String id) throws ClientProtocolException, IOException, ParseException {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -152,6 +151,7 @@ public class DAO {
 		shopMap.put("phone", phone);
 		shopMap.put("address", address);
 		
+		
 		shopMap.put("picture1", pictures[0]);
 		shopMap.put("picture2", pictures[1]);
 		shopMap.put("picture3", pictures[2]);
@@ -169,12 +169,12 @@ public class DAO {
 		return shopMap;
 	}
 
+//City table methods -----------------------	
 	
 	//method that checks if a searched City already exists in the database
 	public static boolean doesCityExist(String placeID){
 		boolean exists = false;
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -195,8 +195,7 @@ public class DAO {
 	
 	//method which creates a new City in the database
 	public static void addCity(City c){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Shops.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 
@@ -211,8 +210,7 @@ public class DAO {
 	
 	//method which will return an ArrayList of the existing city names in the database (for use on the first menu)
 	public static ArrayList<Map> getCityNames() {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		boolean exists = false;
 
@@ -244,8 +242,7 @@ public class DAO {
 		return cityNames;
 	}
 	public static int getCityID(String placeID){
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -265,8 +262,7 @@ public class DAO {
 	}
 	
 	public static Map getCurrentCity(int cityID) {
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
-				.buildSessionFactory();
+		SessionFactory factory = DBFactory.setupFactory();
 		
 		boolean exists = false;
 
@@ -297,4 +293,77 @@ public class DAO {
 		
 		return cityMap;
 	}
+	
+	//Users table Methods-------------------
+	
+	public static void addUser(Users p) {
+		SessionFactory factory = DBFactory.setupFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+		
+		session.save(p);
+
+		session.getTransaction().commit();
+		session.close();  
+	}
+	
+	public static boolean checkLogin(Users u){
+		SessionFactory factory = DBFactory.setupFactory();
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		String username = "'"+u.getEmail()+"'";
+
+String hql = "FROM Users WHERE email = "+username;
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        session.getTransaction().commit();
+		session.close();
+		
+        if(results.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+	public static boolean containsUser(Users user) {
+
+		SessionFactory factory = DBFactory.setupFactory();
+
+        
+        Session hibernateSession = factory.openSession();
+        hibernateSession.getTransaction().begin();
+        
+        String username="'"+user.getEmail()+"'";
+        String hql = "FROM User WHERE username = "+username;
+        Query query = hibernateSession.createQuery(hql);
+        List results = query.list();
+        
+        if(results.isEmpty())
+            return false;
+        
+        return true;
+    }		
+
+		
+			
+	
+	public static void addReview(Reviews reviews) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Reviews.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(reviews);
+
+		session.getTransaction().commit();
+		session.close();  
+	}
 }
+
