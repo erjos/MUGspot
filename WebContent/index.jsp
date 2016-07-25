@@ -27,7 +27,6 @@
 			<br>
 			<a href="location">Create New Location</a>
 			<br><br>
-			<a href="newShopForm.jsp">New Shop Form</a>
 		</h3>
 	</center>
 </body>
