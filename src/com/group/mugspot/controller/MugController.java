@@ -56,18 +56,8 @@ public class MugController {
 			return new ModelAndView("success", "message", "Thank you! Your review is pending approval");
 
 		}
-	
 
-	@RequestMapping("/addUser")
-	public ModelAndView newUser(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("email")int email){
-		ModelAndView mv = new ModelAndView("addUser");
-		mv.addObject("username", username);
-		mv.addObject("password", password);
-		mv.addObject("email", email);
-		return mv;
-		
-	}
-	
+
 	@RequestMapping(value="/Review", method = RequestMethod.GET)
     public ModelAndView reviews(@RequestParam("shopid") int shop_id){
 		/*@RequestParam("see") int shop_id*/

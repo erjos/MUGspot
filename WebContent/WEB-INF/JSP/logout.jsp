@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Create Location</title>
+<title>Log Out here</title>
 </head>
 <body>
-${exists}
-<br>
-<a href = "createLogin.html">Home</a>
+<h1>You have successfully logged out!</h1>
+<a href = "index.jsp">Home</a>
 </body>
 </html>

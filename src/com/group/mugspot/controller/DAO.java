@@ -313,20 +313,36 @@ public class DAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 
-		String username = "'" + u.getEmail() + "'";
+		
+		String username="'"+u.getEmail()+"'";
+		String hql = "SELECT password FROM Users WHERE email = "+username;
+		List query = session.createQuery(hql).list();
 
-		String hql = "FROM Users WHERE email = " + username;
-		Query query = session.createQuery(hql);
-		List results = query.list();
 
 		session.getTransaction().commit();
 		session.close();
 
-		if (results.isEmpty()) {
-			return false;
-		}
-		return true;
-	}
+/*||||||| merged common ancestors
+String hql = "FROM Users WHERE email = "+username;
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        session.getTransaction().commit();
+		session.close();
+		
+        if(results.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+*/
+		if(!query.isEmpty() && query.get(0).equals(u.getPassword()))
+			return true;
+		
+		//the resetPassword method does not exist yet
+		//u.resetPassword();
+		return false;
+    }
 
 	public static boolean containsUser(Users user) {
 
@@ -345,7 +361,29 @@ public class DAO {
 
 		return true;
 	}
+        
+      
+	
+	public static int getUserID(Users user){
+		SessionFactory factory = DBFactory.setupFactory();
 
+		Session session = factory.openSession();
+		session.getTransaction().begin();
+		
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(Users.class);
+		criteria.add( Restrictions.eq("email", user.getEmail()));
+		
+		@SuppressWarnings("unchecked")
+		List<Users> users = criteria.list();
+		int userID = 0;
+		for(Users u : users){
+			userID= u.getID();
+		}
+		return userID;
+	}
+			
+	
 	public static void addReview(Reviews reviews) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Reviews.class)
 				.buildSessionFactory();
@@ -359,6 +397,7 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 	}
+
 
 	public static List <Reviews> getReviews(int shop_id)
 		/*public static void main (String [] args)*/ {
@@ -388,3 +427,4 @@ public class DAO {
 		return review;
 	}
 }
+

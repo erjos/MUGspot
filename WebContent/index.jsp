@@ -7,6 +7,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <title>Spring 4 MVC - HelloWorld Index Page</title>
+<script>
+    if (document.cookie.indexOf("loggedIn") >= 0)
+        window.location.href="";
+    if (document.cookie.valueOf("userID"))
+</script>
 </head>
 <body> 
 	<center>
@@ -24,10 +29,10 @@
 			</select>
 			<input type="submit" value="select">
 			</form>
-			<br>
-			<a href="location">Create New Location</a>
+			<a href="userSignUp">Sign up</a>
 			<br><br>
-			<a href="createLogin">Login / Signup</a>
+			<a href="createLogin">Login</a>
+			
 		</h3>
 	</center>
 </body>
