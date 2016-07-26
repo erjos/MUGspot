@@ -20,17 +20,30 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
+	
+	@RequestMapping("/createLogin")
+    public ModelAndView createLogin(@CookieValue(value = "userID", defaultValue = "null") String loggedIn, HttpServletResponse response) {
+		
+		if (loggedIn.equals("true")){
+			return new ModelAndView("memberArea");
+		}
+        return new ModelAndView("adminLogin", "command", new Users());
+    }
 
 	@RequestMapping("/submitLogin")
-	public String submitLogin(@ModelAttribute("command") Users user, Model model,
-			@CookieValue(value = "loggedIn", defaultValue = "false") String loggedIn, HttpServletResponse response) {
+		public String submitLogin(@ModelAttribute("command") Users user, Model model,
+				 HttpServletResponse response) {
 
 		if (DAO.checkLogin(user)) {
-			Cookie cookie = new Cookie("loggedIn", "true");
-			cookie.setMaxAge(60);
-			response.addCookie(cookie);
-			model.addAttribute("cookie", cookie);
-
+			String userID = DAO.getUserID(user)+"";
+			Cookie uID = new Cookie("userID" , userID);
+			//cookie.setMaxAge(60);
+			//uID.setMaxAge(0);
+			
+			response.addCookie(uID);
+			/*model.addAttribute("cookie", cookie);
+			model.addAttribute("userID", uID);
+*/
 			return "memberArea";
 
 		} else {
@@ -39,13 +52,19 @@ public class LoginController {
 			else
 				model.addAttribute("userError", "User doesn't exist.");
 
-			return "login";
-		}
+			return "adminLogin";
+		}	
 	}
 	//the "command" keyword is particular to spring, which populates the paramters based on an object bean
-	@RequestMapping("/createLogin")
-    public ModelAndView createLogin() {
-        return new ModelAndView("adminLogin", "command", new Users());
-    }
-
+	
+	@RequestMapping("/logout")
+	public ModelAndView accessLogout(@CookieValue("userID") Cookie userID, HttpServletResponse response){
+		
+		if(!(userID.getValue().equals("null"))){
+			userID.setMaxAge(0);
+			//loggedIn.setValue("false");
+			response.addCookie(userID);
+	}
+		return new ModelAndView("logout");
+	}
 }

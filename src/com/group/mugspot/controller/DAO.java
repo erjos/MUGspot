@@ -315,19 +315,16 @@ public class DAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		
-		String username = "'"+u.getEmail()+"'";
+		String username="'"+u.getEmail()+"'";
+		String hql = "SELECT password FROM Users WHERE email = "+username;
+		List query = session.createQuery(hql).list();
 
-String hql = "FROM Users WHERE email = "+username;
-        Query query = session.createQuery(hql);
-        List results = query.list();
-        
-        session.getTransaction().commit();
-		session.close();
+		if(!query.isEmpty() && query.get(0).equals(u.getPassword()))
+			return true;
 		
-        if(results.isEmpty()){
-            return false;
-        }
-        return true;
+		//the resetPassword method does not exist yet
+		//u.resetPassword();
+		return false;
     }
 
 	public static boolean containsUser(Users user) {
@@ -339,7 +336,7 @@ String hql = "FROM Users WHERE email = "+username;
         hibernateSession.getTransaction().begin();
         
         String username="'"+user.getEmail()+"'";
-        String hql = "FROM User WHERE username = "+username;
+        String hql = "FROM Users WHERE email = "+username;
         Query query = hibernateSession.createQuery(hql);
         List results = query.list();
         
@@ -348,8 +345,26 @@ String hql = "FROM Users WHERE email = "+username;
         
         return true;
     }		
-
+	
+	public static int getUserID(Users user){
+		SessionFactory factory = DBFactory.setupFactory();
 		
+
+		Session session = factory.openSession();
+		session.getTransaction().begin();
+		
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(Users.class);
+		criteria.add( Restrictions.eq("email", user.getEmail()));
+		
+		@SuppressWarnings("unchecked")
+		List<Users> users = criteria.list();
+		int userID = 0;
+		for(Users u : users){
+			userID= u.getID();
+		}
+		return userID;
+	}
 			
 	
 	public static void addReview(Reviews reviews) {
@@ -366,4 +381,3 @@ String hql = "FROM Users WHERE email = "+username;
 		session.close();  
 	}
 }
-
