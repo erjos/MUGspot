@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
-import org.eclipse.jdt.internal.compiler.batch.Main;
+//import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -322,20 +322,7 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 
-/*||||||| merged common ancestors
-String hql = "FROM Users WHERE email = "+username;
-        Query query = session.createQuery(hql);
-        List results = query.list();
-        
-        session.getTransaction().commit();
-		session.close();
-		
-        if(results.isEmpty()){
-            return false;
-        }
-        return true;
-    }
-*/
+
 		if(!query.isEmpty() && query.get(0).equals(u.getPassword()))
 			return true;
 		
