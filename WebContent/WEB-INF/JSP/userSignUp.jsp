@@ -10,7 +10,7 @@
 <form name="addUser" action="addUser" method="post">
 	username	<input name="fullname" type="text"><br>
 	password	<input name="password" type="text"><br>
-	email		<input name="email" type="text">
+	email		<input name="email" type="password">
 	<button type="submit">Register</button>
 </form>
 </body>

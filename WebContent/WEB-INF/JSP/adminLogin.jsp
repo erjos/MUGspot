@@ -22,11 +22,11 @@
         <table>
             <tbody>
                 <tr>
-                    <td><form:input path="email" placeholder="Enter username"></form:input></td>
+                    <td><form:input path="email" placeholder="Enter email"></form:input></td>
                     <td class="error">${userError}</td>
                 </tr>
                 <tr>
-                    <td><form:input path="password" placeholder="Enter password"></form:input></td>
+                    <td><form:input type = "password" path="password" placeholder="Enter password"></form:input></td>
                     <td class="error">${passError}</td>
                 </tr>
                 <tr>
