@@ -94,6 +94,7 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();  
 	}
+	
 	public static void deleteShop(int id){
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -149,6 +150,7 @@ public class DAO {
 		shopMap.put("budget", shop.getBudget()+"");
 		shopMap.put("phone", phone);
 		shopMap.put("address", address);
+		
 		
 		shopMap.put("picture1", pictures[0]);
 		shopMap.put("picture2", pictures[1]);
@@ -347,6 +349,7 @@ public class DAO {
 	public static int getUserID(Users user){
 		SessionFactory factory = DBFactory.setupFactory();
 		
+
 		Session session = factory.openSession();
 		session.getTransaction().begin();
 		
@@ -362,5 +365,19 @@ public class DAO {
 		}
 		return userID;
 	}
-		 
+			
+	
+	public static void addReview(Reviews reviews) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Reviews.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		session.beginTransaction();
+
+		session.save(reviews);
+
+		session.getTransaction().commit();
+		session.close();  
+	}
 }

@@ -8,16 +8,18 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 // cannot name this "controller"
 public class MugController {
-	
+
 	@RequestMapping("/shops")
 	// need to add try catch for these exceptions -
 	public ModelAndView showMessage(@RequestParam("City") Integer City) throws ClientProtocolException, IOException, ParseException {
@@ -29,16 +31,33 @@ public class MugController {
 		//could add an object the reps city ID then call getCityName and drop it into the 
 		return mv;
 	}
+
 	@RequestMapping("/shopProfile")
 	// need to add try catch for these exceptions -
-	public ModelAndView test(@RequestParam("id")String id) throws ClientProtocolException, IOException, ParseException {
-		System.out.println("shop profile id="+id);
+	public ModelAndView test(@RequestParam("id") String id)
+			throws ClientProtocolException, IOException, ParseException {
+		System.out.println("shop profile id=" + id);
 		Map info = DAO.getInfoById(id);
 		ModelAndView mv = new ModelAndView("shopProfile");
 		mv.addObject("shopProfile", info);
 		return mv;
 	}
+
+
 	
+	@RequestMapping(value = "/success", method = RequestMethod.GET)
+	public ModelAndView addReview(@ModelAttribute("reviews") Reviews reviews, BindingResult result) {
+		if (result.hasErrors()) {
+			ModelAndView model = new ModelAndView("reviews");
+			return model;
+		} 
+		    
+		    DAO.addReview(reviews);
+			return new ModelAndView("success", "message", "Thank you! Your review is pending approval");
+
+		}
+	
+
 	@RequestMapping("/addUser")
 	public ModelAndView newUser(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("email")int email){
 		ModelAndView mv = new ModelAndView("addUser");
@@ -52,3 +71,4 @@ public class MugController {
 	
 	
 }
+
