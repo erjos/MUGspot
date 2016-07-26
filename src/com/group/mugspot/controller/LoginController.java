@@ -75,9 +75,13 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/addUser")
-	public ModelAndView newUser(@RequestParam("fullname")String fullname, @RequestParam("password")String password, @RequestParam("email")String email){
+	public ModelAndView newUser(@RequestParam("fullname")String fullname, @RequestParam("password")String password, @RequestParam("email")String email, HttpServletResponse response){
 		Users p = new Users(fullname,password,email);
 		DAO.addUser(p);
+		String userID = DAO.getUserID(p)+"";
+		Cookie uID = new Cookie("userID" , userID);
+		response.addCookie(uID);
+		
 		ModelAndView mv = new ModelAndView("memberArea");
 		String message= "You created an account";
 		mv.addObject("userConfirmation",message);
