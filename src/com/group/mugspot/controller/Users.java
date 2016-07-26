@@ -30,7 +30,12 @@ public class Users {
 	private String email;
 	
 		public Users(){}
+		
 		public Users(String fullname, String password, String email){
+			this.fullname=fullname;
+			this.password=password;
+			this.email=email;
+			
 		}
 		public String getfullname() {
 			return fullname;

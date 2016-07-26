@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Create Location</title>
+<title>Sign up below!</title>
 </head>
 <body>
-${exists}
-<br>
-<a href = "createLogin.html">Home</a>
+<form name="addUser" action="addUser" method="post">
+	username	<input name="fullname" type="text"><br>
+	password	<input name="password" type="text"><br>
+	email		<input name="email" type="text">
+	<button type="submit">Register</button>
+</form>
 </body>
 </html>

@@ -29,12 +29,10 @@
 			</select>
 			<input type="submit" value="select">
 			</form>
-			<br>
-			<a href="location">Create New Location</a>
+			<a href="userSignUp">Sign up</a>
 			<br><br>
-			<a href="createLogin">Login / Signup</a>
-			<br><br>
-			<a href="logout">Logout</a>
+			<a href="createLogin">Login</a>
+			
 		</h3>
 	</center>
 </body>

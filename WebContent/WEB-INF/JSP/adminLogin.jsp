@@ -17,15 +17,6 @@
 <input type="submit" value="submit">
 </form:form> --%>
 
-<h1>Sign Up</h1>
-
-<form name="addUser" action="addUser.jsp" method="post">
-	username	<input name="fullname" type="text"><br>
-	password	<input name="password" type="text"><br>
-	email		<input name="email" type="text">
-	<button type="submit">Register</button>
-</form>
-
 <h1>Log In</h1>
 <form:form action="submitLogin" method="POST">
         <table>

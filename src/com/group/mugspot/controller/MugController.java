@@ -57,17 +57,6 @@ public class MugController {
 
 		}
 	
-
-	@RequestMapping("/addUser")
-	public ModelAndView newUser(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("email")int email){
-		ModelAndView mv = new ModelAndView("addUser");
-		mv.addObject("username", username);
-		mv.addObject("password", password);
-		mv.addObject("email", email);
-		return mv;
-		
-	}
-	
 	
 	
 }

@@ -24,7 +24,7 @@ public class LoginController {
 	@RequestMapping("/createLogin")
     public ModelAndView createLogin(@CookieValue(value = "userID", defaultValue = "null") String loggedIn, HttpServletResponse response) {
 		
-		if (loggedIn.equals("true")){
+		if (!(loggedIn.equals("null"))){
 			return new ModelAndView("memberArea");
 		}
         return new ModelAndView("adminLogin", "command", new Users());
@@ -67,4 +67,22 @@ public class LoginController {
 	}
 		return new ModelAndView("logout");
 	}
+	
+	@RequestMapping("/userSignUp")
+	public ModelAndView userSignUp(){
+		ModelAndView mv = new ModelAndView("userSignUp");
+		return mv;
+	}
+	
+	@RequestMapping("/addUser")
+	public ModelAndView newUser(@RequestParam("fullname")String fullname, @RequestParam("password")String password, @RequestParam("email")String email){
+		Users p = new Users(fullname,password,email);
+		DAO.addUser(p);
+		ModelAndView mv = new ModelAndView("memberArea");
+		String message= "You created an account";
+		mv.addObject("userConfirmation",message);
+		return mv;
+		
+	}
+	
 }
