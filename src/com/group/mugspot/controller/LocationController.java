@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,7 +68,8 @@ public class LocationController {
 	}
 	
 	@RequestMapping("/shopLocationSearch")
-	public ModelAndView createNewShop(@RequestParam("cityID")Integer city_id){
+	public ModelAndView createNewShop(@RequestParam("cityID")Integer city_id, @CookieValue(value = "userID", defaultValue = "null") String loggedIn){
+		if (!(loggedIn.equals("null"))){
 		Map cityInfo = new HashMap();
 		cityInfo = DAO.getCurrentCity(city_id);
 		String city = (String) cityInfo.get("name");
@@ -82,6 +84,9 @@ public class LocationController {
 		mv.addObject("shops", shops);
 		mv.addObject("city_id", city_id);
 		return mv;
+		}
+
+        return new ModelAndView("adminLogin", "command", new Users());
 	}
 	
 }

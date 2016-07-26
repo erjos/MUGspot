@@ -32,9 +32,7 @@
 			</form>
 			<br>
 			<a href="location">Create New Location</a>
-			<br><br>
-			
-			
+			<br>
 			<a href="logout">Logout</a>
 		</h3>
 	</center>
