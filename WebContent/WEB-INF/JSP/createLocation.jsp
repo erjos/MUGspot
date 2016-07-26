@@ -9,6 +9,6 @@
 <body>
 ${exists}
 <br>
-<a href = "createLogin.html">Home</a>
+<a href = "createLogin">Home</a>
 </body>
 </html>
