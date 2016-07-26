@@ -128,9 +128,9 @@ function change() // no ';' here
             </div>
             <ul class="list">
                 <c:forEach items="${shop}" var="current" varStatus="status">
-                    <script>
+                    <!-- <script>
                         myData.push("${current.address}")
-                    </script>
+                    </script> -->
                     <li>
                         <div class="container">
                             <h2 class="Tile">

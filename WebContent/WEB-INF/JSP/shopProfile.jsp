@@ -44,14 +44,18 @@
 	</center>
 	<br> menu:
 	<c:out value="${shopProfile.menu}" />
-	<br> number of outlets:
+	<br> number of outlets:  
 	<c:out value="${shopProfile.outlets}" />
 	<br> Amount of seating available:
 	<c:out value="${shopProfile.capacity}" />
 	<br>
 	
 	<button onclick="myFunction()" method ="post">Leave Review</button>
-
+	<form name="Review" action="Review" method="get">
+	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
+    <input type="submit" name = "seeReview"value="See Reviews">
+    </form>
+	<%-- name = "see" value = "${shopProfile.id}"method = "post" --%>
 	<div class="slideshow">
 		<img class="slide" src="<c:out value="${shopProfile.picture1}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture2}"/>" />
@@ -91,6 +95,6 @@
 				x[slideIndex - 1].style.display = "block";
 			}
 		</script>
-	</div>
+	</div>   
 </body>
 </html>
