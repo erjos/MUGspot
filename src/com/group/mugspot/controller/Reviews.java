@@ -90,6 +90,13 @@ package com.group.mugspot.controller;
 		public void setShop_id(String shop_id) {
 			this.shop_id = shop_id;
 		}
+
+		@Override
+		public String toString() {
+			return "Reviews [id=" + id + ", user_id=" + user_id + ", review=" + review + ", rating=" + rating
+					+ ", shop_id=" + shop_id + "]";
+		}
+		
 	}
 	
 

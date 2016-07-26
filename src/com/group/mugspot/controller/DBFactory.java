@@ -7,9 +7,9 @@ public class DBFactory {
 	private static SessionFactory factory;
 	public static SessionFactory setupFactory(){
 		Configuration config = new Configuration().configure("hibernate.cfg.xml");
-		config.addAnnotatedClass(Shops.class);
+		/*config.addAnnotatedClass(Shops.class);
 		config.addAnnotatedClass(City.class);
-		config.addAnnotatedClass(Users.class);
+		config.addAnnotatedClass(Users.class);*/
 		
 		 factory = config.buildSessionFactory();
 		 return factory;

@@ -1,10 +1,8 @@
 package com.group.mugspot.controller;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.apache.http.client.ClientProtocolException;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import antlr.collections.List;
 
 @Controller
 // cannot name this "controller"
@@ -56,8 +56,18 @@ public class MugController {
 			return new ModelAndView("success", "message", "Thank you! Your review is pending approval");
 
 		}
-	
-	
+
+
+	@RequestMapping(value="/Review", method = RequestMethod.GET)
+    public ModelAndView reviews(@RequestParam("shopid") int shop_id){
+		/*@RequestParam("see") int shop_id*/
+        ModelAndView rv = new ModelAndView("Review");
+        
+        rv.addObject("reviews", DAO.getReviews(shop_id));
+       
+        return rv;
+        
+    }
 	
 }
 

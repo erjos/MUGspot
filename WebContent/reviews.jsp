@@ -29,7 +29,7 @@
 		
 	<form:errors path="reviews.*"/>
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
-		User name:<br> <input type="text" name="user_id"><br>
+		<br> <input type="hidden" name="user_id" value="${user_id}"><br>
 		Review:<br> <input type="text" name="review"><br>
 		Rating:<br> <input type="number" name="rating"><br>
 		Shop ID:<br> <input type="text" name="shop_id" value = "${param.id}"><br>
