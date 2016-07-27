@@ -28,13 +28,15 @@ public class MugController {
 
 	@RequestMapping("/shops")
 	// need to add try catch for these exceptions -
-	public ModelAndView showMessage(@RequestParam("City") Integer City) throws ClientProtocolException, IOException, ParseException {
-		//takes the cityID from the form as a Parameter
+	public ModelAndView showMessage(@RequestParam("City") Integer City)
+			throws ClientProtocolException, IOException, ParseException {
+		// takes the cityID from the form as a Parameter
 		ArrayList<Map> info = DAO.getInfo(City);
 		ModelAndView mv = new ModelAndView("shops");
 		mv.addObject("shop", info);
 		mv.addObject("cityID", City);
-		//could add an object the reps city ID then call getCityName and drop it into the 
+		// could add an object the reps city ID then call getCityName and drop
+		// it into the
 		return mv;
 	}
 
@@ -49,43 +51,42 @@ public class MugController {
 		return mv;
 	}
 
-
-	
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
 	public ModelAndView addReview(@ModelAttribute("reviews") Reviews reviews, BindingResult result) {
 		if (result.hasErrors()) {
 			ModelAndView model = new ModelAndView("reviews");
 			return model;
-		} 
-		    
-		    DAO.addReview(reviews);
-			return new ModelAndView("success", "message", "Thank you! Your review has been recorded!");
-
 		}
 
+		DAO.addReview(reviews);
+		return new ModelAndView("success", "message", "Thank you! Your review has been recorded!");
 
-	@RequestMapping(value="/Review", method = RequestMethod.GET)
-    public ModelAndView reviews(@RequestParam("shopid") int shop_id){
-		/*@RequestParam("see") int shop_id*/
-        ModelAndView rv = new ModelAndView("Review");    
-        
-        rv.addObject("reviews", DAO.getReviews(shop_id));
-       
-        return rv;
-        
-    }
-	
-	@RequestMapping(value="/reviews", method=RequestMethod.GET)
-	public ModelAndView reviewForm(@CookieValue("userID") String usID, HttpServletResponse response, @RequestParam("id") int shop_id){
-		if (!(usID.equals("null"))){
+	}
+
+	@RequestMapping(value = "/Review", method = RequestMethod.GET)
+	public ModelAndView reviews(@RequestParam("shopid") int shop_id) {
+		/* @RequestParam("see") int shop_id */
+		ModelAndView rv = new ModelAndView("Review");
+
+		rv.addObject("reviews", DAO.getReviews(shop_id));
+
+		return rv;
+
+	}
+
+	@RequestMapping(value = "/reviews", method = RequestMethod.GET)
+	public ModelAndView reviewForm(@CookieValue("userID") String usID, HttpServletResponse response,
+			@RequestParam("id") int shop_id) {
+
+		if (!(usID.equals("null"))) {
 			ModelAndView mv = new ModelAndView("reviews");
 			mv.addObject("user_id", usID);
 			mv.addObject("shop_id", shop_id);
 			return mv;
-			/*@RequestParam("shopid") int shop_id*/
+
+		} else {
+			return new ModelAndView("adminLogin", "command", new Users());
+
 		}
-        return new ModelAndView("adminLogin", "command", new Users());
 	}
 }
-
-
