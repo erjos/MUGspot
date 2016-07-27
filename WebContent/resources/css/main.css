@@ -1,5 +1,14 @@
 @CHARSET "UTF-8";
 
+<<<<<<< HEAD
+.jumbotron{
+	background-image: url("../images/coffee_shop.jpeg");
+}
+||||||| merged common ancestors
+body {
+	background-image: url("http://gallery.yopriceville.com/var/albums/Backgrounds/Coffee_Background_Image.jpg?m=1439287745");
+}
+=======
 
 
 .rvwbtns {
@@ -50,3 +59,4 @@
 .slide {
 	height: 240px;
 }
+>>>>>>> 4ef4c1cb30767b9690ec4649c33fe01f8b90f470

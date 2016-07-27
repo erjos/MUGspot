@@ -17,10 +17,11 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
-		function myFunction() {
-			window.open("reviews.jsp?id=${shopProfile.id}", "_blank", "toolbar=yes,scrollbars=yes,"
-					+ "resizable=yes,top=500,left=500,width=400,height=400");
-		}
+		function myFunction(pageURL, title,w,h) {
+	        var left = (screen.width/2)-(w/2);
+	        var top = (screen.height/2)-(h/2);
+	        var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	        }
 	</script>
 <title>shop details</title>
 <link href="<c:url value="/WebContent/resources/css/main.css" />" rel="stylesheet">
@@ -98,10 +99,10 @@
 </div>
 	<center>
 <div class="rvwbtns">
-	<button onclick="myFunction()" method ="post">Leave Review</button>
+	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
 	<form name="Review" action="Review" method="get">
 	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
-    <input type="submit" name = "seeReview"value="See Reviews">
+    <input type="submit" name = "seeReview" value="See Reviews">
     </form>
 </div>	
 		</center>
