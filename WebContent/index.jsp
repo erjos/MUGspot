@@ -7,11 +7,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <title>Spring 4 MVC - HelloWorld Index Page</title>
-<script>
-    if (document.cookie.indexOf("loggedIn") >= 0)
-        window.location.href="";
-    if (document.cookie.valueOf("userID"))
-</script>
+<style>
+body {
+    background-image: url("https://images.unsplash.com/photo-1440492248262-6895f9da82fc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=b55bcaa28b217821a149f4d2479a1f59");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+}
+</style>
 </head>
 <body> 
 	<center>

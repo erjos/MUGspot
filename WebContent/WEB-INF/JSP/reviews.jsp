@@ -37,8 +37,8 @@
 	<form:errors path="reviews.*" />
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
 		<input type="hidden" name="user_id" value="${user_id}">
-		<textarea class="longInput" placeholder="Your Review"></textarea>
-		<!-- <br> <input type="text" name="review" style="min-width: 250px; min-height: 250px" placeholder="Your Review"><br> -->
+		<!-- <textarea class="longInput" name = "reviews" placeholder="Your Review"></textarea> -->
+		<input type="text" name="review"  placeholder="Your Review">
 		<input type="number" name="rating" min="1" max="5" placeholder="Your Rating">
 		<input type="hidden" name="shop_id" value="${shop_id}">
 		<input type="submit" value="Submit">

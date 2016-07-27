@@ -1,4 +1,4 @@
-package com.group.mugspot.controller;
+         package com.group.mugspot.controller;
 
 import java.io.IOException;
 
