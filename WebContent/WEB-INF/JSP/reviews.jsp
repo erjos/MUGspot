@@ -26,17 +26,17 @@
 			value="${param.id}"> <input type="submit" data-inline="true"
 			value="Submit">
 		</form> --%>
-		
-	<form:errors path="reviews.*"/>
+		${message}
+ 	<form:errors path="reviews.*"/>
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
-		<br> <input type="hidden" name="user_id" value="${user_id}"><br>
+		<br> <input type="text" name="user_id"><br>
 		Review:<br> <input type="text" name="review"><br>
 		Rating:<br> <input type="number" name="rating"><br>
 		Shop ID:<br> <input type="text" name="shop_id" value = "${param.id}"><br>
-		ID: <br><input type="text" name="id"><br>
+		<!-- ID: <br><input type="text" name="id"><br> -->
 		<br> <input type="submit" value="Submit">
 	</form>
 	<br>
-	<br>
+	<br> 
 </body>
 </html>

@@ -61,13 +61,22 @@ public class MugController {
 	@RequestMapping(value="/Review", method = RequestMethod.GET)
     public ModelAndView reviews(@RequestParam("shopid") int shop_id){
 		/*@RequestParam("see") int shop_id*/
-        ModelAndView rv = new ModelAndView("Review");
+        ModelAndView rv = new ModelAndView("Review");    
         
         rv.addObject("reviews", DAO.getReviews(shop_id));
        
         return rv;
         
     }
-	
+	@RequestMapping(value="/reviews")
+    public ModelAndView reviews(){
+		/*@RequestParam("see") int shop_id*/
+        ModelAndView rv = new ModelAndView("reviews","message", "hello");
+        
+      
+       
+        return rv;
+        
+    }
 }
 
