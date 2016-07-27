@@ -3,10 +3,15 @@ package com.group.mugspot.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.http.client.ClientProtocolException;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +58,7 @@ public class MugController {
 		} 
 		    
 		    DAO.addReview(reviews);
-			return new ModelAndView("success", "message", "Thank you! Your review is pending approval");
+			return new ModelAndView("success", "message", "Thank you! Your review has been recorded!");
 
 		}
 
@@ -68,15 +73,17 @@ public class MugController {
         return rv;
         
     }
+	
 	@RequestMapping(value="/reviews")
-    public ModelAndView reviews(){
-		/*@RequestParam("see") int shop_id*/
-        ModelAndView rv = new ModelAndView("reviews","message", "hello");
-        
-      
-       
-        return rv;
-        
-    }
+	public ModelAndView reviewForm(@CookieValue("userID") String usID, HttpServletResponse response, @RequestParam("shopid") int shop_id){
+		if (!(usID.equals("null"))){
+			ModelAndView mv = new ModelAndView("reviews");
+			mv.addObject("user_id", usID);
+			mv.addObject("shop_id", shop_id);
+			return mv;
+		}
+        return new ModelAndView("adminLogin", "command", new Users());
+	}
+
 }
 
