@@ -31,7 +31,7 @@
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
 		<br> <input type="hidden" name="user_id" value="${user_id}"><br>
 		Review:<br> <input type="text" name="review"><br>
-		Rating:<br> <input type="number" name="rating"><br>
+		Rating:<br> <input type="number" name="rating" min="1" max="5"><br>
 		<input type="hidden" name="shop_id" value="${shop_id}"><br>
 		<br> <input type="submit" value="Submit">
 	</form>
