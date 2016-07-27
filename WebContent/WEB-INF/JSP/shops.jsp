@@ -149,18 +149,19 @@ img {
 								<c:out value="${current.phone}" />
 							</p>
 							<div class="name">
-							<div id="demo" class="collapse">
+							<div id="demo">
 							<button onclick="change()" type="button" class="btn" id="btn"
 								data-toggle="collapse" data-target="#${status.index}">Expand</button>
 						
 
+						
+
+
+						<div id="${status.index}" class="collapse">
 						<p class="Description">
 							Description:</b>
 							<c:out value="${current.description}" />
 						</p>
-
-
-						<div id="${status.index}" class="collapse">
 							
 							
 							<!-- <button type="button" class="btn btn-primary"
@@ -192,6 +193,7 @@ img {
     
             </div> --%>
 			</c:forEach>
+			</ul>
 	</div>
 	<form name="addNewShop" action="shopLocationSearch" method="get">
 		<button name="cityID" type="submit" value="${cityID}">Add New
