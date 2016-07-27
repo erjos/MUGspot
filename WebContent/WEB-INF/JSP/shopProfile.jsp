@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+
 <link rel="stylesheet"
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -15,55 +17,26 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
-		/* 	var myWindow;
-		 function myFunction() {
-		window.open("reviews?id=${shopProfile.id}", "_blank", "resizable=yes,
-				 'top=(screen.height / 3) - (popupHeight / 2),left=(screen.width / 3) - (popupWidth / 2),width=400,height=400");
-	}  */
-	function myFunction(pageURL, title,w,h) {
-		var left = (screen.width/2)-(w/2);
-		var top = (screen.height/2)-(h/2);
-		var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+		function myFunction() {
+			window.open("reviews.jsp?id=${shopProfile.id}", "_blank", "toolbar=yes,scrollbars=yes,"
+					+ "resizable=yes,top=500,left=500,width=400,height=400");
 		}
-
 	</script>
 <title>shop details</title>
+<link href="<c:url value="/WebContent/resources/css/main.css" />" rel="stylesheet">
+
 </head>
 <body>
 
-	<c:out value="${shopProfile.phone}" />
-	<br>
-	<c:out value="${shopProfile.address}" />
-	<br>
-	<c:out value="${shopProfile.id}" />
-	<br>
-	<c:out value="${shopProfile.budget}" />
-	<br>
-
+<center>
 	<h1>
-		<center>
-			<c:out value="${shopProfile.name}" />
+		<c:out value="${shopProfile.name}" />
+		</h1>
 		</center>
-	</h1>
-	<br>
-	<center>
-		<c:out value="${shopProfile.description2}" />
-	</center>
-	<br> menu:
-	<c:out value="${shopProfile.menu}" />
-	<br> number of outlets:  
-	<c:out value="${shopProfile.outlets}" />
-	<br> Amount of seating available:
-	<c:out value="${shopProfile.capacity}" />
-	<br>
 
-	<!-- <button class "button" onClick="myFunction()" name ="shopid">Leave Review</button> -->
-	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
-	<form name="Review" action="Review" method="get">
-	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
-    <input type="submit" name = "seeReview" value="See Reviews">
-    </form>
-	<div class="slideshow">
+	<center>
+		<h2>
+<div class="slideshow">
 		<img class="slide" src="<c:out value="${shopProfile.picture1}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture2}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture3}"/>" />
@@ -74,10 +47,6 @@
 		<img class="slide" src="<c:out value="${shopProfile.picture8}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture9}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture10}"/>" />
-		<a class="btn" style="position: absolute; top: 35%; left: 100px"
-			onclick="plusDivs(-1)">&#10094;</a> <a class="btn"
-			style="position: absolute; top: 35%; right: 840px"
-			onclick="plusDivs(+1)">&#10095;</a>
 
 		<script>
 			var slideIndex = 1;
@@ -102,6 +71,39 @@
 				x[slideIndex - 1].style.display = "block";
 			}
 		</script>
-	</div>   
+</div>
+	</h2>
+	</center>
+	<center>
+		<a class="btn" style="position: absolute; top: 35%; left: 10%;"
+			onclick="plusDivs(-1)">&#10094; </a>
+	    <a class="btn" style="position: absolute; top: 35%; right: 10%"
+			onclick="plusDivs(+1)">&#10095;</a>
+	</center>
+	
+	
+<div class="dbinfo">
+	<br>
+	<p>Phone:<c:out value="${shopProfile.phone}" /></p>
+	<p>Address: <c:out value="${shopProfile.address}" /></p>
+	<p>Avg cost: ~$<c:out value="${shopProfile.budget}" />.00</p>
+	<br> Number of available power outlets:  
+	<c:out value="${shopProfile.outlets}" />
+	<br> Amount of seating available:
+	<c:out value="${shopProfile.capacity}" />
+	<br>
+	<center>
+		<p>Description:<br> <c:out value="${shopProfile.description2}" /></p>
+	</center>
+</div>
+	<center>
+<div class="rvwbtns">
+	<button onclick="myFunction()" method ="post">Leave Review</button>
+	<form name="Review" action="Review" method="get">
+	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
+    <input type="submit" name = "seeReview"value="See Reviews">
+    </form>
+</div>	
+		</center>
 </body>
 </html>
