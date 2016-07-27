@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,16 +75,17 @@ public class MugController {
         
     }
 	
-	@RequestMapping(value="/reviews")
-	public ModelAndView reviewForm(@CookieValue("userID") String usID, HttpServletResponse response, @RequestParam("shopid") int shop_id){
+	@RequestMapping(value="/reviews", method=RequestMethod.GET)
+	public ModelAndView reviewForm(@CookieValue("userID") String usID, HttpServletResponse response, @RequestParam("id") int shop_id){
 		if (!(usID.equals("null"))){
 			ModelAndView mv = new ModelAndView("reviews");
 			mv.addObject("user_id", usID);
 			mv.addObject("shop_id", shop_id);
 			return mv;
+			/*@RequestParam("shopid") int shop_id*/
 		}
         return new ModelAndView("adminLogin", "command", new Users());
 	}
-
 }
+
 
