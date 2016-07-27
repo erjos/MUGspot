@@ -58,13 +58,13 @@
             <div class="form-group">
              <a class="btn btn-primary btn-lg" href="createLogin" role="button">Log In</a>
             </div>
-           <a class="btn btn-primary btn-lg " href="userSignUp" role="button">Sign Up</a>
+           	<a class="btn btn-primary btn-lg " href="userSignUp" role="button">Sign Up</a>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="jumbotron" background = "">
       <div class="container">
         <h1>Welcome to Mugspot!</h1>
         <p>Find your perfect mug spot today!</p>
@@ -80,31 +80,8 @@
 			</select>
 			<input type="submit" value="select">
 			</form>
-			<a href="userSignUp">Sign up</a>
-			<br><br>
-			<a href="createLogin">Login</a>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
       </div>
     </div>
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
       <hr>
       <footer>
         <p>&copy; 2016 Company, Inc.</p>
