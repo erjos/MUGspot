@@ -21,42 +21,16 @@
 		}
 	</script>
 <title>shop details</title>
+<link href="<c:url value="/WebContent/resources/css/main.css" />" rel="stylesheet">
+
 </head>
 <body>
-
-	<c:out value="${shopProfile.phone}" />
-	<br>
-	<c:out value="${shopProfile.address}" />
-	<br>
-	<c:out value="${shopProfile.id}" />
-	<br>
-	<c:out value="${shopProfile.budget}" />
-	<br>
-
+<center>
 	<h1>
-		<center>
+		
 			<c:out value="${shopProfile.name}" />
-		</center>
-	</h1>
-	<br>
-	<center>
-		<c:out value="${shopProfile.description2}" />
-	</center>
-	<br> menu:
-	<c:out value="${shopProfile.menu}" />
-	<br> number of outlets:  
-	<c:out value="${shopProfile.outlets}" />
-	<br> Amount of seating available:
-	<c:out value="${shopProfile.capacity}" />
-	<br>
-	
-	<button onclick="myFunction()" method ="post">Leave Review</button>
-	<form name="Review" action="Review" method="get">
-	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
-    <input type="submit" name = "seeReview"value="See Reviews">
-    </form>
-	<%-- name = "see" value = "${shopProfile.id}"method = "post" --%>
-	<div class="slideshow">
+		
+		<div class="slideshow">
 		<img class="slide" src="<c:out value="${shopProfile.picture1}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture2}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture3}"/>" />
@@ -67,11 +41,13 @@
 		<img class="slide" src="<c:out value="${shopProfile.picture8}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture9}"/>" />
 		<img class="slide" src="<c:out value="${shopProfile.picture10}"/>" />
-		<a class="btn" style="position: absolute; top: 35%; left: 100px"
-			onclick="plusDivs(-1)">&#10094;</a> <a class="btn"
-			style="position: absolute; top: 35%; right: 840px"
+		<a class="btn" style="position: absolute; top: 35%; float: left"
+			onclick="plusDivs(-1)">&#10094; </a>
+	    <a class="btn" style="position: absolute; top: 35%; float: right"
 			onclick="plusDivs(+1)">&#10095;</a>
-
+		
+		
+		
 		<script>
 			var slideIndex = 1;
 			showDivs(slideIndex);
@@ -95,6 +71,29 @@
 				x[slideIndex - 1].style.display = "block";
 			}
 		</script>
-	</div>   
+	</h1>
+	</center>
+	
+	<br>
+	<p>Phone: <c:out value="${shopProfile.phone}" /></p>
+	<p>Address: <c:out value="${shopProfile.address}" /></p>
+	<p>Avg cost: ~$<c:out value="${shopProfile.budget}" />.00</p>
+	<br> Number of available power outlets:  
+	<c:out value="${shopProfile.outlets}" />
+	<br> Amount of seating available:
+	<c:out value="${shopProfile.capacity}" />
+	<br>
+	<center>
+		<p>Description:<br> <c:out value="${shopProfile.description2}" /></p>
+	</center>
+	
+	<button onclick="myFunction()" method ="post">Leave Review</button>
+	<form name="Review" action="Review" method="get">
+	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
+    <input type="submit" name = "seeReview"value="See Reviews">
+    </form>
+	<%-- name = "see" value = "${shopProfile.id}"method = "post" --%>
+	
+		
 </body>
 </html>
