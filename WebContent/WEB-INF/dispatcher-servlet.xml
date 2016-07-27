@@ -16,6 +16,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
         <property name="prefix" value="/WEB-INF/JSP/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    
+    	<mvc:annotation-driven />
+    
+    	<mvc:resources mapping="/resources/**" location="/resources/" />
+    
 </beans>
 
 
