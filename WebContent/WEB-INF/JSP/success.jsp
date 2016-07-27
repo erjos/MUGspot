@@ -9,6 +9,7 @@
 <body>
 ${message}
 <%-- ${users.review} --%>
-<a href="createLogin">Home</a>
+<button onclick="self.close()">Close</button>
+
 </body>
 </html>

@@ -35,6 +35,7 @@
 		<input type="hidden" name="shop_id" value="${shop_id}"><br>
 		<br> <input type="submit" value="Submit">
 	</form>
+	${message}
 	<br>
 	<br>
 </body>

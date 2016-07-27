@@ -15,9 +15,9 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
-
+			var myWindow;
 		 function myFunction() {
-		window.open("reviews?id=${shopProfile.id}", "_blank", "toolbar=yes,scrollbars=yes,"
+		myWindow = window.open("reviews?id=${shopProfile.id}", "_blank", "toolbar=yes,scrollbars=yes,"
 				+ "resizable=yes,top=500,left=500,width=400,height=400");
 	} 
 
