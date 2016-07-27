@@ -15,10 +15,10 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
-		function myFunction() {
+		/* function myFunction() {
 			window.open("reviews.jsp?id=${shopProfile.id}", "_blank", "toolbar=yes,scrollbars=yes,"
 					+ "resizable=yes,top=500,left=500,width=400,height=400");
-		}
+		} */
 	</script>
 <title>shop details</title>
 </head>
@@ -50,10 +50,13 @@
 	<c:out value="${shopProfile.capacity}" />
 	<br>
 	
-	<button onclick="myFunction()" method ="post">Leave Review</button>
+	<form name= "reviewsForm" action="reviews" method ="get">
+	<input type="hidden" name="shopid" value = "${shopProfile.id}">
+	<input type= "submit" name= "leaveReview" value="Leave Review">
+	</form>
 	<form name="Review" action="Review" method="get">
 	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
-    <input type="submit" name = "seeReview"value="See Reviews">
+    <input type="submit" name = "seeReview" value="See Reviews">
     </form>
 	<%-- name = "see" value = "${shopProfile.id}"method = "post" --%>
 	<div class="slideshow">

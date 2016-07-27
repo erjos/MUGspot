@@ -9,5 +9,6 @@
 <body>
 ${message}
 <%-- ${users.review} --%>
+<a href="createLogin">Home</a>
 </body>
 </html>
