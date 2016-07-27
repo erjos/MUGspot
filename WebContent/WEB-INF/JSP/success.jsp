@@ -9,5 +9,7 @@
 <body>
 ${message}
 <%-- ${users.review} --%>
+<button onclick="self.close()">Close</button>
+
 </body>
 </html>

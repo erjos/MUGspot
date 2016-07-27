@@ -109,14 +109,6 @@ img {
 <title>Shops</title>
 </head>
 <body>
-<!--     <script>
-function change() // no ';' here
-{
-    var elem = document.getElementById("btn");
-    if (elem.value=="Collapse") elem.value = "expand";
-    else elem.value = "Collapse";
-}
-</script> -->
         <option>Sort by Outlets</option>
         <div id="users">
             <input class="search" placeholder="Search" /> Sort Button<select

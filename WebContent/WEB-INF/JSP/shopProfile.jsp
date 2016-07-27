@@ -71,8 +71,10 @@
 				x[slideIndex - 1].style.display = "block";
 			}
 		</script>
+		</div>
 	</h1>
 	</center>
+	
 	
 	<br>
 	<p>Phone: <c:out value="${shopProfile.phone}" /></p>
