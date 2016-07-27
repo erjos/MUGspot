@@ -152,12 +152,9 @@ img {
 							<div id="demo">
 							<button onclick="change()" type="button" class="btn" id="btn"
 								data-toggle="collapse" data-target="#${status.index}">Expand</button>
-						
-
-						
-
 
 						<div id="${status.index}" class="collapse">
+						<br>
 						<p class="Description">
 							Description:</b>
 							<c:out value="${current.description}" />
