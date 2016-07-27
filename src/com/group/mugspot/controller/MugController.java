@@ -75,14 +75,14 @@ public class MugController {
     }
 	
 	@RequestMapping(value="/reviews")
-	public ModelAndView reviewForm(@CookieValue("userID") String usID, HttpServletResponse response, @RequestParam("shopid") int shop_id){
+	public ModelAndView reviewForm(@CookieValue(value = "userID", defaultValue = "null") String usID, HttpServletResponse response, @RequestParam("shopid") int shop_id){
 		if (!(usID.equals("null"))){
 			ModelAndView mv = new ModelAndView("reviews");
 			mv.addObject("user_id", usID);
 			mv.addObject("shop_id", shop_id);
 			return mv;
-		}
-        return new ModelAndView("adminLogin", "command", new Users());
+		}else
+		return new ModelAndView("adminLogin", "command", new Users());
 	}
 }
 
