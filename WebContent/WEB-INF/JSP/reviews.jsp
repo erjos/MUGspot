@@ -12,6 +12,13 @@
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <title>Insert title here</title>
+<style>
+.longInput {
+         height: 287px; 
+         margin-top: 8px; 
+         margin-bottom: 8px;
+}
+</style>
 </head>
 <body>
 
@@ -29,11 +36,13 @@
 
 	<form:errors path="reviews.*" />
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
-		<br> <input type="hidden" name="user_id" value="${user_id}"><br>
-		Review:<br> <input type="text" name="review"><br>
-		Rating:<br> <input type="number" name="rating" min="1" max="5"><br>
-		<input type="hidden" name="shop_id" value="${shop_id}"><br>
-		<br> <input type="submit" value="Submit">
+		<input type="hidden" name="user_id" value="${user_id}">
+		<textarea class="longInput" placeholder="Your Review"></textarea>
+		<!-- <br> <input type="text" name="review" style="min-width: 250px; min-height: 250px" placeholder="Your Review"><br> -->
+		<input type="number" name="rating" min="1" max="5" placeholder="Your Rating">
+		<input type="hidden" name="shop_id" value="${shop_id}">
+		<input type="submit" value="Submit">
+		<!-- cols="30" rows="20" -->
 	</form>
 	${message}
 	<br>
