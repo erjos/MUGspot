@@ -31,10 +31,9 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 
@@ -45,24 +44,21 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">WebSiteName</a>
+				<a class="navbar-brand" href="index.jsp">Mugspot</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li>
-					<li><a href="#">Page 3</a></li>
+					<li class="active"><a href="index.jsp">Home</a></li>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
+					<li><a href="userSignUp""><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="createLogin"><span
+							class="glyphicon glyphicon-log-in"></span> Log In</a></li>
 				</ul>
 			</div>
 		</div>
@@ -70,21 +66,29 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Welcome to Mugspot!</h1>
-			<p>Find your perfect mug spot today!</p>
+			<h1 id="header1">Mugspot</h1>
+			<p id="home1">We know how hard it can be to find the perfect
+				coffee shop. Whether you're looking for a spot to get work done, a
+				relaxing place to read or just to enjoy the best cup of coffee in town,
+				we're here to help you find your perfect mug spot today!</p>
 			<%
 				ArrayList locations = DAO.getCityNames();
 				pageContext.setAttribute("cities", locations);
 			%>
-			Select City <br>
-			<form name="selectCity" action="shops" method="get">
-				<select name="City">
-					<c:forEach items="${cities}" var="current">
-						<option value="${current.id}">${current.name}</option>
-					</c:forEach>
-				</select> <input type="submit" value="select">
+			<br>
+			<form role="form" name="selectCity" action="shops" method="get">
+				<div class="form-group">
+					<label id="label1" for="sel1">Select City</label> 
+					<select name = "City" class="form-control" id="sel1">
+						<c:forEach items="${cities}" var="current">
+					<option value="${current.id}">${current.name}</option>
+				</c:forEach>
+					</select>
+					<input type="submit" value="select">
+				</div>
 			</form>
 		</div>
+	</div>
 	</div>
 	<hr>
 	<footer>
