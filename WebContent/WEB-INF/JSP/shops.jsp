@@ -84,7 +84,7 @@ h2 {
     box-shadow: inset 0 1px 0 #fff;
 }
 #one {
-	width: 50%;
+	width: 55%;
 	display: block;
 	/* width: 650px; */
 	height: 650px;
@@ -93,7 +93,7 @@ h2 {
 }
 
 #map {
-	width: 50%;
+	width: 45%;
 	height: 650px;
 	display: block;
 	float:right;
