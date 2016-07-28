@@ -25,7 +25,7 @@
 		var pyrmont = new google.maps.LatLng(42.331429, -83.045753);
 		map = new google.maps.Map(document.getElementById('map'), {
 			center : pyrmont,
-			zoom : 15
+			zoom : 12
 		});
 		var request = {
 			location : pyrmont,
@@ -86,13 +86,15 @@ h2 {
 #one {
 	width: 50%;
 	display: block;
-	padding: 10px;
+	/* width: 650px; */
+	height: 650px;
+	overflow: auto;
 	
 }
 
 #map {
 	width: 50%;
-	height: 660px;
+	height: 650px;
 	display: block;
 	float:right;
 	padding:5px;
