@@ -84,7 +84,7 @@
 					<option value="${current.id}">${current.name}</option>
 				</c:forEach>
 					</select>
-					<input type="submit" value="select">
+					<input type="submit" class="btn btn-primary btn-lg" value="Select City &raquo";>
 				</div>
 			</form>
 		</div>
