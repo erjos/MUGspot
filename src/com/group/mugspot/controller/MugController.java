@@ -2,9 +2,11 @@ package com.group.mugspot.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.client.ClientProtocolException;
@@ -13,14 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import antlr.collections.List;
+
 
 @Controller
 // cannot name this "controller"
@@ -67,9 +67,22 @@ public class MugController {
 	public ModelAndView reviews(@RequestParam("shopid") int shop_id) {
 		/* @RequestParam("see") int shop_id */
 		ModelAndView rv = new ModelAndView("Review");
-
-		rv.addObject("reviews", DAO.getReviews(shop_id));
-
+		
+		//ArrayList<String> usernames = new ArrayList<String>();
+		List <Reviews> reviews = DAO.getReviews(shop_id);
+		ArrayList <Map> reviewInfo = new ArrayList<Map>();
+		for(Reviews rev : reviews){
+			HashMap review = new HashMap();
+			String username = DAO.getUserName(rev.getUser_id());
+			review.put("username", username);
+			review.put("review", rev.getReview());
+			review.put("rating", rev.getRating());
+			
+			reviewInfo.add(review);
+		}
+		
+		rv.addObject("reviews", reviewInfo);
+		
 		return rv;
 
 	}
