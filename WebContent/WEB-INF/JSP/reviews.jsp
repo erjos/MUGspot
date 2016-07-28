@@ -38,7 +38,7 @@ form {
 		</form> --%>
 ${message}
 	<form:errors path="reviews.*" />
-	<form class="newUser-bg" <form style="background-color:#E6E6FA"action="/MUGspot/success" method="get">
+	<form class="newUser-bg" style="background-color:#E6E6FA"action="/MUGspot/success" method="get">
 		<input type="hidden" name="user_id" value="${user_id}">
 		<textarea class="longInput" style=height:65%" placeholder="Your Review"></textarea> 
 		<!-- <input type="text" name="review" placeholder="Your Review"> -->

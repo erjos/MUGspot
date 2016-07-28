@@ -19,6 +19,10 @@
 	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script>
 		function myFunction(pageURL, title,w,h) {
 	        var left = (screen.width/2)-(w/2);
@@ -27,7 +31,7 @@
 	        }
 	</script>
 <title>shop details</title>
-<link href="<c:url value="/WebContent/resources/css/main.css" />" rel="stylesheet">
+<%-- <link href="<c:url value="/WebContent/resources/css/main.css" />" rel="stylesheet"> --%>
 
 </head>
 <body>
@@ -102,7 +106,24 @@
 </div>
 	<center>
 <div class="rvwbtns">
-	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" href="reviews?id=${shopProfile.id}" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4> -->
+        </div>
+        </div>
+    </div>
+    </div>
+	<%-- <button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button> --%>
 	<form name="Review" action="Review" method="get">
 	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
     <input type="submit" name = "seeReview" value="See Reviews">
