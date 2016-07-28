@@ -38,8 +38,8 @@
 	<form class="newUser-bg" action="/MUGspot/success" method="get">
 		<input type="hidden" name="user_id" value="${user_id}">
 		<!-- <textarea class="longInput" name = "reviews" placeholder="Your Review"></textarea> -->
-		<input type="text" name="review" placeholder="Your Review"><br>
-		<input type="number" name="rating" min="1" max="5" placeholder="Your Rating">
+		<input type="text" name="review" placeholder="Let us know how you feel about this shop!"><br>
+		<input type="number" name="rating" min="1" max="5" placeholder="Rate this shop on a scale of 1-5 with 5 as the best!">
 		<input type="hidden" name="shop_id" value="${shop_id}">
 		<input type="submit" value="Submit">
 		<!-- cols="30" rows="20" -->
