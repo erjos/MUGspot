@@ -5,35 +5,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <link rel="stylesheet"
 	href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"
 	integrity="sha384-XXXXXXXX" crossorigin="anonymous">
 <script
 	src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"
 	integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script>
-<link href='https://fonts.googleapis.com/css?family=Indie+Flower'
-	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style>
-body {
+/* body {
 	font-family: 'Indie Flower', cursive;
+}
+ */
+table {
+	align: center;
 }
 
 th {
 	text-align: center;
-	font-size: 45px;
+	font-size: 30px;
 }
 
 td {
 	padding: 15px;
 	text-align: left;
-	font-size:25px;
-	
+	font-size: 20px;
 }
 
 tr:nth-child(even) {
 	background-color: #5F9EA0;
 }
+
 tr:nth-child(odd) {
 	background-color: #DEB887;
 }
@@ -41,7 +45,7 @@ tr:nth-child(odd) {
 <title>Reviews</title>
 </head>
 <body>
-	<table border="1" style="width: 100%; height: 100%;">
+	<table border="1" style="width: 50%; height: 50%;">
 		<tr>
 			<!-- <th>ID</th> -->
 			<th>Reviews</th>
@@ -51,9 +55,7 @@ tr:nth-child(odd) {
 		<c:forEach items="${reviews}" var="current">
 			<tr>
 				<td>
-					<p>${current.getReview()}</p>
-					<br>
-				<%-- <p>${current.getUser_id() }</p> --%>
+					<p>${current.getReview()}</p> <br> <%-- <p>${current.getUser_id() }</p> --%>
 				</td>
 			</tr>
 		</c:forEach>

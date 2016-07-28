@@ -25,27 +25,16 @@ form {
 </head>
 <body>
 
-	<!-- <div data-role="popup" id="myPopup" class="ui-content"> -->
-	<%-- 	 <form:errors path="users.*"/> 
-	<form class="newUser-bg" action="/MUGspot/success" method="post">
-	<!-- <form name="form" action="/MUGspot/success" method="post"> -->
-		<input type="text" name="username" placeholder="Username">
-		<input type="text" name="review" style="min-width: 250px; min-height: 250px" placeholder="Your Review">
-		<input type="number" name="rating" min="1" max="5"
-			placeholder="Your Rating"> <input type="text" name="shop_id"
-			value="${param.id}"> <input type="submit" data-inline="true"
-			value="Submit">
-		</form> --%>
 ${message}
 	<form:errors path="reviews.*" />
 	<form class="newUser-bg" <form style="background-color:#E6E6FA"action="/MUGspot/success" method="get">
 		<input type="hidden" name="user_id" value="${user_id}">
-		<textarea class="longInput" style=height:65%" placeholder="Your Review"></textarea> 
-		<!-- <input type="text" name="review" placeholder="Your Review"> -->
-		<input type="number" name="rating" style=height:10% "1" max="5" placeholder="Your Rating">
+		<textarea class="longInput" name="review" style=height:65%" placeholder="What are your thoughts about this location?"></textarea> 
+		<%-- <input type="text" name="review" placeholder="Your Review"> --%> 
+		<input type="number" name="rating" style=height:10% "1" max="5" placeholder="Your Rating max - 5">
 		<input type="hidden" name="shop_id" value="${shop_id}">
 		<input type="submit" value="Submit">
-		<!-- cols="30" rows="20" -->
+		<%-- cols="30" rows="20" --%>
 	</form>
 	
 </body>

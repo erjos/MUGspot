@@ -102,9 +102,9 @@
 </div>
 	<center>
 <div class="rvwbtns">
-	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
+	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,200)" name = "shopid">Leave Review</button>
 	<form name="Review" action="Review" method="get">
-	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
+	<input type = "hidden" name = "shopid" value = "${shopProfile.id}"/>
     <input type="submit" name = "seeReview" value="See Reviews">
     </form>
 </div>	
