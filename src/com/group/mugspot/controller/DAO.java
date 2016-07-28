@@ -342,6 +342,9 @@ public class DAO {
 		String hql = "FROM User WHERE username = " + username;
 		Query query = hibernateSession.createQuery(hql);
 		List results = query.list();
+		
+		hibernateSession.getTransaction().commit();
+		hibernateSession.close();
 
 		if (results.isEmpty())
 			return false;
@@ -367,7 +370,33 @@ public class DAO {
 		for(Users u : users){
 			userID= u.getID();
 		}
+		session.getTransaction().commit();
+		session.close();
 		return userID;
+	}
+	
+	public static String getUserName(int userID){
+		SessionFactory factory = DBFactory.setupFactory();
+		
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(Users.class);
+		criteria.add( Restrictions.eq("ID", userID));
+		
+		@SuppressWarnings("unchecked")
+		List <Users>users = criteria.list();
+		session.getTransaction().commit();
+		session.close();
+		String username = "this didn't work";
+		
+		if(users.size() > 0){
+			Users user = users.get(0);
+			 username = user.getEmail();
+			 return username;
+		}else
+		return username;
 	}
 			
 	
@@ -401,11 +430,6 @@ public class DAO {
 		
 		@SuppressWarnings("unchecked")
 		List<Reviews> review = session.createQuery("from Reviews where shop_id =" + shop_id).getResultList();
-		
-		/*ArrayList <String> rev = new ArrayList();
-		for (Reviews rv: review) {
-			rev.add(rv.getReview().toString());
-		}*/
 		
 		System.out.println(review);
 		session.getTransaction().commit();
