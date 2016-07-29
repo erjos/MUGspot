@@ -5,18 +5,54 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>New Shop</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
 </head>
 <body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="createLogin">Mugspot</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				
+
+			</div>
+		</div>
+	</nav>
+
 <h1>Add a Shop</h1>
 <form name="createNewShop" action="addShop.jsp" method="get">
 	Shop Name: <input name="shop_name" type="text" value ="${name}"><br>
 	Description: <input name="description" type="text"><br>
-	Menu: <input name="menu" type="text"><br>
 	Outlets: <input name="outlets" type="text"><br>
 	Capacity: <input name="capacity" type="text"><br>
 	Budget: <input name="budget" type="text"><br>
-	Place ID: <input name="place_id" type="text" value ="${place_id}"><br>
-	City ID: <input name="city_id" type ="text" value = "${city_id}">
+	<input name="menu" type="hidden" value = "menu"><br>
+	<input name="place_id" type="hidden" value ="${place_id}"><br>
+	<input name="city_id" type ="hidden" value = "${city_id}">
 	<button type="submit">Submit!</button>
 </form>
 </body>

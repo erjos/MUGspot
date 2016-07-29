@@ -375,6 +375,7 @@ public class DAO {
 		return userID;
 	}
 	
+	//putting a hold on using this for now - we dont need to display the username to other users on the revie page
 	public static ArrayList<String> getUserName(ArrayList<Integer> userID){
 		SessionFactory factory = DBFactory.setupFactory();
 		
@@ -383,18 +384,22 @@ public class DAO {
 		
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Users.class);
-		criteria.add( Restrictions.eq("ID", userID));
+		ArrayList<String> usernames= new ArrayList<String>();
+		
+		for(Integer id: userID){
+		criteria.add( Restrictions.eq("ID", id));
 		
 		@SuppressWarnings("unchecked")
-		List <Users>users = criteria.list();
-		session.getTransaction().commit();
-		session.close();
-		ArrayList<String> usernames= new ArrayList<String>();
-		String username = "this didn't work";
+		List<Users> users = criteria.list();
+		
 		for(Users us: users){
-		username = us.getEmail();
+		String username = us.getEmail();
 		usernames.add(username);
 		}
+		
+		}
+		session.getTransaction().commit();
+		session.close();
 		return usernames;
 	}
 			
