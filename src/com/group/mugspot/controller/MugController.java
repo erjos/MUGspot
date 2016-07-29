@@ -68,15 +68,22 @@ public class MugController {
 		/* @RequestParam("see") int shop_id */
 		ModelAndView rv = new ModelAndView("Review");
 		
-		//ArrayList<String> usernames = new ArrayList<String>();
+		ArrayList<Integer> userIDs = new ArrayList<Integer>();
 		List <Reviews> reviews = DAO.getReviews(shop_id);
+		
 		ArrayList <Map> reviewInfo = new ArrayList<Map>();
 		for(Reviews rev : reviews){
+			//adding userID's to the ArrayList
+			userIDs.add(rev.getUser_id());			
+		}
+		
+		for(int i= 0; i < reviews.size(); i++){
+			Reviews rev = reviews.get(i);
+			
 			HashMap review = new HashMap();
-			String username = DAO.getUserName(rev.getUser_id());
-			review.put("username", username);
 			review.put("review", rev.getReview());
 			review.put("rating", rev.getRating());
+			review.put("username", userIDs.get(i));
 			
 			reviewInfo.add(review);
 		}

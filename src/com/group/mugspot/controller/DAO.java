@@ -375,7 +375,7 @@ public class DAO {
 		return userID;
 	}
 	
-	public static String getUserName(int userID){
+	public static ArrayList<String> getUserName(ArrayList<Integer> userID){
 		SessionFactory factory = DBFactory.setupFactory();
 		
 		Session session = factory.openSession();
@@ -389,14 +389,13 @@ public class DAO {
 		List <Users>users = criteria.list();
 		session.getTransaction().commit();
 		session.close();
+		ArrayList<String> usernames= new ArrayList<String>();
 		String username = "this didn't work";
-		
-		if(users.size() > 0){
-			Users user = users.get(0);
-			 username = user.getEmail();
-			 return username;
-		}else
-		return username;
+		for(Users us: users){
+		username = us.getEmail();
+		usernames.add(username);
+		}
+		return usernames;
 	}
 			
 	
