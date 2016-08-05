@@ -168,6 +168,15 @@
 				Description:<br>
 				<c:out value="${shopProfile.description2}" />
 			</p>
+		<br> Weekly Hours:<br>
+		<c:out value="${shopProfile.monday}" /><br>
+		<c:out value="${shopProfile.tuesday}" /><br>
+		<c:out value="${shopProfile.wednesday}" /><br>
+		<c:out value="${shopProfile.thursday}" /><br>
+		<c:out value="${shopProfile.friday}" /><br>
+		<c:out value="${shopProfile.saturday}" /><br>
+		<c:out value="${shopProfile.sunday}" /><br>
+		<br>
 		
 	</div>
 	<center>
