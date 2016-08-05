@@ -20,90 +20,114 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class GooglePlaces {
-	//change to a try catch exception eventually that redirects users to an error page
+	// change to a try catch exception eventually that redirects users to an
+	// error page
 	public static ArrayList<String> getAPI(String placeID) throws ClientProtocolException, IOException, ParseException {
 
-			String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID
+		String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID
 
-					//+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
-					+ "&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y";
+		// + "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+				+ "&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y";
 
-			HttpClient client = HttpClientBuilder.create().build();
-			
-			HttpGet request = new HttpGet(url);
-			
-			HttpResponse response = client.execute(request);
-   
-			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+		HttpClient client = HttpClientBuilder.create().build();
 
-			StringBuffer result = new StringBuffer();
-			String line = "";
-			while ((line = rd.readLine()) != null) {
-				result.append(line.trim());
+		HttpGet request = new HttpGet(url);
 
-			}
+		HttpResponse response = client.execute(request);
 
-			request.releaseConnection();
+		BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
-			JsonElement jelement = new JsonParser().parse(result.toString());
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		while ((line = rd.readLine()) != null) {
+			result.append(line.trim());
+
+		}
+
+		request.releaseConnection();
+
+		JsonElement jelement = new JsonParser().parse(result.toString());
+
+		JsonObject jobject = jelement.getAsJsonObject();
+
+		jobject = jobject.getAsJsonObject("result");
+
+		ArrayList<String> info = new ArrayList<String>();
+
+		JsonElement name = jobject.get("name");
+		JsonElement address = jobject.get("formatted_address");
+		JsonElement phoneNumber = jobject.get("formatted_phone_number");
+
+		// declaring a new JsonObject here so that i don't screw up the logic
+		// for the photo's
+		JsonObject jobject2 = jobject.getAsJsonObject("opening_hours");
+
+		//this is the true / false that will tell us if the shop is open now - can I convert to a boolean?
+		JsonElement openNow = jobject2.get("open_now");
+
+		// now creating a separate array of the hours as they differ for the day
+		// of the week
+		// would need to iterate through this using a for loop to grab the text
+		// and display it - not sure I want to do this here?
+		JsonArray jarray = jobject2.getAsJsonArray("weekday_text");
+
+		// JsonElement icon = jobject.get("icon");
+
+		String shop_name = name.toString().replaceAll("\"", "");
+		String phone = phoneNumber.toString().replaceAll("\"", "");
+		String shop_address = address.toString().replaceAll("\"", "");
 		
-			JsonObject jobject = jelement.getAsJsonObject();
-			
-			jobject = jobject.getAsJsonObject("result");
-			
-			ArrayList<String> info = new ArrayList<String>();
+		info.add(shop_name);
+		info.add(phone);
+		info.add(shop_address);
+		
+		//going through the jarray and pulling out the days of the week converting to a string and then adding into the array
+		JsonElement day;
+		for (int i = 0; i <= 6; i++) {
+			// this will pull out the specific hours for each day of the week
+			day = jarray.get(i);
+			String hours = day.toString().replaceAll("\"", "");
+			info.add(hours);
+		}
 
-			JsonElement name = jobject.get("name");
-			JsonElement address = jobject.get("formatted_address");
-			JsonElement phoneNumber = jobject.get("formatted_phone_number");
-		//	JsonElement icon = jobject.get("icon");
-			
-			String shop_name = name.toString().replaceAll("\"", "");
-			String phone = phoneNumber.toString().replaceAll("\"", "");
-			String shop_address = address.toString().replaceAll("\"", "");
-		//	String iconurl = (icon.toString().replaceAll("\"", ""));
-			
-			info.add(shop_name);
-			info.add(phone);
-			info.add(shop_address);
-			
-			
-			JsonArray photos = jobject.getAsJsonArray("photos");
-			 for (int i = 0; i<=photos.size() -1; i++) {
-			
-			JsonObject PL =  photos.get(i).getAsJsonObject();
-			
+		// String iconurl = (icon.toString().replaceAll("\"", ""));
+
+		JsonArray photos = jobject.getAsJsonArray("photos");
+		for (int i = 0; i <= photos.size() - 1; i++) {
+
+			JsonObject PL = photos.get(i).getAsJsonObject();
+
 			int height = PL.get("height").getAsInt();
 			int width = PL.get("width").getAsInt();
 			String photoRef = PL.get("photo_reference").getAsString();
-			//only getting first attrib for now, iterate through array if more than one
+			// only getting first attrib for now, iterate through array if more
+			// than one
 			String attribution = PL.get("html_attributions").getAsJsonArray().get(0).getAsString();
-			
-			String maxwidth = ("maxwidth=400" );
+
+			String maxwidth = ("maxwidth=400");
 			String maxheight = ("maxheight=" + height);
 			String ref = ("&photoreference=" + photoRef);
 			String key = ("&key=AIzaSyDf7pUxPphWt00e3PxLVBJjYsChNjrJ91Y");
-			//String key = ("&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs");
-				
-			String purl = "https://maps.googleapis.com/maps/api/place/photo?" + maxwidth + ref + key;	
+			// String key = ("&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs");
+
+			String purl = "https://maps.googleapis.com/maps/api/place/photo?" + maxwidth + ref + key;
 			info.add(purl);
-			}
-			
-		
-			 
-		return info;	
 		}
-	
-	//Method takes in a city name as a String and searches the API to return the placeID for the result
-	public static String getCityPlaceID(String city, String state){
-		
-		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + city
-				+ "+" + state +"&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+
+		return info;
+	}
+
+	// Method takes in a city name as a String and searches the API to return
+	// the placeID for the result
+	public static String getCityPlaceID(String city, String state) {
+
+		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + city + "+" + state
+				+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
 
 		HttpClient client = HttpClientBuilder.create().build();
 
 		HttpGet request = new HttpGet(url);
-		
+
 		HttpResponse response = null;
 		try {
 			response = client.execute(request);
@@ -132,37 +156,37 @@ public class GooglePlaces {
 		}
 
 		// still want to ask peter about this
-		
+
 		request.releaseConnection();
-		
+
 		JsonElement jelement = new JsonParser().parse(result.toString());
 
 		JsonObject jobject = jelement.getAsJsonObject();
 
 		JsonArray jarray = jobject.getAsJsonArray("results");
-		
+
 		jelement = jarray.get(0);
 
 		jobject = jelement.getAsJsonObject();
-		
+
 		JsonElement placeID = jobject.get("place_id");
-		
+
 		String place_id = placeID.toString().replaceAll("\"", "");
 		return place_id;
 	}
-	
-	
-	//This is the method to display the shops for a specific city based on the available results
-	public static ArrayList<Map> getShopsByCityID(String city, String state){
+
+	// This is the method to display the shops for a specific city based on the
+	// available results
+	public static ArrayList<Map> getShopsByCityID(String city, String state) {
 		ArrayList<Map> shops = new ArrayList<Map>();
-		//changed the search to include the words "coffee in"
-		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+in" + city
-				+ "+" + state +"&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
+		// changed the search to include the words "coffee in"
+		String url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=coffee+in" + city + "+" + state
+				+ "&key=AIzaSyDM0lmlS-ptLTR9KnDZSGUyijPQ5H1fsZs";
 
 		HttpClient client = HttpClientBuilder.create().build();
 
 		HttpGet request = new HttpGet(url);
-		
+
 		HttpResponse response = null;
 		try {
 			response = client.execute(request);
@@ -191,40 +215,41 @@ public class GooglePlaces {
 		}
 
 		// still want to ask peter about this
-		
+
 		request.releaseConnection();
-		
+
 		JsonElement jelement = new JsonParser().parse(result.toString());
 
 		JsonObject jobject = jelement.getAsJsonObject();
 
 		JsonArray jarray = jobject.getAsJsonArray("results");
-		
-		//iterate through the array of results to parse for name address and placeID
-		for (int i=0; i<jarray.size(); i++){
-			
+
+		// iterate through the array of results to parse for name address and
+		// placeID
+		for (int i = 0; i < jarray.size(); i++) {
+
 			jelement = jarray.get(i);
-			
+
 			jobject = jelement.getAsJsonObject();
-			
+
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement name = jobject.get("name");
 			JsonElement placeID = jobject.get("place_id");
-			
+
 			String place_id = placeID.toString().replaceAll("\"", "");
 			String nm = name.toString().replaceAll("\"", "");
 			String addrs = address.toString().replaceAll("\"", "");
-			
+
 			Map shop = new HashMap();
-			
+
 			shop.put("name", nm);
 			shop.put("address", addrs);
 			shop.put("place_id", place_id);
-			
+
 			shops.add(shop);
 		}
-		
+
 		return shops;
 	}
 
-}   
+}
