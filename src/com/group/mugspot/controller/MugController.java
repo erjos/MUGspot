@@ -25,7 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 // cannot name this "controller"
 public class MugController {
-
+	
+	//This method is used in the shops.jsp page. It uses the DAO.getinfo() method to display all the shops 
+	//in the area. 
 	@RequestMapping("/shops")
 	// need to add try catch for these exceptions -
 	public ModelAndView showMessage(@RequestParam("City") Integer City)
@@ -40,6 +42,8 @@ public class MugController {
 		return mv;
 	}
 
+	//This method is used in the shopProfile.jsp page. It uses the DAO.getInfoByID() method to display
+	//more detailed information about the selected shop.
 	@RequestMapping("/shopProfile")
 	// need to add try catch for these exceptions -
 	public ModelAndView test(@RequestParam("id") String id)
@@ -51,6 +55,8 @@ public class MugController {
 		return mv;
 	}
 
+	//This method binds all the review information submitted by the user to the Reviews pojo class. It uses the DAO.addReview 
+	//method
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
 	public ModelAndView addReview(@ModelAttribute("reviews") Reviews reviews, BindingResult result) {
 		if (result.hasErrors()) {
@@ -63,6 +69,7 @@ public class MugController {
 
 	}
 
+	
 	@RequestMapping(value = "/Review", method = RequestMethod.GET)
 	public ModelAndView reviews(@RequestParam("shopid") int shop_id) {
 		/* @RequestParam("see") int shop_id */

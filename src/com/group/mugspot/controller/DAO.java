@@ -24,8 +24,11 @@ import javassist.expr.NewArray;
 
 public class DAO {
 	private static SessionFactory factory;
-	//Github test
+	
 	// Shopinfo table methods -------------------
+	//This method returns all the shops with our unique data (i.e. outlets, capacity, tables, average cup of coffee)
+	//from the shops table. Parameter cityID ensures we only get the info pertaining to the city 
+	//selected by the user. It gets called in the getInfo method. 
 	public static List<Shops> getShops(Integer cityID) {
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -46,6 +49,11 @@ public class DAO {
 		return shops;
 	}
 
+	//The purpose of this method is to make an array combining our unique data with Google Places API. 
+	//To accomlish this we use the getShops() method to return our unique data. We also use the getAPI() method from Google
+	//Places.java to return more info from Google. We combine all this in an ArrayList <Map>. We use Hashmaps to make it 
+	//easier to call the indexes from the jsp pages.
+	//This method is used to display all the shops on the shop.jsp page
 	public static ArrayList<Map> getInfo(Integer cityID) throws ClientProtocolException, IOException, ParseException {
 		List<Shops> shops = getShops(cityID);
 		ArrayList<Map> shopInfo = new ArrayList<Map>();
@@ -53,7 +61,7 @@ public class DAO {
 
 			Map shop = new HashMap();
 
-			System.out.println("Shop ID: " + shops1.getPlace_id());
+			//System.out.println("Shop ID: " + shops1.getPlace_id());
 
 			ArrayList<String> api = GooglePlaces.getAPI(shops1.getPlace_id());
 			String name = api.get(0);
@@ -79,6 +87,8 @@ public class DAO {
 		return shopInfo;
 	}
 
+	//This is a simple method that uses Hibernate to add a shop in the Database. It binds the Pojo class of shops
+	//to the columns in the table
 	public static void addShop(Shops p) {
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -92,6 +102,7 @@ public class DAO {
 		session.close();
 	}
 
+	//Deletes a shop that has selected id
 	public static void deleteShop(int id) {
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -104,7 +115,10 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-
+	
+	//This method is to be used on shopProfile.jsp page to display more detailed information about the shop that the user 
+	//selected. In here another Hashmap is created to help get the indexes in the jsp pages. In this map in addtion to 
+	//returning the databse data we also return pictures from Google Place API. 
 	public static Map getInfoById(String id) throws ClientProtocolException, IOException, ParseException {
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -426,11 +440,6 @@ public class DAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		
-		// @SuppressWarnings("deprecation")
-		/*Criteria criteria = session.createCriteria(Reviews.class);*/
-		// adding criteria so the list only returns if the cityID is the same as
-		// the parameter
-		// criteria.add( Restrictions.eq("city_id", cityID));
 		
 		@SuppressWarnings("unchecked")
 		List<Reviews> review = session.createQuery("from Reviews where shop_id =" + shop_id).getResultList();
