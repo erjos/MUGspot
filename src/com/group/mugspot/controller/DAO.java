@@ -24,7 +24,7 @@ import javassist.expr.NewArray;
 
 public class DAO {
 	private static SessionFactory factory;
-
+	//Github test
 	// Shopinfo table methods -------------------
 	public static List<Shops> getShops(Integer cityID) {
 		SessionFactory factory = DBFactory.setupFactory();
