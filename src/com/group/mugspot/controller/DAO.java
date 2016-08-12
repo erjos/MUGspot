@@ -67,7 +67,9 @@ public class DAO {
 			String name = api.get(0);
 			String phone = api.get(1);
 			String address = api.get(2);
-			String picture1 = api.get(3);
+			String lat = api.get(3);
+			String lng = api.get(4);
+			String picture1 = api.get(5);
 
 			shop.put("id", shops1.getId());
 			shop.put("name", name);
@@ -80,6 +82,8 @@ public class DAO {
 			shop.put("phone", phone);
 			shop.put("address", address);
 			shop.put("picture1", picture1);
+			shop.put("lat", lat);
+			shop.put("lng", lng);
 
 			shopInfo.add(shop);
 
@@ -147,9 +151,9 @@ public class DAO {
 		String address = api.get(2);
 		String[] pictures = { "picture1", "picture2", "picture3", "picture4", "picture5", "picture6", "picture7",
 				"picture8", "picture9", "picture10" };
-		for (int i = 3; i <= api.size() - 1; i++) {
+		for (int i = 5; i <= api.size() - 1; i++) {
 			if (!api.isEmpty())
-				pictures[i - 3] = api.get(i);
+				pictures[i - 5] = api.get(i);
 		}
 
 		shopMap.put("id", shop.getId());

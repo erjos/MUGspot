@@ -50,22 +50,41 @@ public class GooglePlaces {
 			JsonObject jobject = jelement.getAsJsonObject();
 			
 			jobject = jobject.getAsJsonObject("result");
+			JsonObject geometry = jobject.getAsJsonObject("geometry");
+			JsonObject location = geometry.getAsJsonObject("location");
+			
+			
+			
 			
 			ArrayList<String> info = new ArrayList<String>();
 
 			JsonElement name = jobject.get("name");
 			JsonElement address = jobject.get("formatted_address");
 			JsonElement phoneNumber = jobject.get("formatted_phone_number");
+			JsonElement lat = location.get("lat");
+			JsonElement lng = location.get("lng");
+			
+			
+			System.out.println(lat);
+			System.out.println(lng);
+			
 		//	JsonElement icon = jobject.get("icon");
 			
 			String shop_name = name.toString().replaceAll("\"", "");
 			String phone = phoneNumber.toString().replaceAll("\"", "");
 			String shop_address = address.toString().replaceAll("\"", "");
+			String latitude = lat.toString().replaceAll("\"", "");
+			String longitude = lng.toString().replaceAll("\"", "");
+			
 		//	String iconurl = (icon.toString().replaceAll("\"", ""));
 			
 			info.add(shop_name);
 			info.add(phone);
 			info.add(shop_address);
+			info.add(latitude);
+			info.add(longitude);
+		
+			 
 			
 			
 			JsonArray photos = jobject.getAsJsonArray("photos");
@@ -146,6 +165,7 @@ public class GooglePlaces {
 		jobject = jelement.getAsJsonObject();
 		
 		JsonElement placeID = jobject.get("place_id");
+		
 		
 		String place_id = placeID.toString().replaceAll("\"", "");
 		return place_id;
