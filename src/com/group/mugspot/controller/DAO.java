@@ -3,6 +3,7 @@ package com.group.mugspot.controller;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,23 +38,25 @@ public class DAO {
 
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Shops.class);
-		//adding criteria so the list only returns if the cityID is the same as the parameter
-		criteria.add( Restrictions.eq("city_id", cityID));
+		// adding criteria so the list only returns if the cityID is the same as
+		// the parameter
+		criteria.add(Restrictions.eq("city_id", cityID));
 
 		@SuppressWarnings("unchecked")
 		List<Shops> shops = criteria.list();
 
 		session.getTransaction().commit();
 		session.close();
-		
+
 		return shops;
 	}
-
+	
 	//The purpose of this method is to make an array combining our unique data with Google Places API. 
 	//To accomlish this we use the getShops() method to return our unique data. We also use the getAPI() method from Google
 	//Places.java to return more info from Google. We combine all this in an ArrayList <Map>. We use Hashmaps to make it 
 	//easier to call the indexes from the jsp pages.
 	//This method is used to display all the shops on the shop.jsp page
+
 	public static ArrayList<Map> getInfo(Integer cityID) throws ClientProtocolException, IOException, ParseException {
 		List<Shops> shops = getShops(cityID);
 		ArrayList<Map> shopInfo = new ArrayList<Map>();
@@ -69,7 +72,50 @@ public class DAO {
 			String address = api.get(2);
 			String lat = api.get(3);
 			String lng = api.get(4);
-			String picture1 = api.get(5);
+
+			ArrayList<String> hours = new ArrayList<String>();
+			for (int i = 3; i < 10; i++) {
+				hours.add(api.get(i));
+			}
+
+			String currentHours = "";
+			// gets day of the week as an integer - Friday = 6
+			Calendar date = Calendar.getInstance();
+			int dayOfweek = date.get(Calendar.DAY_OF_WEEK);
+
+			System.out.println(date.get(Calendar.DAY_OF_WEEK));
+
+			switch (dayOfweek) {
+			case 1:
+				currentHours = hours.get(6);
+				break;
+			case 2:
+				currentHours = hours.get(0);
+				break;
+			case 3:
+				currentHours = hours.get(1);
+				break;
+			case 4:
+				currentHours = hours.get(2);
+				break;
+			case 5:
+				currentHours = hours.get(3);
+				break;
+			case 6:
+				currentHours = hours.get(4);
+				break;
+			case 7:
+				currentHours = hours.get(5);
+				break;
+			default:
+	  			currentHours = "This shop is closed!";
+				break;
+			}
+
+			// hours for days of the week - this is where we figure out current
+			// day and display only that day
+
+			String picture1 = api.get(10);
 
 			shop.put("id", shops1.getId());
 			shop.put("name", name);
@@ -81,6 +127,9 @@ public class DAO {
 			shop.put("budget", shops1.getBudget() + "");
 			shop.put("phone", phone);
 			shop.put("address", address);
+
+			shop.put("hours", currentHours);
+
 			shop.put("picture1", picture1);
 			shop.put("lat", lat);
 			shop.put("lng", lng);
@@ -119,10 +168,12 @@ public class DAO {
 		session.getTransaction().commit();
 		session.close();
 	}
+
 	
 	//This method is to be used on shopProfile.jsp page to display more detailed information about the shop that the user 
 	//selected. In here another Hashmap is created to help get the indexes in the jsp pages. In this map in addtion to 
 	//returning the databse data we also return pictures from Google Place API. 
+
 	public static Map getInfoById(String id) throws ClientProtocolException, IOException, ParseException {
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -149,11 +200,25 @@ public class DAO {
 		String name = api.get(0);
 		String phone = api.get(1);
 		String address = api.get(2);
+		// String isOpen = api.get()
+
+		// creating an ArrayList of strings to store the hours
+		ArrayList<String> hours = new ArrayList<String>();
+		for (int i = 3; i < 10; i++) {
+			hours.add(api.get(i));
+		}
+
 		String[] pictures = { "picture1", "picture2", "picture3", "picture4", "picture5", "picture6", "picture7",
 				"picture8", "picture9", "picture10" };
-		for (int i = 5; i <= api.size() - 1; i++) {
+
+		// changed i from 3 to 10 because of the 7 days of the week hours added
+		// into the array
+		for (int i = 10; i <= api.size() - 1; i++) {
+
 			if (!api.isEmpty())
-				pictures[i - 5] = api.get(i);
+				
+				pictures[i - 10] = api.get(i);
+
 		}
 
 		shopMap.put("id", shop.getId());
@@ -166,6 +231,15 @@ public class DAO {
 		shopMap.put("budget", shop.getBudget() + "");
 		shopMap.put("phone", phone);
 		shopMap.put("address", address);
+
+		// hours for days of the week
+		shopMap.put("monday", hours.get(0));
+		shopMap.put("tuesday", hours.get(1));
+		shopMap.put("wednesday", hours.get(2));
+		shopMap.put("thursday", hours.get(3));
+		shopMap.put("friday", hours.get(4));
+		shopMap.put("saturday", hours.get(5));
+		shopMap.put("sunday", hours.get(6));
 
 		shopMap.put("picture1", pictures[0]);
 		shopMap.put("picture2", pictures[1]);
@@ -311,7 +385,7 @@ public class DAO {
 	}
 
 	// Users table Methods-------------------
-  
+
 	public static void addUser(Users p) {
 		SessionFactory factory = DBFactory.setupFactory();
 
@@ -331,23 +405,20 @@ public class DAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 
-		
-		String username="'"+u.getEmail()+"'";
-		String hql = "SELECT password FROM Users WHERE email = "+username;
+		String username = "'" + u.getEmail() + "'";
+		String hql = "SELECT password FROM Users WHERE email = " + username;
 		List query = session.createQuery(hql).list();
-
 
 		session.getTransaction().commit();
 		session.close();
 
-
-		if(!query.isEmpty() && query.get(0).equals(u.getPassword()))
+		if (!query.isEmpty() && query.get(0).equals(u.getPassword()))
 			return true;
-		
-		//the resetPassword method does not exist yet
-		//u.resetPassword();
+
+		// the resetPassword method does not exist yet
+		// u.resetPassword();
 		return false;
-    }
+	}
 
 	public static boolean containsUser(Users user) {
 
@@ -360,7 +431,7 @@ public class DAO {
 		String hql = "FROM User WHERE username = " + username;
 		Query query = hibernateSession.createQuery(hql);
 		List results = query.list();
-		
+
 		hibernateSession.getTransaction().commit();
 		hibernateSession.close();
 
@@ -369,59 +440,57 @@ public class DAO {
 
 		return true;
 	}
-        
-      
-	
-	public static int getUserID(Users user){
+
+	public static int getUserID(Users user) {
 		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.openSession();
 		session.getTransaction().begin();
-		
+
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Users.class);
-		criteria.add( Restrictions.eq("email", user.getEmail()));
-		
+		criteria.add(Restrictions.eq("email", user.getEmail()));
+
 		@SuppressWarnings("unchecked")
 		List<Users> users = criteria.list();
 		int userID = 0;
-		for(Users u : users){
-			userID= u.getID();
+		for (Users u : users) {
+			userID = u.getID();
 		}
 		session.getTransaction().commit();
 		session.close();
 		return userID;
 	}
-	
-	//putting a hold on using this for now - we dont need to display the username to other users on the revie page
-	public static ArrayList<String> getUserName(ArrayList<Integer> userID){
+
+	// putting a hold on using this for now - we dont need to display the
+	// username to other users on the revie page
+	public static ArrayList<String> getUserName(ArrayList<Integer> userID) {
 		SessionFactory factory = DBFactory.setupFactory();
-		
+
 		Session session = factory.openSession();
 		session.beginTransaction();
-		
+
 		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Users.class);
-		ArrayList<String> usernames= new ArrayList<String>();
-		
-		for(Integer id: userID){
-		criteria.add( Restrictions.eq("ID", id));
-		
-		@SuppressWarnings("unchecked")
-		List<Users> users = criteria.list();
-		
-		for(Users us: users){
-		String username = us.getEmail();
-		usernames.add(username);
-		}
-		
+		ArrayList<String> usernames = new ArrayList<String>();
+
+		for (Integer id : userID) {
+			criteria.add(Restrictions.eq("ID", id));
+
+			@SuppressWarnings("unchecked")
+			List<Users> users = criteria.list();
+
+			for (Users us : users) {
+				String username = us.getEmail();
+				usernames.add(username);
+			}
+
 		}
 		session.getTransaction().commit();
 		session.close();
 		return usernames;
 	}
-			
-	
+
 	public static void addReview(Reviews reviews) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Reviews.class)
 				.buildSessionFactory();
@@ -436,18 +505,29 @@ public class DAO {
 		session.close();
 	}
 
-
-	public static List <Reviews> getReviews(int shop_id)
-		/*public static void main (String [] args)*/ {
+	public static List<Reviews> getReviews(int shop_id)
+	/* public static void main (String [] args) */ {
 		SessionFactory factory = DBFactory.setupFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		
-		
+		// @SuppressWarnings("deprecation")
+		/*Criteria criteria = session.createCriteria(Reviews.class);*/
+		// adding criteria so the list only returns if the cityID is the same as
+		// the parameter
+		// criteria.add( Restrictions.eq("city_id", cityID));
+
+
+		// @SuppressWarnings("deprecation")
+		/* Criteria criteria = session.createCriteria(Reviews.class); */
+		// adding criteria so the list only returns if the cityID is the same as
+		// the parameter
+		// criteria.add( Restrictions.eq("city_id", cityID));
+
+
 		@SuppressWarnings("unchecked")
 		List<Reviews> review = session.createQuery("from Reviews where shop_id =" + shop_id).getResultList();
-		
+
 		System.out.println(review);
 		session.getTransaction().commit();
 		session.close();
@@ -455,4 +535,3 @@ public class DAO {
 		return review;
 	}
 }
-
