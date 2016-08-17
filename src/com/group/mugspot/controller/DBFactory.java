@@ -9,7 +9,8 @@ public class DBFactory {
 		Configuration config = new Configuration().configure("hibernate.cfg.xml");
 		/*config.addAnnotatedClass(Shops.class);
 		config.addAnnotatedClass(City.class);
-		config.addAnnotatedClass(Users.class);*/
+		config.addAnnotatedClass(Users.class);
+		config.addAnnotatedClass(Reviews.class);*/
 		
 		 factory = config.buildSessionFactory();
 		 return factory;

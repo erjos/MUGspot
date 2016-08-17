@@ -74,7 +74,7 @@ public class DAO {
 			String lng = api.get(4);
 
 			ArrayList<String> hours = new ArrayList<String>();
-			for (int i = 3; i < 10; i++) {
+			for (int i = 5; i < 12; i++) {
 				hours.add(api.get(i));
 			}
 
@@ -115,7 +115,7 @@ public class DAO {
 			// hours for days of the week - this is where we figure out current
 			// day and display only that day
 
-			String picture1 = api.get(10);
+			String picture1 = api.get(12);
 
 			shop.put("id", shops1.getId());
 			shop.put("name", name);
@@ -204,7 +204,7 @@ public class DAO {
 
 		// creating an ArrayList of strings to store the hours
 		ArrayList<String> hours = new ArrayList<String>();
-		for (int i = 3; i < 10; i++) {
+		for (int i = 5; i < 12; i++) {
 			hours.add(api.get(i));
 		}
 
@@ -213,11 +213,11 @@ public class DAO {
 
 		// changed i from 3 to 10 because of the 7 days of the week hours added
 		// into the array
-		for (int i = 10; i <= api.size() - 1; i++) {
+		for (int i = 12; i <= api.size() - 1; i++) {
 
 			if (!api.isEmpty())
 				
-				pictures[i - 10] = api.get(i);
+				pictures[i - 12] = api.get(i);
 
 		}
 

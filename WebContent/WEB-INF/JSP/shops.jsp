@@ -9,18 +9,17 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
-
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- <script src="http://listjs.com/no-cdn/list.js"></script> -->
 
 <script src="http://listjs.com/no-cdn/list.js"></script>
 
-	
-<script src="http://listjs.com/no-cdn/list.js"></script>
+
+<!-- <script src="http://listjs.com/no-cdn/list.js"></script> -->
 
 <script type="text/javascript">
 	var map;
@@ -64,13 +63,12 @@
 	}
 </script>
 <style>
-
-
-/* html, body {
+html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-} */
+	
+} 
 
 h2 {
 	font-family: sans-serif;
@@ -91,33 +89,33 @@ h2 {
 }
 
 #one {
-	width: 55%;
-	display: block;
+	/*width: 55%;
+	display: block;*/
 	height: 650px;
 	overflow: auto;
-	padding: 5px;
+	/*margin-top:5px; 
+	padding: 5px; */
 }
 
-#map {
-	width: 45%;
-	height: 650px;
-	display: block;
-	float: right;
-	padding: 5px;
-}
-/* .btn {
+ #map {
+	 /* width: 50%;  */
+	height: 590px;
+	display: block; 
+	float: right;  
+	 padding: 5px; 
+} 
+/*  .btn {
 	width: 15%;
 	float: right;
 	padding: 10px;
-} */
-
-.avatar {
+}  */
+/* .avatar {
 	max-width: 150px;
 }
-
+*/
 img {
 	max-width: 100%;
-}
+} 
 </style>
 
 <title>Shops</title>
@@ -149,14 +147,16 @@ img {
 		<div class="collapse navbar-collapse" id="myNavbar"></div>
 	</div>
 	</nav>
-
-
-	<div id="map">
+	<div id="map" class="col-lg-6 col-xs-12">
 		<script
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
 			async defer></script>
 	</div>
-	<div id="one">
+	<div id="one" class="col-lg-6 col-xs-12">
+	<form name="addNewShop" action="shopLocationSearch" method="get">
+		<button name="cityID" type="submit" value="${cityID}">Add New
+			Shop</button>
+	</form>
 		<ul class="list">
 
 			<c:forEach items="${shop}" var="current" varStatus="status">
@@ -191,14 +191,12 @@ img {
 								<br> <br> <img src="${current.picture1}" />
 							</div>
 						</div>
-					</div> 
+					</div>
+				</li>
 			</c:forEach>
 		</ul>
 	</div>
-	<form name="addNewShop" action="shopLocationSearch" method="get">
-		<button name="cityID" type="submit" value="${cityID}">Add New
-			Shop</button>
-	</form>
+
 
 </body>
 </html>
