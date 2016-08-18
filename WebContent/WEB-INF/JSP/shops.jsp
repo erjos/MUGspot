@@ -176,6 +176,10 @@ img {
 						Phone:
 						<c:out value="${current.phone}" />
 					</p>
+					<p class="Hours">
+						
+						<c:out value="${current.hours}" />
+					</p>
 					<div class="name">
 						<div id="demo">
 							<button type="button" class="btn" data-toggle="collapse"

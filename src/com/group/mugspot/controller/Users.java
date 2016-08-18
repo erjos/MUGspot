@@ -1,6 +1,7 @@
 package com.group.mugspot.controller;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,6 +48,7 @@ public class Users {
 			this.fullname = fullname;
 		}
 		public void setPassword(String password) {
+			//this.password = PasswordEncoderGenerator.encodePassword(password);
 			this.password = password;
 		}
 		
