@@ -86,6 +86,7 @@ public class GooglePlaces {
 		info.add(shop_name);
 		info.add(phone);
 		info.add(shop_address);
+		
 		info.add(latitude);
 		info.add(longitude);
 		

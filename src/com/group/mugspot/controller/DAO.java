@@ -79,7 +79,7 @@ public class DAO {
 			}
 
 			String currentHours = "";
-			// gets day of the week as an integer - Friday = 6
+			
 			Calendar date = Calendar.getInstance();
 			int dayOfweek = date.get(Calendar.DAY_OF_WEEK);
 
@@ -127,9 +127,7 @@ public class DAO {
 			shop.put("budget", shops1.getBudget() + "");
 			shop.put("phone", phone);
 			shop.put("address", address);
-
 			shop.put("hours", currentHours);
-
 			shop.put("picture1", picture1);
 			shop.put("lat", lat);
 			shop.put("lng", lng);
@@ -422,7 +420,9 @@ public class DAO {
 
 	public static boolean containsUser(Users user) {
 
-		SessionFactory factory = DBFactory.setupFactory();
+		try{
+			SessionFactory factory = DBFactory.setupFactory();
+		
 
 		Session hibernateSession = factory.openSession();
 		hibernateSession.getTransaction().begin();
@@ -439,6 +439,10 @@ public class DAO {
 			return false;
 
 		return true;
+		}
+		finally {
+			return false;
+		}
 	}
 
 	public static int getUserID(Users user) {

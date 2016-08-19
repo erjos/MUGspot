@@ -1,5 +1,8 @@
 package com.group.mugspot.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,15 +49,31 @@ public class Users {
 		public void setfullname(String fullname) {
 			this.fullname = fullname;
 		}
-		public void setPassword(String password) {
-			this.password = password;
+		
+		public void setPassword(String password) throws NoSuchAlgorithmException {
+				MessageDigest md = MessageDigest.getInstance("MD5");
+		        md.update(password.getBytes());
+		        byte byteData[] = md.digest();
+		 
+		        final StringBuilder builder = new StringBuilder();
+		        
+		        for(byte b : byteData) {
+		            builder.append(String.format("%02x", b));
+		        }
+		        
+		        this.password = builder.toString();
+			}
+			
+		
+		public void resetPassword(){
+				this.password = null;
 		}
 		
 		public String getEmail() {
 			return email;
 		}
 		public void setEmail(String email) {
-			this.email = email;
+			this.email = email.toLowerCase();
 		}
 	
 		public int getID() {
