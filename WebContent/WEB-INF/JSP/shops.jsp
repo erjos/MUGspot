@@ -99,7 +99,7 @@ h2 {
 
 #map {
 	 /* width: 50%;  */
-	height: 500px;
+	height: 600px;
 	display: block; 
 	float: right;  
 	padding: 5px;
