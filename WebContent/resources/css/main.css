@@ -69,14 +69,32 @@
 } 
 
 .dbinfo {
-	color: #408c99;
+	margin-left: 720px;
+	margin-right:500px;
+	background-color:silver;
+	text-align:center;
+	width: 600px;
+	height:550px;
+	padding-left:35px;
+	padding-right:35px;
+	text-color:black;
+}
+.wkhrs{
+	float:left;
+	padding-left:35px;
+	text-color:black;
 }
 
-
 .slide {
-	height: 240px;
+	
+	height: 550px;
+	width: 600px;
 }
 
 .d {
 	max-width: 400px;
+}
+.slideshow {
+	float: left;
+	margin-left: 45px;
 }

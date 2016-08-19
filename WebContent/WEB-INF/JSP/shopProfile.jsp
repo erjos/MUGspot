@@ -11,10 +11,10 @@
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <!-- This script is what's messing up the stying on Review page -->
 <script
-	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>  
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -73,20 +73,17 @@
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="createLogin">Mugspot</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				
-
-			</div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="createLogin">Mugspot</a>
 		</div>
+		<div class="collapse navbar-collapse" id="myNavbar"></div>
+	</div>
 	</nav>
 
 
@@ -133,55 +130,68 @@
 						x[slideIndex - 1].style.display = "block";
 					}
 				</script>
-			</div>
 		</h2>
 	</center>
 	<center>
-		<a class="btn" style="position: absolute; top: 35%; left: 10%;"
+		<a class="btn" style="position: absolute; top: 55%; left: 15px;"
 			onclick="plusDivs(-1)">&#10094; </a> <a class="btn"
-			style="position: absolute; top: 35%; right: 10%"
+			style="position: absolute; top: 55%; left: 645px"
 			onclick="plusDivs(+1)">&#10095;</a>
 	</center>
 
-
+	</div>
 	<div class="dbinfo">
 		<br>
-		<p>
+		<p><h3>
+			Description:<br></h3>
+			<c:out value="${shopProfile.description2}" />
+		</p>
+		<p><h4>
 			Phone:
 			<c:out value="${shopProfile.phone}" />
-		</p>
-		<p>
+		</p></h4>
+		<p><h4>
 			Address:
 			<c:out value="${shopProfile.address}" />
-		</p>
-		<p>
+		</p></h4>
+		<p><h4>
 			Avg cost: ~$
 			<c:out value="${shopProfile.budget}" />
 			.00
-		</p>
-		<br> Number of available power outlets:
-		<c:out value="${shopProfile.outlets}" />
-		<br> Amount of seating available:
-		<c:out value="${shopProfile.capacity}" />
+		</p></h4>
+		<p><h4> Number of available power outlets:
+		<c:out value="${shopProfile.outlets}" /></p></h4>
+		<p> <h4>Amount of seating available:
+		<c:out value="${shopProfile.capacity}" /></p></h4>
 		<br>
-		<br><br>
-			<p class="d">
-				Description:<br>
-				<c:out value="${shopProfile.description2}" />
-			</p>
-		<br> Weekly Hours:<br>
-		<c:out value="${shopProfile.monday}" /><br>
-		<c:out value="${shopProfile.tuesday}" /><br>
-		<c:out value="${shopProfile.wednesday}" /><br>
-		<c:out value="${shopProfile.thursday}" /><br>
-		<c:out value="${shopProfile.friday}" /><br>
-		<c:out value="${shopProfile.saturday}" /><br>
-		<c:out value="${shopProfile.sunday}" /><br>
-		<br>
+		<div class ="wkhrs">
 		
-	</div>
-	<center>
+		<h4> Weekly Hours:</h4>
+		<c:out value="${shopProfile.monday}" />
+		<br>
+		<c:out value="${shopProfile.tuesday}" />
+		<br>
+		<c:out value="${shopProfile.wednesday}" />
+		<br>
+		<c:out value="${shopProfile.thursday}" />
+		<br>
+		<c:out value="${shopProfile.friday}" />
+		<br>
+		<c:out value="${shopProfile.saturday}" />
+		<br>
+		<c:out value="${shopProfile.sunday}" />
+		</div>
 		<div class="rvwbtns">
+					<button class="button"
+						onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,200)"
+						name="shopid">Leave Review</button>
+					<form name="Review" action="Review" method="get">
+						<input type="hidden" name="shopid" value="${shopProfile.id}" /> <input
+							type="submit" name="seeReview" value="See Reviews">
+					</form>
+				</div>
+
+	</div>
 			<%-- <div class="container">
 				<!-- Trigger the modal with a button -->
 				<button type="button" class="btn btn-info btn-lg"
@@ -225,17 +235,8 @@
 		</div>
 	</center>
 	</div> --%>
-	<center>
-<div class="rvwbtns">
-	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,200)" name = "shopid">Leave Review</button>
-	<form name="Review" action="Review" method="get">
-	<input type = "hidden" name = "shopid" value = "${shopProfile.id}"/>
-    <input type="submit" name = "seeReview" value="See Reviews">
-    </form>
-</div>	
-		</center> 
 
-	<%-- 	<center>
+			<%-- 	<center>
 <div class="rvwbtns">
 	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
 	<form name="Review" action="Review" method="get">
@@ -244,6 +245,5 @@
     </form>
 </div>	
 		</center> --%>
-
 </body>
 </html>
