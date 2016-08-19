@@ -11,54 +11,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
-<style>
-/* body {
-	font-family: 'Indie Flower', cursive;
-}
- */
-table {
-	align: center;
-}
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-th {
-	text-align: center;
-	font-size: 30px;
-}
-
-td {
-	padding: 15px;
-	text-align: left;
-	font-size: 20px;
-}
-
-tr:nth-child(even) {
-	background-color: #5F9EA0;
-}
-
-tr:nth-child(odd) {
-	background-color: #DEB887;
-}
-</style>
-
-<!-- <link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"
-	integrity="sha384-XXXXXXXX" crossorigin="anonymous"> -->
-<!-- <script
+	integrity="sha384-XXXXXXXX" crossorigin="anonymous">
+<script
 	src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"
-	integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script> -->
-<!-- <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  -->
-<!-- <link rel="stylesheet"
+	integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous"> -->
-
-<!-- Latest compiled and minified JavaScript -->
-<!-- <script
+	crossorigin="anonymous">
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <title>Reviews</title>
 </head>
@@ -71,7 +41,7 @@ tr:nth-child(odd) {
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="createLogin">Mugspot</a>
+			<a class="navbar-brand" href="index.jsp">Mugspot</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar"></div>
 	</div>

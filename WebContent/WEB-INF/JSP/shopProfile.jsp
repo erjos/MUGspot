@@ -6,30 +6,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+	
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <!-- This script is what's messing up the stying on Review page -->
-<script
-	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<!-- <script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<!-- <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-<!-- <script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+
 <script>
 	function myFunction(pageURL, title, w, h) {
 		var left = (screen.width / 2) - (w / 2);
@@ -48,39 +55,18 @@
 	}
 </script>
 <title>shop details</title>
-<%-- <link href="<c:url value="/WebContent/resources/css/main.css" />" rel="stylesheet"> --%>
-
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  -->
-
-<%-- <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet"> --%>
-
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
+			<button type="button" class="navbar-toggle"  data-toggle="collapse"
 				data-target="#myNavbar">
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="createLogin">Mugspot</a>
+			<a class="navbar-brand" href="index.jsp">Mugspot</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar"></div>
 	</div>
@@ -181,69 +167,18 @@
 		<br>
 		<c:out value="${shopProfile.sunday}" />
 		</div>
-		<div class="rvwbtns">
-					<button class="button"
+		
+					<button class="button" id = "LeaveReview"
 						onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,200)"
 						name="shopid">Leave Review</button>
+						<br><br>
 					<form name="Review" action="Review" method="get">
 						<input type="hidden" name="shopid" value="${shopProfile.id}" /> <input
-							type="submit" name="seeReview" value="See Reviews">
+							type="submit" name="seeReview" value="See Reviews" id = "SeeReview" width = 100px>
 					</form>
-				</div>
+				
 
 	</div>
-			<%-- <div class="container">
-				<!-- Trigger the modal with a button -->
-				<button type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#myModal">Leave Review</button>
-				href="reviews?id=${shopProfile.id}"
-				<!-- Modal -->
-				<div class="modal fade" id="myModal" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-					   		<div class="modal-header">
-								<form:errors path="reviews.*" />
-								<form class="newUser-bg" style="background-color: #E6E6FA"
-									action="success" method="get">
-									<input type="hidden" name="user_id" value="${user_id}">
-									<textarea class="longInput" style="height: 65%"
-										" placeholder="Your Review"></textarea>
-									<!-- <input type="text" name="review" placeholder="Your Review"> -->
-									<input type="number" name="rating" style="height: 10%"
-										"1" max="5" placeholder="Your Rating"> <input
-										type="hidden" name="shop_id" value="${shop_id}"> <input
-										type="submit" value="Submit">
-									<!-- cols="30" rows="20" -->
-								</form>
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<!-- <h4 class="modal-title">Modal Header</h4> -->
-							</div>
-						</div>
-					</div>
-				</div> --%>
-			<%-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-				data-target="#myModal">Leave Review</button>
-			<textarea class="longInput" style="height: 65%"
-				" placeholder="Your Review"></textarea>
-			<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
-			<form name="Review" action="Review" method="get">
-				<input type="hidden" name="shopid" value="${shopProfile.id}">
-				<input type="submit" name="seeReview" value="See Reviews">
-			</form>
-		</div>
-	</center>
-	</div> --%>
-
-			<%-- 	<center>
-<div class="rvwbtns">
-	<button class="button" onclick="myFunction('reviews?id=${shopProfile.id}', 'Helpdesk',400,400)" name = "shopid">Leave Review</button>
-	<form name="Review" action="Review" method="get">
-	<input type = "hidden" name = "shopid" value = "${shopProfile.id}">
-    <input type="submit" name = "seeReview" value="See Reviews">
-    </form>
-</div>	
-		</center> --%>
+			
 </body>
 </html>
