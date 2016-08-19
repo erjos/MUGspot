@@ -1,21 +1,15 @@
          package com.group.mugspot.controller;
 
-import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.Map;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.http.client.ClientProtocolException;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -75,8 +69,23 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/addUser")
-	public ModelAndView newUser(@RequestParam("fullname")String fullname, @RequestParam("password")String password, @RequestParam("email")String email, HttpServletResponse response){
-		Users p = new Users(fullname,password,email);
+	public String newUser(@ModelAttribute("command") Users user, Model model) throws NoSuchAlgorithmException {
+		if (DAO.containsUser(user)) {
+			user.resetPassword();
+			model.addAttribute("username", user.getEmail());
+			model.addAttribute("error", " is already taken.");
+			return "userSignUp";
+		} else {
+			DAO.addUser(user);
+			/*model.addAttribute("username", user.getEmail());
+			ModelAndView mv = new ModelAndView("memberArea");
+			String message= "You created an account";
+			mv.addObject("userConfirmation",message);*/
+			return "adminLogin";
+		}
+	
+		
+		/*Users p = new Users(fullname,password,email);
 		DAO.addUser(p);
 		String userID = DAO.getUserID(p)+"";
 		Cookie uID = new Cookie("userID" , userID);
@@ -85,7 +94,7 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView("memberArea");
 		String message= "You created an account";
 		mv.addObject("userConfirmation",message);
-		return mv;
+		return mv;*/
 		
 	}
 	

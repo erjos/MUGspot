@@ -97,12 +97,14 @@ h2 {
 	padding: 5px; */
 }
 
- #map {
+#map {
 	 /* width: 50%;  */
-	height: 590px;
+	height: 500px;
 	display: block; 
 	float: right;  
-	 padding: 5px; 
+	padding: 5px;
+	border-style: solid;
+    border-width: 5px;
 } 
 /*  .btn {
 	width: 15%;
@@ -147,11 +149,7 @@ img {
 		<div class="collapse navbar-collapse" id="myNavbar"></div>
 	</div>
 	</nav>
-	<div id="map" class="col-lg-6 col-xs-12">
-		<script
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
-			async defer></script>
-	</div>
+	
 	<div id="one" class="col-lg-6 col-xs-12">
 	<form name="addNewShop" action="shopLocationSearch" method="get">
 		<button name="cityID" type="submit" value="${cityID}">Add New
@@ -199,6 +197,11 @@ img {
 				</li>
 			</c:forEach>
 		</ul>
+	</div>
+	<div id="map" class="col-lg-6 col-xs-12">
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6vlBGntuXNYQiRIry2UFlU5YHlU0Si4&libraries=places&callback=initMap"
+			async defer></script>
 	</div>
 
 

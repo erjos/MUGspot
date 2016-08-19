@@ -48,6 +48,7 @@
 <form name="addUser" action="addUser" method="post">
 	Name	<input name="fullname" type="text"><br>
 	Username		<input name="email" type="text"><br>
+					<td class="error">${username}${error}</td>
 	Password	<input name="password" type="password"><br>
 	<button type="submit">Register</button>
 </form>

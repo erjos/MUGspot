@@ -420,7 +420,9 @@ public class DAO {
 
 	public static boolean containsUser(Users user) {
 
-		SessionFactory factory = DBFactory.setupFactory();
+		try{
+			SessionFactory factory = DBFactory.setupFactory();
+		
 
 		Session hibernateSession = factory.openSession();
 		hibernateSession.getTransaction().begin();
@@ -437,6 +439,10 @@ public class DAO {
 			return false;
 
 		return true;
+		}
+		finally {
+			return false;
+		}
 	}
 
 	public static int getUserID(Users user) {
